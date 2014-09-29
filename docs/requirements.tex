@@ -1,0 +1,572 @@
+\documentclass[]{article}
+
+% Imported Packages
+%------------------------------------------------------------------------------
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{extarrows}
+\usepackage{setspace}
+%------------------------------------------------------------------------------
+
+% Header and Footer
+%------------------------------------------------------------------------------
+\pagestyle{plain}  
+\renewcommand\headrulewidth{0.4pt}                                      
+\renewcommand\footrulewidth{0.4pt}                                    
+%------------------------------------------------------------------------------
+
+% Title Details
+%------------------------------------------------------------------------------
+\title{Deliverable \#1 Template}
+\author{SE 3A04: Software Design II -- Large System Design}
+\date{}                               
+%------------------------------------------------------------------------------
+
+% Document
+%------------------------------------------------------------------------------
+\begin{document}
+
+\maketitle	
+
+\section{Introduction}
+\label{sec:introduction}
+% Begin Section
+
+This section of the SRS should provide an overview of the entire SRS.
+
+\subsection{Purpose}
+\label{sub:purpose}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Delineate the purpose of the SRS
+	\item Specify the intended audience for the SRS
+\end{enumerate}
+% End SubSection
+
+\subsection{Scope}
+\label{sub:scope}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Identify the software product(s) to be produced by name (e.g., Host DBMS, Report Generator, etc.)
+	\item Explain what the software product(s) will, and, if necessary, will not do
+	\item Describe the application of the software being specified, including relevant benefits, objectives, and goals
+	\item Be consistent with similar statements in higher-level specifications (e.g., the system requirements specification), if they exist
+\end{enumerate}
+% End SubSection
+
+\subsection{Definitions, Acronyms, and Abbreviations}
+\label{sub:definitions_acronyms_and_abbreviations}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Provide the definitions of all terms, acronyms, and abbreviations required to properly interpret the SRS
+\end{enumerate}
+% End SubSection
+
+\subsection{References}
+\label{sub:references}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Provide a complete list of all documents referenced elsewhere in the SRS
+	\item Identify each document by title, report number (if applicable), date, and publishing organization
+	\item Specify the sources from which the references can be obtained
+\end{enumerate}
+% End SubSection
+
+\subsection{Overview}
+\label{sub:overview}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Describe what the rest of the SRS contains
+	\item Explain how the SRS is organized
+\end{enumerate}
+% End SubSection
+
+% End Section
+
+\section{Overall Description}
+\label{sec:overall_description}
+% Begin Section
+
+This section of the SRS should describe the general factors that affect the product and its requirements. It does not state specific requirements; it provides a background for those requirements and makes them easier to understand.
+
+\subsection{Product Perspective}
+\label{sub:product_perspective}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Put the product into perspective with other related products, i.e., context
+	\item If the product is independent and totally self-contained, it should be stated here
+	\item If the SRS defines a product that is a component of a larger system, as frequently occurs, then this subsection should relate the requirements of that larger system to functionality of the software and should identify interfaces between that system and the software
+	\item A block diagram showing the major components of the larger system, interconnections, and external interfaces can be helpful
+\end{enumerate}
+% End SubSection
+
+\subsection{Product Functions}
+\label{sub:product_functions}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Provide a summary of the major functions that the software will perform.
+	\begin{itemize}
+		\item \textbf{Example}: An SRS for an accounting program may use this part to address customer account maintenance, customer statement, and invoice preparation without mentioning the vast amount of detail that each of those functions requires.
+	\end{itemize}
+	\item Functions should be organized in a way that makes the list of functions understandable to the customer or to anyone else reading the document for the first time
+	\item Textual or graphical methods can be used to show the different functions and their relationships
+	\begin{itemize}
+		\item Such a diagram is not intended to show a design of a product, but simply shows the logical relationships among variables
+	\end{itemize} 
+\end{enumerate}
+% End SubSection
+
+\subsection{User Characteristics}
+\label{sub:user_characteristics}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Describe those general characteristics of the intended users of the product including educational level, experience, and technical expertise
+	\item Do not state specific requirements, but rather provide the reasons why certain specific requirements are later specified
+\end{enumerate}
+% End SubSection
+
+\subsection{Constraints}
+\label{sub:constraints}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Provide a general description of any other items that will limit the developer's options
+\end{enumerate}
+% End SubSection
+
+\subsection{Assumptions and Dependencies}
+\label{sub:assumptions_and_dependencies}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item List each of the factors that affect the requirements stated in the SRS
+	\item These factors are not design constraints on the software but are, rather, any changes to them that can affect the requirements in the SRS
+	\begin{itemize}
+		\item \textbf{Example}: An assumption may be that a specific operating system will be available on the hardware designated for the software product. If, in fact, the operating system is not available, the SRS would then have to change accordingly.
+	\end{itemize}
+\end{enumerate}
+% End SubSection
+
+\subsection{Apportioning of Requirements}
+\label{sub:apportioning_of_requirements}
+% Begin SubSection
+\begin{enumerate}[a)]
+	\item Identify requirements that may be delayed until future versions of the system
+\end{enumerate}
+% End SubSection
+
+% End Section
+
+\section{Functional Requirements}
+\label{sec:functional_requirements}
+% Begin Section
+This section of the SRS should contain all of the software requirements to a level of detail sufficient to enable designers to design a system to satisfy those requirements, and testers to test that the system satisfies those requirements. Throughout this section, every stated requirement should be externally perceivable by users, operators, or other external systems. These requirements should include at a minimum a description of every input (stimulus) into the system, every output (response) from the system, and all functions performed by the system in response to an input or in support of an output.
+
+You normally have two options for organizing your functional requirements:
+\begin{enumerate}
+	\item Organize first by \emph{business events}, then by \emph{viewpoints}
+	\item Organize first by \emph{viewpoints}, then by \emph{business events}
+\end{enumerate}
+Choose the one which makes the most sense.
+
+For example, if you wish to organization by business events:
+\begin{enumerate}[{BE}1.]
+	\item Business Event
+	\begin{enumerate}[{VP1}.1]
+		\item Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+				\item \dots
+			\end{enumerate}
+		\item Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+				\item \dots
+			\end{enumerate}
+		\item \dots
+	\end{enumerate}
+	\item Business Event
+	\begin{enumerate}[{VP2}.1]
+		\item Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+				\item \dots
+			\end{enumerate}
+		\item Viewpoint
+			\begin{enumerate}
+				\item Requirement
+				\item Requirement
+				\item \dots
+			\end{enumerate}
+		\item \dots
+	\end{enumerate}
+\end{enumerate}
+
+\underline{OR}, if you wish to organization by viewpoints:
+\begin{enumerate}[{VP}1.]
+	\item Viewpoint 
+	\begin{enumerate}[{BE1}.1]
+		\item Business Event
+		\begin{enumerate}
+			\item Requirement
+			\item Requirement
+			\item \dots
+		\end{enumerate}
+		\item Business Event
+		\begin{enumerate}
+			\item Requirement
+			\item Requirement
+			\item \dots
+		\end{enumerate}
+		\item \dots
+	\end{enumerate}
+	\item Viewpoint
+	\begin{enumerate}[{BE2}.1]
+		\item Business Event
+		\begin{enumerate}
+			\item Requirement
+			\item Requirement
+			\item \dots
+		\end{enumerate}
+		\item Business Event
+		\begin{enumerate}
+			\item Requirement
+			\item Requirement
+			\item \dots
+		\end{enumerate}
+		\item \dots
+	\end{enumerate}
+\end{enumerate}
+
+% End Section
+
+\section{Non-Functional Requirements}
+\label{sec:non-functional_requirements}
+% Begin Section
+\subsection{Look and Feel Requirements}
+\label{sub:look_and_feel_requirements}
+% Begin SubSection
+
+\subsubsection{Appearance Requirements}
+\label{ssub:appearance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{LF}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Style Requirements}
+\label{ssub:style_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{LF}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Usability and Humanity Requirements}
+\label{sub:usability_and_humanity_requirements}
+% Begin SubSection
+
+\subsubsection{Ease of Use Requirements}
+\label{ssub:ease_of_use_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Personalization and Internationalization Requirements}
+\label{ssub:personalization_and_internationalization_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Learning Requirements}
+\label{ssub:learning_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Understandability and Politeness Requirements}
+\label{ssub:understandability_and_politeness_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Accessibility Requirements}
+\label{ssub:accessibility_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UH}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Performance Requirements}
+\label{sub:performance_requirements}
+% Begin SubSection
+
+\subsubsection{Speed and Latency Requirements}
+\label{ssub:speed_and_latency_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Safety-Critical Requirements}
+\label{ssub:safety_critical_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Precision or Accuracy Requirements}
+\label{ssub:precision_or_accuracy_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Reliability and Availability Requirements}
+\label{ssub:reliability_and_availability_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Robustness or Fault-Tolerance Requirements}
+\label{ssub:robustness_or_fault_tolerance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Capacity Requirements}
+\label{ssub:capacity_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Scalability or Extensibility Requirements}
+\label{ssub:scalability_or_extensibility_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Longevity Requirements}
+\label{ssub:longevity_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Operational and Environmental Requirements}
+\label{sub:operational_and_environmental_requirements}
+% Begin SubSection
+
+\subsubsection{Expected Physical Environment}
+\label{ssub:expected_physical_environment}
+% Begin SubSubSection
+\begin{enumerate}[{OE}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Requirements for Interfacing with Adjacent Systems}
+\label{ssub:requirements_for_interfacing_with_adjacent_systems}
+% Begin SubSubSection
+\begin{enumerate}[{OE}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Productization Requirements}
+\label{ssub:productization_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{OE}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Release Requirements}
+\label{ssub:release_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{OE}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Maintainability and Support Requirements}
+\label{sub:maintainability_and_support_requirements}
+% Begin SubSection
+
+\subsubsection{Maintenance Requirements}
+\label{ssub:maintenance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{MS}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Supportability Requirements}
+\label{ssub:supportability_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{MS}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Adaptability Requirements}
+\label{ssub:adaptability_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{MS}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Security Requirements}
+\label{sub:security_requirements}
+% Begin SubSection
+
+\subsubsection{Access Requirements}
+\label{ssub:access_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Integrity Requirements}
+\label{ssub:integrity_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Privacy Requirements}
+\label{ssub:privacy_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Audit Requirements}
+\label{ssub:audit_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Immunity Requirements}
+\label{ssub:immunity_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Cultural and Political Requirements}
+\label{sub:cultural_and_political_requirements}
+% Begin SubSection
+
+\subsubsection{Cultural Requirements}
+\label{ssub:cultural_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{CP}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Political Requirements}
+\label{ssub:political_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{CP}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Legal Requirements}
+\label{sub:legal_requirements}
+% Begin SubSection
+
+\subsubsection{Compliance Requirements}
+\label{ssub:compliance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{LR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Standards Requirements}
+\label{ssub:standards_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{LR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+% End Section
+
+\appendix
+\section{Division of Labour}
+\label{sec:division_of_labour}
+% Begin Section
+Include a Division of Labour sheet which indicates the contributions of each team member. This sheet must be signed by all team members.
+% End Section
+
+\newpage
+\section*{IMPORTANT NOTES}
+\begin{itemize}
+	\item Be sure to include all sections of the template in your document regardless whether you have something to write for each or not
+	\begin{itemize}
+		\item If you do not have anything to write in a section, indicate this by the \emph{N/A}, \emph{void}, \emph{none}, etc.
+	\end{itemize}
+	\item Uniquely number each of your requirements for easy identification and cross-referencing
+	\item Highlight terms that are defined in Section~1.3 (\textbf{Definitions, Acronyms, and Abbreviations}) with \textbf{bold}, \emph{italic} or \underline{underline}
+	\item For Deliverable 1, please highlight, in some fashion, all (you may have more than one) creative and innovative features. Your creative and innovative features will generally be described in Section~2.2 (\textbf{Product Functions}), but it will depend on the type of creative or innovative features you are including.
+\end{itemize}
+
+
+\end{document}
+%------------------------------------------------------------------------------
