@@ -138,12 +138,15 @@ This section of the SRS should describe the general factors that affect the prod
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Put the product into perspective with other related products, i.e., context
-	\item If the product is independent and totally self-contained, it should be stated here
-	\item If the SRS defines a product that is a component of a larger system, as frequently occurs, then this subsection should relate the requirements of that larger system to functionality of the software and should identify interfaces between that system and the software
-	\item A block diagram showing the major components of the larger system, interconnections, and external interfaces can be helpful
-\end{enumerate}
+All existing taxi applications only serve users by requesting a new taxi from the dispatcher, making our product independent and self-contained. Our application is intended to be used as 
+a sub-component of the taxi company dispatching system. The company dispatching system requires 
+filling any taxi requests. Our application will allow users to offer a taxi up for sharing. 
+When this happens, the dispatching system will be notified of a taxi that may be able to fill
+another taxi request. Information such as the taxi's current location, and destination will be passed. Users are also able to request a shared taxi. When this request is filed, the dispatching system is again notified, so it may try to match a shared taxi offer with a shared taxi request. Matches will only be made if the users will save money choosing to share, as opposed to 
+requesting a new taxi, and not sharing. If a match or more is made, the user who initiated the request may view what taxi's they may take in order to save money. Information about each taxi
+ride will be shown to the user. The user may then submit a final request for the specific taxi
+chosen in the viewable list. The user that offered that taxi will be notified of a potential
+carpooler, and will have the choice to accept or decline the request.
 % End SubSection
 
 \subsection{Product Functions}
