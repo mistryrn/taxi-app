@@ -217,6 +217,7 @@ You normally have two options for organizing your functional requirements:
 Choose the one which makes the most sense.
 
 For example, if you wish to organization by business events:
+
 \begin{enumerate}[{BE}1.]
 	\item Open \textbf{application}
 	\begin{enumerate}[{VP1}.1]
@@ -238,58 +239,94 @@ For example, if you wish to organization by business events:
 			\item User information will be sent securely.
 			\end{enumerate}
 	\end{enumerate}
-	\item Business Event
+	
+	\item Close Application
 	\begin{enumerate}[{VP2}.1]
-		\item Viewpoint
+		\item User
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
-				\item \dots
+				\item The android application will close.
+				\item Any offers/requests made will not be canceled.
 			\end{enumerate}
-		\item Viewpoint
+		\item Dispatcher\\
+			N.A.
+		\item Security\\
+			N.A.
+		\item Legal\\
+			N.A.
+	\end{enumerate}
+	
+	\item Logout
+	\begin{enumerate}[{VP2}.1]
+		\item User
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
-				\item \dots
+				\item Any offers/requests made must be canceled.
+				\item Android application will return to main screen.
 			\end{enumerate}
-		\item \dots
+		\item Dispatcher
+			\begin{enumerate}
+				\item Any offers/requests from this user must be removed from the system.
+			\end{enumerate}
+		\item Security\\
+			N.A.
+		\item Legal\\
+			N.A.
 	\end{enumerate}
-\end{enumerate}
-
-\underline{OR}, if you wish to organization by viewpoints:
-\begin{enumerate}[{VP}1.]
-	\item Viewpoint 
-	\begin{enumerate}[{BE1}.1]
-		\item Business Event
-		\begin{enumerate}
-			\item Requirement
-			\item Requirement
-			\item \dots
-		\end{enumerate}
-		\item Business Event
-		\begin{enumerate}
-			\item Requirement
-			\item Requirement
-			\item \dots
-		\end{enumerate}
-		\item \dots
+	
+	\item Cancel Taxi Request/Offer
+	\begin{enumerate}[{VP2}.1]
+		\item User
+			\begin{enumerate}
+				\item The offer/request made is canceled.
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item The cancelled offer/request from this user must be removed from the system.
+			\end{enumerate}
+		\item Security\\
+			N.A.
+		\item Legal\\
+			N.A.
 	\end{enumerate}
-	\item Viewpoint
-	\begin{enumerate}[{BE2}.1]
-		\item Business Event
-		\begin{enumerate}
-			\item Requirement
-			\item Requirement
-			\item \dots
-		\end{enumerate}
-		\item Business Event
-		\begin{enumerate}
-			\item Requirement
-			\item Requirement
-			\item \dots
-		\end{enumerate}
-		\item \dots
+	
+	\item Send Friend Request
+	\begin{enumerate}[{VP2}.1]
+		\item User
+			\begin{enumerate}
+				\item Allow users to accept or decline friend requests.
+				\item Show friend request pending if the request has not yet been accepted.
+				\item Auto add the friend to friends list of both users once the request is accepted.
+			\end{enumerate}
+		\item Dispatcher\\
+			N.A.
+		\item Security
+			\begin{enumerate}
+				\item Allow profile information to be shared between friends confidentially.
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item Notify users profile information will be shared between friends.
+			\end{enumerate}
 	\end{enumerate}
+	
+	\item Remove Friend
+	\begin{enumerate}[{VP2}.1]
+		\item User
+			\begin{enumerate}
+				\item Allow users to remove friends from friends list.
+				\item The removed friend will no longer be in the users friends list.
+			\end{enumerate}
+		\item Dispatcher\\
+			N.A.
+		\item Security
+			\begin{enumerate}
+				\item Profile information of both users will no longer be viewable.
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item Notify the user that removed friend's profile will no longer be accessed.
+			\end{enumerate}
+	\end{enumerate}
+	
 \end{enumerate}
 
 % End Section
