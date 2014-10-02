@@ -148,15 +148,15 @@ This section of the SRS should describe the general factors that affect the prod
 \label{sub:product_functions}
 % Begin SubSection
 \begin{enumerate}[a)]
-	\item Provide a summary of the major functions that the software will perform.
-	\begin{itemize}
-		\item \textbf{Example}: An SRS for an accounting program may use this part to address customer account maintenance, customer statement, and invoice preparation without mentioning the vast amount of detail that each of those functions requires.
-	\end{itemize}
-	\item Functions should be organized in a way that makes the list of functions understandable to the customer or to anyone else reading the document for the first time
-	\item Textual or graphical methods can be used to show the different functions and their relationships
-	\begin{itemize}
-		\item Such a diagram is not intended to show a design of a product, but simply shows the logical relationships among variables
-	\end{itemize} 
+\item The \textbf{application} will enable users to create a profile, manually or through \textbf{Facebook}, and enter two modes, \textbf{Request Taxi Carpool} and \textbf{Offer Taxi Carpool}. In the \textbf{Offer Taxi Carpool} mode the user will scan a barcode within the taxi which will contain taxi identification information to be sent to the \textbf{Dispatcher}. In each mode the user will be able to enter their destination and sort their search results by distance, ratings and fare price. 
+	
+	\item The user will be able to enter constraint criteria such as preferred sex and maximum number of passengers. When a match is selected a request is sent to the \textbf{Dispatcher} which will relay the request for confirmation from the potential match. 
+	
+	\item The \textbf{Dispatcher} will store all taxi and user information to enable users to connect with one another, sharing taxis and reducing fares without releasing personal information to strangers. The \textbf{application} will ensure that all messages will retain confidentiality and integrity.
+	
+	\item The \textbf{application} will display the fare owed by each customer and allow rating of customers with whom the ride was shared. Additionally, customers will be able to add other riders to a \textbf{friends list} or a \textbf{blacklist}.
+	
+	\item The \textbf{application} will enable customers to view their route on Google Maps, as well as any potential route changes.
 \end{enumerate}
 % End SubSection
 
@@ -213,21 +213,24 @@ Choose the one which makes the most sense.
 
 For example, if you wish to organization by business events:
 \begin{enumerate}[{BE}1.]
-	\item Business Event
+	\item Open \textbf{application}
 	\begin{enumerate}[{VP1}.1]
-		\item Viewpoint
+		\item \textbf{User}
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
-				\item \dots
+				\item User views \textbf{splash screen} followed by main menu upon loading
 			\end{enumerate}
-		\item Viewpoint
+		\item \textbf{Dispatcher}
 			\begin{enumerate}
-				\item Requirement
-				\item Requirement
-				\item \dots
+				\item VOID
 			\end{enumerate}
-		\item \dots
+		\item \textbf{Legal}
+			\begin{enumerate}
+			\item VOID
+			\end{enumerate}
+		\item \textbf{Security}
+			\begin{enumerate}
+			\item VOID
+			\end{enumerate}
 	\end{enumerate}
 	\item Business Event
 	\begin{enumerate}[{VP2}.1]
@@ -434,7 +437,8 @@ For example, if you wish to organization by business events:
 \label{ssub:expected_physical_environment}
 % Begin SubSubSection
 \begin{enumerate}[{OE}1. ]
-	\item 
+	\item The \textbf{application} will have simple graphical interfaces to allow for ease of use when travelling outdoors.
+	\item The \textbf{application} will run on android smartphones.
 \end{enumerate}
 % End SubSubSection
 
@@ -442,7 +446,7 @@ For example, if you wish to organization by business events:
 \label{ssub:requirements_for_interfacing_with_adjacent_systems}
 % Begin SubSubSection
 \begin{enumerate}[{OE}1. ]
-	\item 
+	\item The \textbf{application} will interface with Google Maps and Facebook.
 \end{enumerate}
 % End SubSubSection
 
@@ -450,7 +454,7 @@ For example, if you wish to organization by business events:
 \label{ssub:productization_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{OE}1. ]
-	\item 
+	\item Initially the system will work for a small number of taxis and users. Prior to completion this will be increased to reflect an expected expanded user base.
 \end{enumerate}
 % End SubSubSection
 
@@ -458,7 +462,7 @@ For example, if you wish to organization by business events:
 \label{ssub:release_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{OE}1. ]
-	\item 
+	\item The \textbf{application} will be available for download and install through Google App store.
 \end{enumerate}
 % End SubSubSection
 
@@ -548,7 +552,7 @@ For example, if you wish to organization by business events:
 \label{ssub:cultural_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{CP}1. ]
-	\item 
+	\item The product will use British spelling.
 \end{enumerate}
 % End SubSubSection
 
@@ -556,7 +560,7 @@ For example, if you wish to organization by business events:
 \label{ssub:political_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{CP}1. ]
-	\item 
+	\item This \textbf{application} will work with the taxi cab company that commissioned it only.
 \end{enumerate}
 % End SubSubSection
 
@@ -570,7 +574,7 @@ For example, if you wish to organization by business events:
 \label{ssub:compliance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR}1. ]
-	\item 
+	\item This product will comply with the Personal Information Protection and Electronic Documents Act.
 \end{enumerate}
 % End SubSubSection
 
@@ -578,7 +582,7 @@ For example, if you wish to organization by business events:
 \label{ssub:standards_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR}1. ]
-	\item 
+	\item VOID
 \end{enumerate}
 % End SubSubSection
 
