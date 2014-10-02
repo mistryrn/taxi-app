@@ -148,7 +148,7 @@ This section of the SRS should describe the general factors that affect the prod
 \label{sub:product_functions}
 % Begin SubSection
 \begin{enumerate}[a)]
-\item The \textbf{application} will enable users to create a profile, manually or through \textbf{Facebook}, and enter two modes, \textbf{Request Taxi Carpool} and \textbf{Offer Taxi Carpool}. In the \textbf{Offer Taxi Carpool} mode the user will scan a barcode within the taxi which will contain taxi identification information to be sent to the \textbf{Dispatcher}. In each mode the user will be able to enter their destination and sort their search results by distance, ratings and fare price. 
+\item The \textbf{application} will enable users to create a profile and enter two modes, \textbf{Request Taxi Carpool} and \textbf{Offer Taxi Carpool}. In the \textbf{Offer Taxi Carpool} mode the user will scan a barcode within the taxi which will contain taxi identification information to be sent to the \textbf{Dispatcher}. In each mode the user will be able to enter their destination and sort their search results by distance, ratings and fare price. 
 	
 	\item The user will be able to enter constraint criteria such as preferred sex and maximum number of passengers. When a match is selected a request is sent to the \textbf{Dispatcher} which will relay the request for confirmation from the potential match. 
 	
@@ -217,11 +217,12 @@ For example, if you wish to organization by business events:
 	\begin{enumerate}[{VP1}.1]
 		\item \textbf{User}
 			\begin{enumerate}
-				\item User views \textbf{splash screen} followed by main menu upon loading
+				\item User views \textbf{splash screen} followed by main menu upon loading.
+				\item User will automatically log in using stored data from previous session.
 			\end{enumerate}
 		\item \textbf{Dispatcher}
 			\begin{enumerate}
-				\item VOID
+				\item \textbf{Dispatcher} will be notified of user log in. 
 			\end{enumerate}
 		\item \textbf{Legal}
 			\begin{enumerate}
@@ -229,7 +230,7 @@ For example, if you wish to organization by business events:
 			\end{enumerate}
 		\item \textbf{Security}
 			\begin{enumerate}
-			\item VOID
+			\item User information will be sent securely.
 			\end{enumerate}
 	\end{enumerate}
 	\item Business Event
