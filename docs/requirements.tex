@@ -138,7 +138,10 @@ This section of the SRS should describe the general factors that affect the prod
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
-All existing taxi applications only serve users by requesting a new taxi from the dispatcher, making our product independent and self-contained. Our application is intended to be used as 
+Two notably similar applications already exist in the Google Play store, however, there are some key
+differences between those products and ours. One of the existing applications only attempts to make it easier for friends or strangers to carpool with their personal vehicles, not using a taxi service. The second product uses a taxi service, but customers who share a taxi must be picked up, and dropped off at the same destination. Our product uses a taxi service, thus eliminating risk of illegal activities that may occur when carpooling with a stranger, and does not limit carpoolers to having the exact same pick-up and destination locations.\\
+
+Our application is intended to be used as 
 a sub-component of the taxi company dispatching system. The company dispatching system requires 
 filling any taxi requests. Our application will allow users to offer a taxi up for sharing. 
 When this happens, the dispatching system will be notified of a taxi that may be able to fill
@@ -244,15 +247,16 @@ For example, if you wish to organization by business events:
 	\begin{enumerate}[{VP2}.1]
 		\item User
 			\begin{enumerate}
-				\item The android application will close.
+				\item The android application will close and be off screen.
+				\item The android application will minimize mobile resources used.
 				\item Any offers/requests made will not be canceled.
 			\end{enumerate}
 		\item Dispatcher\\
-			N.A.
+			Void
 		\item Security\\
-			N.A.
+			Void
 		\item Legal\\
-			N.A.
+			Void
 	\end{enumerate}
 	
 	\item Logout
@@ -265,27 +269,37 @@ For example, if you wish to organization by business events:
 		\item Dispatcher
 			\begin{enumerate}
 				\item Any offers/requests from this user must be removed from the system.
+				\item Location information of the user is no longer accessible.
 			\end{enumerate}
-		\item Security\\
-			N.A.
-		\item Legal\\
-			N.A.
+		\item Security
+			\begin{enumerate}
+				\item Logout signal must be sent securely to dispatcher.
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item Information on the user's current location must not be accessible by any third
+				parties including friends.
+			\end{enumerate}
 	\end{enumerate}
 	
 	\item Cancel Taxi Request/Offer
 	\begin{enumerate}[{VP2}.1]
 		\item User
 			\begin{enumerate}
-				\item The offer/request made is canceled.
+				\item The offer/request made is removed from viewable list of
+				pending offer/requests
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
 				\item The cancelled offer/request from this user must be removed from the system.
 			\end{enumerate}
-		\item Security\\
-			N.A.
+		\item Security
+			\begin{enumerate}
+				\item The cancelled offer/request signal must be sent to dispatcher in a secure
+				manner
+			\end{enumerate}
 		\item Legal\\
-			N.A.
+			Void
 	\end{enumerate}
 	
 	\item Send Friend Request
@@ -294,17 +308,20 @@ For example, if you wish to organization by business events:
 			\begin{enumerate}
 				\item Allow users to accept or decline friend requests.
 				\item Show friend request pending if the request has not yet been accepted.
-				\item Auto add the friend to friends list of both users once the request is accepted.
+				\item Remove friend request pending if the friend request is declined.
+				\item Add the friend to friends list of both users once the request is accepted, and 
+				remove friend request pending.
 			\end{enumerate}
 		\item Dispatcher\\
-			N.A.
+			Void
 		\item Security
 			\begin{enumerate}
 				\item Allow profile information to be shared between friends confidentially.
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item Notify users profile information will be shared between friends.
+				\item On the very first occurrence, notify the user that profile information will 
+				be shared between friends.
 			\end{enumerate}
 	\end{enumerate}
 	
@@ -316,14 +333,15 @@ For example, if you wish to organization by business events:
 				\item The removed friend will no longer be in the users friends list.
 			\end{enumerate}
 		\item Dispatcher\\
-			N.A.
+			Void
 		\item Security
 			\begin{enumerate}
 				\item Profile information of both users will no longer be viewable.
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item Notify the user that removed friend's profile will no longer be accessed.
+				\item On the very first occurrence, notify the user that removed friend's profile will
+				no longer be accessed.
 			\end{enumerate}
 	\end{enumerate}
 	
