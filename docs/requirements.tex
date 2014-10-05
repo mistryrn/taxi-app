@@ -1,4 +1,4 @@
-\documentclass[]{article}
+\documentclass[english]{article}
 
 % Imported Packages
 %------------------------------------------------------------------------------
@@ -12,7 +12,18 @@
 \usepackage{graphicx}
 \usepackage{extarrows}
 \usepackage{setspace}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{tabulary}
+\usepackage[pageanchor]{hyperref}
 %------------------------------------------------------------------------------
+
+% For Graphs
+%------------------------------------------------------------------------------
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{positioning,arrows,shapes}
 
 % Header and Footer
 %------------------------------------------------------------------------------
@@ -21,18 +32,45 @@
 \renewcommand\footrulewidth{0.4pt}                                    
 %------------------------------------------------------------------------------
 
-% Title Details
-%------------------------------------------------------------------------------
-\title{Deliverable \#1 Template}
-\author{SE 3A04: Software Design II -- Large System Design}
-\date{}                               
-%------------------------------------------------------------------------------
 
 % Document
 %------------------------------------------------------------------------------
 \begin{document}
 
-\maketitle	
+% Title Page & Table of Contents
+%------------------------------------------------------------------------------
+\pagenumbering{gobble} 
+\vspace*{\fill} 
+\centering{
+\LARGE{SFWR ENG 3A04 Project}\\
+\smallskip
+\Large{Deliverable 1}\\
+\bigskip \bigskip \bigskip
+\Large{
+GROUP 10\\
+\medskip
+\begin{tabular}{l l}
+    Amanda Boudreau & 0344130\\
+    Jordan Floyd & XXXXXX\\
+    Mario Machado & 1211979\\
+    Rakesh Mistry & 1221428\\
+    Ali Reda & 1206754\\
+\end{tabular}\\
+}
+\bigskip \bigskip \bigskip
+\today
+}
+\vspace*{\fill} 
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\raggedright
 
 \section{Introduction}
 \label{sec:introduction}
