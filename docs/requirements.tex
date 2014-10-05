@@ -123,10 +123,7 @@ This section of the SRS should provide an overview of the entire SRS.
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Describe what the rest of the SRS contains
-	\item Explain how the SRS is organized
-\end{enumerate}
+The remaining sections of this document provide a general description, including characteristics of the users of this application. It also includes the product's features, functional and non-functional requirements of the Application.  General description of the project is discussed in section 2 of this document.  Section 3 gives the functional requirements such as constraints and assumptions made while designing the application.  It also gives the user viewpoint of product.  Section 3 also gives the specific requirements of the product. Section 4 give the non-functional requirements of the application. This section discusses the external interface requirements and gives detailed description of functional requirements.
 % End SubSection
 
 % End Section
@@ -173,11 +170,13 @@ carpooler, and will have the choice to accept or decline the request.
 \subsection{User Characteristics}
 \label{sub:user_characteristics}
 % Begin SubSection
-We expect two different type users using this application; the user requesting a taxi, and the user offering a taxi.
-The user must to be over the age of eighteen for legal reasons. The user is expected to be English literate and be able to 
-navigate through an application. The application will have options to input personal information, destinations, schedules, 
-etc. Therefore the user must be capable of understanding what the application is doing. The user will not be expected to have
-technical expertise or high education, as the application will be built to be user friendly to the general public. Since the expected users will be carpooling many times, the user is encouraged to be social to make rides more pleasant for both type of users. 
+We expect two different type users using this application: the user requesting a taxi, and the user offering a taxi.
+\\
+\bigskip
+The user must to be over the age of eighteen for legal reasons. The user is expected to be English literate and be able to navigate through an application. The application will have options to input personal information, destinations, schedules, etc. Therefore the user must be capable of understanding what the application is doing.
+\\
+\bigskip
+The user will not be expected to have technical expertise or high education, as the application will be built to be user friendly to the general public. Since the expected users will be carpooling many times, the user is encouraged to be social to make rides more pleasant for both type of users. 
 % End SubSection
 
 \subsection{Constraints}
@@ -212,18 +211,8 @@ technical expertise or high education, as the application will be built to be us
 
 \section{Functional Requirements}
 \label{sec:functional_requirements}
-% Begin Section
-This section of the SRS should contain all of the software requirements to a level of detail sufficient to enable designers to design a system to satisfy those requirements, and testers to test that the system satisfies those requirements. Throughout this section, every stated requirement should be externally perceivable by users, operators, or other external systems. These requirements should include at a minimum a description of every input (stimulus) into the system, every output (response) from the system, and all functions performed by the system in response to an input or in support of an output.
 
-You normally have two options for organizing your functional requirements:
-\begin{enumerate}
-	\item Organize first by \emph{business events}, then by \emph{viewpoints}
-	\item Organize first by \emph{viewpoints}, then by \emph{business events}
-\end{enumerate}
-Choose the one which makes the most sense.
-
-For example, if you wish to organization by business events:
-
+% Begin Section:
 \begin{enumerate}[{BE}1.]
 	\item Open \textbf{application}
 	\begin{enumerate}[{VP1}.1]
@@ -245,7 +234,7 @@ For example, if you wish to organization by business events:
 			\item User information will be sent securely.
 			\end{enumerate}
 	\end{enumerate}
-	
+
 	\item Close Application
 	\begin{enumerate}[{VP2}.1]
 		\item User
@@ -260,6 +249,30 @@ For example, if you wish to organization by business events:
 			Void
 		\item Legal\\
 			Void
+	\end{enumerate}
+
+	\item Modify Account.	
+	\begin{enumerate}[{VP2}.1]
+		\item User
+			\begin{enumerate}
+				\item The user sees the “modify” button.
+				\item The user selects what needs modifying, and views options of what he can modify
+				\item
+				The user clicks “save” and his selection is saved. The modify function is over, and the app goes back to the previous page. \dots
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item N/A
+				 \dots
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item All information is encrypted and kept confidential and not shown to anyone but user, unless user gives permission. \dots
+			\end{enumerate}
+			\item Security
+			\begin{enumerate}
+				\item All information kept secure within the app. \dots
+			\end{enumerate}
 	\end{enumerate}
 	
 	\item Logout
@@ -348,8 +361,33 @@ For example, if you wish to organization by business events:
 			\end{enumerate}
 	\end{enumerate}
 	
-\end{enumerate}
+	\item Preferences 
+	\begin{enumerate}[{VP2}.1]
+	\item User
+			\begin{enumerate}
+				\item The user views the “preferences” button.
+				\item The user views his options and can input his favorite locations to go to.
+				\item
+				The user can allow other users to see his frequent locations. \dots
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item N/A
+				 \dots
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item All information is encrypted and kept confidential and not shown to anyone but user, unless user gives permission. \dots
+			\end{enumerate}
+			\item Security
+			\begin{enumerate}
+				\item 	All information kept secure within the app.  \dots
+				\item	Favorite locations only shown if user allows it
 
+			\end{enumerate}
+	\end{enumerate}
+	
+\end{enumerate}
 % End Section
 
 \section{Non-Functional Requirements}
@@ -364,6 +402,11 @@ For example, if you wish to organization by business events:
 % Begin SubSubSection
 \begin{enumerate}[{LF}1. ]
 	\item 
+	The application shall provide a satellite image of the users destination and location and all surroundings using GPS capabilities.
+	\item
+	The application must show a splash page when user first enters the application.
+	\item
+	The application will be bright and colorful rather than dark and plain. Use uniform colors.
 \end{enumerate}
 % End SubSubSection
 
@@ -372,116 +415,15 @@ For example, if you wish to organization by business events:
 % Begin SubSubSection
 \begin{enumerate}[{LF}1. ]
 	\item 
+	The application shall provide a uniform look and feel between all the pages and tabs.
+	\item
+	The application must show all buttons, tabs, pages clear to user. Avoid messiness.
+	\item
+	The application must feel smooth to user. Avoid long loading times. 
 \end{enumerate}
 % End SubSubSection
 
 % End SubSection
-
-\subsection{Usability and Humanity Requirements}
-\label{sub:usability_and_humanity_requirements}
-% Begin SubSection
-
-\subsubsection{Ease of Use Requirements}
-\label{ssub:ease_of_use_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{UH}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Personalization and Internationalization Requirements}
-\label{ssub:personalization_and_internationalization_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{UH}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Learning Requirements}
-\label{ssub:learning_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{UH}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Understandability and Politeness Requirements}
-\label{ssub:understandability_and_politeness_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{UH}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Accessibility Requirements}
-\label{ssub:accessibility_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{UH}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-% End SubSection
-
-\subsection{Performance Requirements}
-\label{sub:performance_requirements}
-% Begin SubSection
-
-\subsubsection{Speed and Latency Requirements}
-\label{ssub:speed_and_latency_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Safety-Critical Requirements}
-\label{ssub:safety_critical_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Precision or Accuracy Requirements}
-\label{ssub:precision_or_accuracy_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Reliability and Availability Requirements}
-\label{ssub:reliability_and_availability_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Robustness or Fault-Tolerance Requirements}
-\label{ssub:robustness_or_fault_tolerance_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Capacity Requirements}
-\label{ssub:capacity_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
-
-\subsubsection{Scalability or Extensibility Requirements}
-\label{ssub:scalability_or_extensibility_requirements}
-% Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
-	\item 
-\end{enumerate}
-% End SubSubSection
 
 \subsubsection{Longevity Requirements}
 \label{ssub:longevity_requirements}
