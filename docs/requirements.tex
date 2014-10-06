@@ -47,7 +47,7 @@
 \Large{Deliverable 1}\\
 \bigskip \bigskip \bigskip
 \Large{
-GROUP 10\\
+Group 10\\
 \medskip
 \begin{tabular}{l l}
     Amanda Boudreau & 0344130\\
@@ -76,27 +76,20 @@ GROUP 10\\
 \label{sec:introduction}
 % Begin Section
 
-This section of the SRS should provide an overview of the entire SRS.
-
 \subsection{Purpose}
 \label{sub:purpose}
-% Begin SubSection
-	
-	This document will describe what our product intends to accomplish, what its assumptions 
-	are, and what it relies on. Anyone with a non-technical background will still be able to read
-	and understand  how the application will work on a higher level after reading this requirements
-	specification document.
-	
+% Begin SubSection	
+This document will describe what our product intends to accomplish, what its assumptions are, and what it relies on. Anyone with a non-technical background will still be able to read and understand how the application will work on a higher level after reading this requirements specification document.
 % End SubSection
 
 \subsection{Scope}
 \label{sub:scope}
 % Begin SubSection
 \begin{enumerate}[a)]
-	\item \textbf{Cabpool} shall be an \textbf{android application} produced for an unidentified taxi company to be used in conjunction with their \textbf{Dispatcher} system with the aim of increasing the volume of taxi users.  
+	\item \textbf{Cabpool} shall be an \textbf{Android application} produced for an unidentified taxi company to be used in conjunction with their \textbf{Dispatcher} system with the aim of increasing the volume of taxi users.  
 	\item The software shall provide a platform for taxi users to carpool and reduce individual fare cost without requiring the sharing of personal contact information.
 	\item The software shall provide the user with \textbf{Offer Taxi Mode} and \textbf{Request Taxi Mode}. Within each mode the user shall be able to accept or reject any search result based on distance, rating and fare price.
-	\item The software shall serve as a social networking device to connect users who want to travel to similar locations. As well, the user of the software shall be able to invite fellow users to their \textbf{friends list} and share contact information with one another. Conversely, users will be able to add other users to a \textbf{blacklist} to ensure they never share a cab with that user again. 
+	\item The software shall serve as a social networking service to connect users who want to travel to similar locations. As well, the user of the software shall be able to invite fellow users to their \textbf{Friends List} and share contact information with one another. Conversely, users will be able to add other users to a \textbf{Blacklist} to ensure they never share a cab with that user again. 
 	\item The software shall not provide personal information without express permission in accordance with the Ontario Freedom of Information and Privacy Act and the Personal Information Protection and Electronic Documents Act. 
 	\item The software will interface with \textbf{Google Maps} to enable users to view their route and potential route changes.
 	\end{enumerate}
@@ -106,24 +99,24 @@ This section of the SRS should provide an overview of the entire SRS.
 \label{sub:definitions_acronyms_and_abbreviations}
 % Begin SubSection
 \begin{enumerate}[a)]
-	\item Provide the definitions of all terms, acronyms, and abbreviations required to properly interpret the SRS
+	\item TODO: Provide the definitions of all terms, acronyms, and abbreviations required to properly interpret the SRS
 \end{enumerate}
 % End SubSection
 
 \subsection{References}
 \label{sub:references}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item Provide a complete list of all documents referenced elsewhere in the SRS
-	\item Identify each document by title, report number (if applicable), date, and publishing organization
-	\item Specify the sources from which the references can be obtained
+All references to privacy laws throughout the SRS are from the following document:
+\begin{enumerate}
+	\item Freedom of Information and Protection of Privacy Act, R.S.O. 1990, CHAPTER F.31, \url{http://www.e-laws.gov.on.ca/html/statutes/english/elaws_statutes_90f31_e.htm}
 \end{enumerate}
+
 % End SubSection
 
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-The remaining sections of this document provide a general description, including characteristics of the users of this application. It also includes the product's features, functional and non-functional requirements of the Application.  General description of the project is discussed in section 2 of this document.  Section 3 gives the functional requirements such as constraints and assumptions made while designing the application.  It also gives the user viewpoint of product.  Section 3 also gives the specific requirements of the product. Section 4 give the non-functional requirements of the application. This section discusses the external interface requirements and gives detailed description of functional requirements.
+The remaining sections of this document provide a general description of \textbf{Cabpool}, including a description of its users. It also includes the product's innovative features, functional requirements, and non-functional requirements. A general description of the project is discussed in Section 2 of this document. Section 3 gives the functional requirements such as constraints and assumptions made while designing the application. It also explores the product from various viewpoints. Section 4 details the non-functional requirements of the application, discussing the external interface requirements and other usability and performance-related requirements.
 % End SubSection
 
 % End Section
@@ -132,30 +125,20 @@ The remaining sections of this document provide a general description, including
 \label{sec:overall_description}
 % Begin Section
 
-This section of the SRS should describe the general factors that affect the product and its requirements. It does not state specific requirements; it provides a background for those requirements and makes them easier to understand.
-
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
-Two notably similar applications already exist in the Google Play store, however, there are some key
-differences between those products and ours. One of the existing applications only attempts to make it easier for friends or strangers to carpool with their personal vehicles, not using a taxi service. The second product uses a taxi service, but customers who share a taxi must be picked up, and dropped off at the same destination. Our product uses a taxi service, thus eliminating risk of illegal activities that may occur when carpooling with a stranger, and does not limit carpoolers to having the exact same pick-up and destination locations.\\
-
-Our application is intended to be used as 
-a sub-component of the taxi company dispatching system. The company dispatching system requires 
-filling any taxi requests. Our application will allow users to offer a taxi up for sharing. 
-When this happens, the dispatching system will be notified of a taxi that may be able to fill
-another taxi request. Information such as the taxi's current location, and destination will be passed. Users are also able to request a shared taxi. When this request is filed, the dispatching system is again notified, so it may try to match a shared taxi offer with a shared taxi request. Matches will only be made if the users will save money choosing to share, as opposed to 
-requesting a new taxi, and not sharing. If a match or more is made, the user who initiated the request may view what taxi's they may take in order to save money. Information about each taxi
-ride will be shown to the user. The user may then submit a final request for the specific taxi
-chosen in the viewable list. The user that offered that taxi will be notified of a potential
-carpooler, and will have the choice to accept or decline the request.
+Two notably similar applications already exist in the Google Play store, however, there are some key differences between those products and ours. One of the existing applications only attempts to make it easier for friends or strangers to carpool with their personal vehicles, not using a taxi service. The second product uses a taxi service, but customers who share a taxi must be picked up, and dropped off at the same destination. Our product uses a taxi service, thus eliminating risk of illegal activities that may occur when carpooling with a stranger, and does not limit carpoolers to having the exact same pick-up and destination locations.
+\\
+\bigskip
+Our application is intended to be used as a sub-component of the taxi company dispatching system. The company dispatching system requires filling any taxi requests. Our application will allow users to offer a taxi up for sharing. When this happens, the dispatching system will be notified of a taxi that may be able to fill another taxi request. Information such as the taxi's current location, and destination will be passed. Users are also able to request a shared taxi. When this request is filed, the dispatching system is again notified, so it may try to match a shared taxi offer with a shared taxi request. Matches will only be made if the users will save money choosing to share, as opposed to requesting a new taxi, and not sharing. If one match or more is made, the user who initiated the request may view which taxis they may take in order to save money. Information about each taxi ride will be shown to the user. The user may then submit a final request for the specific taxi chosen in the viewable list. The user that offered that taxi will be notified of a potential carpooler, and will have the choice to accept or decline the request.
 % End SubSection
 
 \subsection{Product Functions}
 \label{sub:product_functions}
 % Begin SubSection
 \begin{enumerate}[a)]
-\item The \textbf{application} will enable users to create a profile and enter two modes, \textbf{Request Taxi Carpool} and \textbf{Offer Taxi Carpool}. In the \textbf{Offer Taxi Carpool} mode the user will scan a barcode within the taxi which will contain taxi identification information to be sent to the \textbf{Dispatcher}. In each mode the user will be able to enter their destination and sort their search results by distance, ratings and fare price. 
+	\item The \textbf{application} will enable users to create a profile and enter two modes, \textbf{Request Taxi Carpool} and \textbf{Offer Taxi Carpool}. In the \textbf{Offer Taxi Carpool} mode the user will scan a barcode within the taxi which will contain taxi identification information to be sent to the \textbf{Dispatcher}. In each mode the user will be able to enter their destination and sort their search results by distance, ratings and fare price. 
 	
 	\item The user will be able to enter constraint criteria such as preferred sex and maximum number of passengers. When a match is selected a request is sent to the \textbf{Dispatcher} which will relay the request for confirmation from the potential match. 
 	
@@ -170,9 +153,11 @@ carpooler, and will have the choice to accept or decline the request.
 \subsection{User Characteristics}
 \label{sub:user_characteristics}
 % Begin SubSection
-We expect two different type users using this application: the user requesting a taxi, and the user offering a taxi.
-\\
-\bigskip
+We expect two different type users using this application: 
+\begin{itemize}
+    \item users \textit{requesting} a taxi
+    \item users \textit{offering} a taxi
+\end{itemize}
 The user must to be over the age of eighteen for legal reasons. The user is expected to be English literate and be able to navigate through an application. The application will have options to input personal information, destinations, schedules, etc. Therefore the user must be capable of understanding what the application is doing.
 \\
 \bigskip
@@ -183,14 +168,22 @@ The user will not be expected to have technical expertise or high education, as 
 \label{sub:constraints}
 % Begin SubSection
 \begin{enumerate}[a)]
-	\item Provide a general description of any other items that will limit the developer's options
+	\item TODO: Add constraints
 \end{enumerate}
 % End SubSection
 
 \subsection{Assumptions and Dependencies}
 \label{sub:assumptions_and_dependencies}
 % Begin SubSection
-One assumption that the SRS makes is that the software does not need to provide directions for the driver of the taxi. If it is necessary that the taxi driver should receive directions to customers the SRS will have to be modified. A second assumption is that the Android operating system will be available on the hardware for which the software is designed. A third assumption is that the taxi company has a regular method of sending out taxis in addition to the sharing service. If the app is to be the only way to call a cab the SRS will need to be modified with this in mind. 
+\begin{itemize}
+	\item One assumption that the SRS makes is that the software does not need to provide directions for the driver of the taxi. If it is necessary that the taxi driver should receive directions to customers the SRS will have to be modified.
+	
+	\item A second assumption is that the Android operating system will be available on the hardware for which the software is designed.
+	
+	\item A third assumption is that the taxi company has a regular method of sending out taxis in addition to the sharing service. If the app is to be the only way to call a cab the SRS will need to be modified with this in mind.
+
+	\item Additionally, it is assumed that the Google Maps API will be available as it will be needed to fulfill many of the requirements.
+\end{itemize}
 % End SubSection
 
 \subsection{Apportioning of Requirements}
@@ -206,7 +199,7 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 
 % Begin Section:
 \begin{enumerate}[{BE}1.]
-	\item Open \textbf{application}
+	\item Open \textbf{Application}
 	\begin{enumerate}[{VP1}.1]
 		\item \textbf{User}
 			\begin{enumerate}
@@ -227,48 +220,196 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 			\end{enumerate}
 	\end{enumerate}
 
-	\item Close Application
-	\begin{enumerate}[{VP2}.1]
-		\item User
-			\begin{enumerate}
-				\item The android application will close and be off screen.
-				\item The android application will minimize mobile resources used.
-				\item Any offers/requests made will not be canceled.
-			\end{enumerate}
-		\item Dispatcher\\
-			Void
-		\item Security\\
-			Void
-		\item Legal\\
-			Void
-	\end{enumerate}
-
-	\item Modify Account.	
+	\item Sign Up	
 	\begin{enumerate}[{VP2}.1]
 		\item User
 			\begin{enumerate}
 				\item The user sees the “modify” button.
 				\item The user selects what needs modifying, and views options of what he can modify
-				\item
-				The user clicks “save” and his selection is saved. The modify function is over, and the app goes back to the previous page. \dots
+				\item The user clicks “save” and his selection is saved. The modify function is over, and the app goes back to the previous page.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item N/A
-				 \dots
+				\item VOID
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item All information is encrypted and kept confidential and not shown to anyone but user, unless user gives permission. \dots
+				\item All information is encrypted and kept confidential and not shown to anyone but user, unless user gives permission.
 			\end{enumerate}
 			\item Security
 			\begin{enumerate}
-				\item All information kept secure within the app. \dots
+				\item All information kept secure within the app.
+			\end{enumerate}
+	\end{enumerate}
+
+	\item Login
+	\begin{enumerate}[{VP3}.1]
+		\item User
+			\begin{enumerate}
+				\item Sees form where username and password can be given as input.
+				\item Sees the main menu screen if login was successful and is asked to try again if the login.
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item Dispatcher is notified that the user is online.
+				\item Receives users information and must verify that the user has an account and has input the correct password.
+			\end{enumerate}
+		\item Privacy
+			\begin{enumerate}
+				\item User information must be encrypted so that third parties cannot intercept the users password, which would grant them access to personal information.
+			\end{enumerate}
+	\end{enumerate}
+
+	\item Modify Account	
+	\begin{enumerate}[{VP4}.1]
+		\item User
+			\begin{enumerate}
+				\item The user sees the “modify” button.
+				\item The user selects what needs modifying, and views options of what he can modify
+				\item The user clicks “save” and his selection is saved. The modify function is over, and the app goes back to the previous page.
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item VOID
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item All information is encrypted and kept confidential and not shown to anyone but user, unless user gives permission.
+			\end{enumerate}
+			\item Security
+			\begin{enumerate}
+				\item All information kept secure within the app.
+			\end{enumerate}
+	\end{enumerate}
+
+	\item Offer		
+	\begin{enumerate}[{VP5}.1]
+		\item User
+			\begin{enumerate}
+				\item User sees form where request time, request destination, and target destination can be taken as input. User must see a list of available offers. 
+				\item Once an offer is selected the user shall receive more information and have the option to accept the offer. 
+				\item Once the user has arrived at their final destination they shall see the amount they owe the taxi driver and are given the chance to rate the other customer. 
+				\item The user will have the chance to add the other customer as a friend or add them to the ban list.
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item Receives the users information and sends them the information connected to the relevant offers.
+			\end{enumerate}
+		\item Privacy
+			\begin{enumerate}
+				\item User information must be encrypted so that third parties cannot intercept the users current or target destinations.
+			\end{enumerate}
+	\end{enumerate}
+
+	\item Request		
+	\begin{enumerate}[{VP6}.1]
+		\item User
+			\begin{enumerate}
+				\item User sees form where request time, request destination, and target destination can be taken as input. User must see a list of available offers. 
+				\item Once an offer is selected the user shall receive more information and have the option to accept the offer. 
+				\item Once the user has arrived at their final destination they shall see the amount they owe the taxi driver and are given the chance to rate the other customer. 
+				\item The user will have the chance to add the other customer as a friend or add them to the ban list. 
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item Receives the users information and sends them the information connected to the relevant offers.
+			\end{enumerate}
+		\item Privacy
+			\begin{enumerate}
+				\item User information must be encrypted so that third parties cannot intercept the users current or target destinations.
 			\end{enumerate}
 	\end{enumerate}
 	
+	\item Cancel Taxi Request/Offer
+	\begin{enumerate}[{VP7}.1]
+		\item User
+			\begin{enumerate}
+				\item The offer/request made is removed from viewable list of pending offer/requests
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item The cancelled offer/request from this user must be removed from the system.
+			\end{enumerate}
+		\item Security
+			\begin{enumerate}
+				\item The cancelled offer/request signal must be sent to dispatcher in a secure manner
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item VOID
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item Send Friend Request
+	\begin{enumerate}[{VP8}.1]
+		\item User
+			\begin{enumerate}
+				\item Allow users to accept or decline friend requests.
+				\item Show friend request pending if the request has not yet been accepted.
+				\item Remove friend request pending if the friend request is declined.
+				\item Add the friend to friends list of both users once the request is accepted, and remove friend request pending.
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item VOID
+			\end{enumerate}
+		\item Security
+			\begin{enumerate}
+				\item Allow profile information to be shared between friends confidentially.
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item On the very first occurrence, notify the user that profile information will be shared between friends.
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item Remove Friend
+	\begin{enumerate}[{VP9}.1]
+		\item User
+			\begin{enumerate}
+				\item Allow users to remove friends from friends list.
+				\item The removed friend will no longer be in the users friends list.
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item VOID
+			\end{enumerate}
+		\item Security
+			\begin{enumerate}
+				\item Profile information of both users will no longer be viewable.
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item On the very first occurrence, notify the user that removed friend's profile will no longer be accessed.
+			\end{enumerate}
+	\end{enumerate}
+	
+	\item Preferences 
+	\begin{enumerate}[{VP10}.1]
+		\item User
+		\begin{enumerate}
+			\item The user views the “preferences” button.
+			\item The user views his options and can input his favorite locations to go to.
+			\item The user can allow other users to see his frequent locations.
+		\end{enumerate}
+		\item Dispatcher
+		\begin{enumerate}
+			\item VOID
+			 \dots
+		\end{enumerate}
+		\item Legal
+		\begin{enumerate}
+			\item All information is encrypted and kept confidential and not shown to anyone but user, unless user gives permission.
+		\end{enumerate}
+		\item Security
+		\begin{enumerate}
+			\item All information kept secure within the app.
+			\item Favorite locations only shown if user allows it
+		\end{enumerate}
+	\end{enumerate}
+	
 	\item Logout
-	\begin{enumerate}[{VP2}.1]
+	\begin{enumerate}[{VP11}.1]
 		\item User
 			\begin{enumerate}
 				\item Any offers/requests made must be canceled.
@@ -285,143 +426,32 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item Information on the user's current location must not be accessible by any third
-				parties including friends.
+				\item Information on the user's current location must not be accessible by any third parties including friends.
 			\end{enumerate}
 	\end{enumerate}
-	
-	\item Cancel Taxi Request/Offer
-	\begin{enumerate}[{VP2}.1]
+
+	\item Close Application
+	\begin{enumerate}[{VP12}.1]
 		\item User
 			\begin{enumerate}
-				\item The offer/request made is removed from viewable list of
-				pending offer/requests
+				\item The android application will close and be off screen.
+				\item The android application will minimize mobile resources used.
+				\item Any offers/requests made will not be canceled.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item The cancelled offer/request from this user must be removed from the system.
+				\item VOID
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-				\item The cancelled offer/request signal must be sent to dispatcher in a secure
-				manner
-			\end{enumerate}
-		\item Legal\\
-			Void
-	\end{enumerate}
-	
-	\item Send Friend Request
-	\begin{enumerate}[{VP2}.1]
-		\item User
-			\begin{enumerate}
-				\item Allow users to accept or decline friend requests.
-				\item Show friend request pending if the request has not yet been accepted.
-				\item Remove friend request pending if the friend request is declined.
-				\item Add the friend to friends list of both users once the request is accepted, and 
-				remove friend request pending.
-			\end{enumerate}
-		\item Dispatcher\\
-			Void
-		\item Security
-			\begin{enumerate}
-				\item Allow profile information to be shared between friends confidentially.
+				\item VOID
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item On the very first occurrence, notify the user that profile information will 
-				be shared between friends.
+				\item VOID
 			\end{enumerate}
-	\end{enumerate}
-	
-	\item Remove Friend
-	\begin{enumerate}[{VP2}.1]
-		\item User
-			\begin{enumerate}
-				\item Allow users to remove friends from friends list.
-				\item The removed friend will no longer be in the users friends list.
-			\end{enumerate}
-		\item Dispatcher\\
-			Void
-		\item Security
-			\begin{enumerate}
-				\item Profile information of both users will no longer be viewable.
-			\end{enumerate}
-		\item Legal
-			\begin{enumerate}
-				\item On the very first occurrence, notify the user that removed friend's profile will
-				no longer be accessed.
-			\end{enumerate}
-	\end{enumerate}
-	
-	\item Preferences 
-	\begin{enumerate}[{VP2}.1]
-		\item User
-		\begin{enumerate}
-			\item The user views the “preferences” button.
-			\item The user views his options and can input his favorite locations to go to.
-			\item The user can allow other users to see his frequent locations. \dots
-		\end{enumerate}
-		\item Dispatcher
-		\begin{enumerate}
-			\item N/A
-			 \dots
-		\end{enumerate}
-		\item Legal
-		\begin{enumerate}
-			\item All information is encrypted and kept confidential and not shown to anyone but user, unless user gives permission. \dots
-		\end{enumerate}
-		\item Security
-		\begin{enumerate}
-			\item 	All information kept secure within the app.  \dots
-			\item	Favorite locations only shown if user allows it
-		\end{enumerate}
 	\end{enumerate}
 
-	\item Login
-	\begin{enumerate}[{VP1}.1]
-		\item Viewpoint: User
-			\begin{enumerate}
-				\item Sees form where username and password can be given as input.
-				\item Sees the main menu screen if login was successful and is asked to try again if the login.
-				\item \dots
-			\end{enumerate}
-		\item Viewpoint: Dispatcher
-			\begin{enumerate}
-				\item Dispatcher is notified that the user is online.
-				\item Receives users information and must verify that the user has an account and has input the correct password.
-				\item \dots
-			\end{enumerate}
-		\item Viewpoint: Privacy
-			\begin{enumerate}
-				\item User information must be encrypted so that third parties cannot intercept the users password, which would grant them access to personal information.
-				\item \dots
-			\end{enumerate}
-		\item \dots
-	\end{enumerate}
-		
-	\item Request		
-	\begin{enumerate}[{VP1}.1]
-		\item Viewpoint: User
-			\begin{enumerate}
-				\item User sees form where request time, request destination, and target destination can be taken as input. User must see a list of available offers. 
-				\item Once an offer is selected the user shall receive more information and have the option to accept the offer. 
-				\item Once the user has arrived at their final destination they shall see the amount they owe the taxi driver and are given the chance to rate the other customer. 
-				\item The user will have the chance to add the other customer as a friend or add them to the ban list. 
-				\item \dots
-			\end{enumerate}
-		\item Viewpoint: Dispatcher
-			\begin{enumerate}
-				\item Receives the users information and sends them the information connected to the relevant offers.
-				\item \dots
-			\end{enumerate}
-		\item Viewpoint: Privacy
-			\begin{enumerate}
-				\item User information must be encrypted so that third parties cannot intercept the users current or target destinations.
-				\item \dots
-			\end{enumerate}
-		\item \dots
-
-	\end{enumerate}
 \end{enumerate}
 
 % End Section
@@ -436,35 +466,135 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 \subsubsection{Appearance Requirements}
 \label{ssub:appearance_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{LF}1. ]
-	\item 
-	The application shall provide a satellite image of the users destination and location and all surroundings using GPS capabilities.
-	\item
-	The application must show a splash page when user first enters the application.
-	\item
-	The application will be bright and colorful rather than dark and plain. Use uniform colors.
+\begin{enumerate}[{AR}1. ]
+	\item The application shall provide a satellite image of the users destination and location and all surroundings using GPS capabilities.
+	\item The application must show a splash page when user first enters the application.
+	\item The application will be bright and colorful rather than dark and plain. Use uniform colors.
 \end{enumerate}
 % End SubSubSection
 
 \subsubsection{Style Requirements}
 \label{ssub:style_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{LF}1. ]
-	\item 
-	The application shall provide a uniform look and feel between all the pages and tabs.
-	\item
-	The application must show all buttons, tabs, pages clear to user. Avoid messiness.
-	\item
-	The application must feel smooth to user. Avoid long loading times. 
+\begin{enumerate}[{SR}1. ]
+	\item The application shall provide a uniform look and feel between all the pages and tabs.
+	\item The application must show all buttons, tabs, pages clear to user. Avoid messiness.
+	\item The application must feel smooth to user. Avoid long loading times. 
 \end{enumerate}
 % End SubSubSection
 
 % End SubSection
 
+\subsection{Usability and Humanity Requirements}
+\label{sub:usability_and_humanity_requirements}
+% Begin SubSection
+
+\subsubsection{Ease of Use Requirements}
+\label{ssub:ease_of_use_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{EUR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Personalization and Internationalization Requirements}
+\label{ssub:personalization_and_internationalization_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PIR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Learning Requirements}
+\label{ssub:learning_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{LR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Understandability and Politeness Requirements}
+\label{ssub:understandability_and_politeness_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{UPR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Accessibility Requirements}
+\label{ssub:accessibility_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{ACR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+% End SubSection
+
+\subsection{Performance Requirements}
+\label{sub:performance_requirements}
+% Begin SubSection
+
+\subsubsection{Speed and Latency Requirements}
+\label{ssub:speed_and_latency_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SLR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Safety-Critical Requirements}
+\label{ssub:safety_critical_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SCR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Precision or Accuracy Requirements}
+\label{ssub:precision_or_accuracy_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{PAR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Reliability and Availability Requirements}
+\label{ssub:reliability_and_availability_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{RAR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Robustness or Fault-Tolerance Requirements}
+\label{ssub:robustness_or_fault_tolerance_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{RFR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Capacity Requirements}
+\label{ssub:capacity_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{CR}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
+\subsubsection{Scalability or Extensibility Requirements}
+\label{ssub:scalability_or_extensibility_requirements}
+% Begin SubSubSection
+\begin{enumerate}[{SER}1. ]
+	\item 
+\end{enumerate}
+% End SubSubSection
+
 \subsubsection{Longevity Requirements}
 \label{ssub:longevity_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{PR}1. ]
+\begin{enumerate}[{LONGR}1. ]
 	\item 
 \end{enumerate}
 % End SubSubSection
@@ -478,16 +608,16 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 \subsubsection{Expected Physical Environment}
 \label{ssub:expected_physical_environment}
 % Begin SubSubSection
-\begin{enumerate}[{OE}1. ]
+\begin{enumerate}[{EPE}1. ]
 	\item The \textbf{application} will have simple graphical interfaces to allow for ease of use when travelling outdoors.
-	\item The \textbf{application} will run on android smartphones.
+	\item The \textbf{application} will run on Android smartphones.
 \end{enumerate}
 % End SubSubSection
 
 \subsubsection{Requirements for Interfacing with Adjacent Systems}
 \label{ssub:requirements_for_interfacing_with_adjacent_systems}
 % Begin SubSubSection
-\begin{enumerate}[{OE}1. ]
+\begin{enumerate}[{RIAS}1. ]
 	\item The \textbf{application} will interface with Google Maps and Facebook.
 \end{enumerate}
 % End SubSubSection
@@ -495,7 +625,7 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 \subsubsection{Productization Requirements}
 \label{ssub:productization_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{OE}1. ]
+\begin{enumerate}[{PR}1. ]
 	\item Initially the system will work for a small number of taxis and users. Prior to completion this will be increased to reflect an expected expanded user base.
 \end{enumerate}
 % End SubSubSection
@@ -503,8 +633,8 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 \subsubsection{Release Requirements}
 \label{ssub:release_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{OE}1. ]
-	\item The \textbf{application} will be available for download and install through Google App store.
+\begin{enumerate}[{RR}1. ]
+	\item The \textbf{application} will be available for download and install through Google Play app store.
 \end{enumerate}
 % End SubSubSection
 
@@ -517,7 +647,7 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 \subsubsection{Maintenance Requirements}
 \label{ssub:maintenance_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{MS}1. ]
+\begin{enumerate}[{MR}1. ]
 	\item 
 \end{enumerate}
 % End SubSubSection
@@ -525,16 +655,15 @@ Requirements pertaining to capacity , size, and speed will not be considered for
 \subsubsection{Supportability Requirements}
 \label{ssub:supportability_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{MS}1. ]
+\begin{enumerate}[{MSR}1. ]
 	\item 
 \end{enumerate}
 % End SubSubSection
 
 \subsubsection{Adaptability Requirements}
 \label{ssub:adaptability_requirements}
-The system should be built in such a way that adding entirely new features does not require the rewriting of old features. 
-\begin{enumerate}[{MS}1. ]
-	\item 
+\begin{enumerate}[{MAR}1. ]
+	\item The system should be built in such a way that adding entirely new features does not require the rewriting of old features. 
 \end{enumerate}
 % End SubSubSection
 
@@ -547,31 +676,29 @@ The system should be built in such a way that adding entirely new features does 
 \subsubsection{Access Requirements}
 \label{ssub:access_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{SR}1. ]
+\begin{enumerate}[{SAR}1. ]
 	\item 
 \end{enumerate}
 % End SubSubSection
 
 \subsubsection{Integrity Requirements}
 \label{ssub:integrity_requirements}
-The system shall encrypt all it's data before sending it between the app and the dispatcher. 
-\begin{enumerate}[{SR}1. ]
-	\item 
+\begin{enumerate}[{SIR}1. ]
+	\item The system shall encrypt all it's data before sending it between the app and the dispatcher. 
 \end{enumerate}
 % End SubSubSection
 
 \subsubsection{Privacy Requirements}
 \label{ssub:privacy_requirements}
-The system shall protect the privacy of users, not allowing users to access others users personal
-\begin{enumerate}[{SR}1. ]
-	\item 
+\begin{enumerate}[{SPR}1. ]
+	\item The system shall protect the privacy of users, not allowing users to access others users personal
 \end{enumerate}
 % End SubSubSection
 
 \subsubsection{Audit Requirements}
 \label{ssub:audit_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{SR}1. ]
+\begin{enumerate}[{SAUR}1. ]
 	\item 
 \end{enumerate}
 % End SubSubSection
@@ -579,7 +706,7 @@ The system shall protect the privacy of users, not allowing users to access othe
 \subsubsection{Immunity Requirements}
 \label{ssub:immunity_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{SR}1. ]
+\begin{enumerate}[{SIMR}1. ]
 	\item 
 \end{enumerate}
 % End SubSubSection
@@ -593,7 +720,7 @@ The system shall protect the privacy of users, not allowing users to access othe
 \subsubsection{Cultural Requirements}
 \label{ssub:cultural_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{CP}1. ]
+\begin{enumerate}[{CCR}1. ]
 	\item The product will use British spelling.
 \end{enumerate}
 % End SubSubSection
@@ -601,7 +728,7 @@ The system shall protect the privacy of users, not allowing users to access othe
 \subsubsection{Political Requirements}
 \label{ssub:political_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{CP}1. ]
+\begin{enumerate}[{CPR}1. ]
 	\item This \textbf{application} will work with the taxi cab company that commissioned it only.
 \end{enumerate}
 % End SubSubSection
@@ -615,7 +742,7 @@ The system shall protect the privacy of users, not allowing users to access othe
 \subsubsection{Compliance Requirements}
 \label{ssub:compliance_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{LR}1. ]
+\begin{enumerate}[{LCR}1. ]
 	\item This product will comply with the Personal Information Protection and Electronic Documents Act.
 	\item This product will comply with the Ontario Freedom of Information and Privacy Act.
 \end{enumerate}
@@ -624,7 +751,7 @@ The system shall protect the privacy of users, not allowing users to access othe
 \subsubsection{Standards Requirements}
 \label{ssub:standards_requirements}
 % Begin SubSubSection
-\begin{enumerate}[{LR}1. ]
+\begin{enumerate}[{LSR}1. ]
 	\item VOID
 \end{enumerate}
 % End SubSubSection
@@ -632,26 +759,13 @@ The system shall protect the privacy of users, not allowing users to access othe
 % End SubSection
 
 % End Section
-
+\newpage
 \appendix
 \section{Division of Labour}
 \label{sec:division_of_labour}
 % Begin Section
-Include a Division of Labour sheet which indicates the contributions of each team member. This sheet must be signed by all team members.
+TODO: INSERT DIVISION OF LABOUR
 % End Section
-
-\newpage
-\section*{IMPORTANT NOTES}
-\begin{itemize}
-	\item Be sure to include all sections of the template in your document regardless whether you have something to write for each or not
-	\begin{itemize}
-		\item If you do not have anything to write in a section, indicate this by the \emph{N/A}, \emph{void}, \emph{none}, etc.
-	\end{itemize}
-	\item Uniquely number each of your requirements for easy identification and cross-referencing
-	\item Highlight terms that are defined in Section~1.3 (\textbf{Definitions, Acronyms, and Abbreviations}) with \textbf{bold}, \emph{italic} or \underline{underline}
-	\item For Deliverable 1, please highlight, in some fashion, all (you may have more than one) creative and innovative features. Your creative and innovative features will generally be described in Section~2.2 (\textbf{Product Functions}), but it will depend on the type of creative or innovative features you are including.
-\end{itemize}
-
 
 \end{document}
 %------------------------------------------------------------------------------
