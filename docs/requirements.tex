@@ -309,7 +309,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 				\item \textbf{User} must scan a QR code inside the cab to initiate the offer process.
 				\item \textbf{User} is notified when a request is made, and must either accept or decline the request.
 				\item Once the \textbf{User} has arrived at their final destination they shall see the amount they owe the taxi driver and are given the chance to rate the other customer (if a request was made and accepted).
-				\item The \textbf{User} will have the chance to add the other customer as a friend or add them to their ban list.
+				\item The \textbf{User} will have the chance to add the other customer to their \textbf{\emph{Friends List}} or add them to their \textbf{\emph{Blacklist}}.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
@@ -332,7 +332,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 				\item \textbf{User} sees form where request time, request destination, and target destination can be taken as input. \textbf{User} must see a list of available offers. 
 				\item Once an offer is selected the \textbf{User} shall receive more information and have the option to accept the offer. 
 				\item Once the \textbf{User} has arrived at their final destination they shall see the amount they owe the taxi driver and are given the chance to rate the other customer. 
-				\item The \textbf{User} will have the chance to add the other customer as a friend or add them to the ban list. 
+				\item The \textbf{User} will have the chance to add the other customer to their \textbf{\emph{Friends List}} or add them to their \textbf{\emph{Blacklist}}. 
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
@@ -411,9 +411,50 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 				\item On the very first occurrence, notify the \textbf{User} that removed friend's profile will no longer be accessed.
 			\end{enumerate}
 	\end{enumerate}
+
+	\item Add User to \textbf{\emph{Blacklist}}
+	\begin{enumerate}[{VP10}.1]
+		\item User
+			\begin{enumerate}
+				\item User can enter the username of another user or select a user from the list of people they've recently shared a cab with whom they wish to add to their \textbf{\emph{Blacklist}}.
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item VOID
+			\end{enumerate}
+		\item Security
+			\begin{enumerate}
+				\item Blacklisted user will no longer be able to send/receieve offers/requests to/from the user who added them to their \textbf{\emph{Blacklist}}.
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item On the very first occurrence, notify the \textbf{User} that the Blacklisted user will no longer be able to share a cab with them.
+			\end{enumerate}
+	\end{enumerate}
+
+	\item Remove User from \textbf{\emph{Blacklist}}
+	\begin{enumerate}[{VP11}.1]
+		\item User
+			\begin{enumerate}
+				\item User selects a user they wish to remore from their \textbf{\emph{Blacklist}}.
+				\item Selected user is no longer visible on their \textbf{\emph{Blacklist}}.
+			\end{enumerate}
+		\item Dispatcher
+			\begin{enumerate}
+				\item VOID
+			\end{enumerate}
+		\item Security
+			\begin{enumerate}
+				\item Un-Blacklisted user will now be able to send/receieve offers/requests to/from the user who added them to their \textbf{\emph{Blacklist}}.
+			\end{enumerate}
+		\item Legal
+			\begin{enumerate}
+				\item On the very first occurrence, notify the \textbf{User} that the Un-Blacklisted user will now be able to share a cab with them.
+			\end{enumerate}
+	\end{enumerate}
 	
 	\item Preferences Tab is Opened
-	\begin{enumerate}[{VP10}.1]
+	\begin{enumerate}[{VP12}.1]
 		\item User
 		\begin{enumerate}
 			\item The \textbf{User} views the “preferences” button.
@@ -437,7 +478,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 	\end{enumerate}
 	
 	\item Logout is Initiated
-	\begin{enumerate}[{VP11}.1]
+	\begin{enumerate}[{VP13}.1]
 		\item User
 			\begin{enumerate}
 				\item Any offers/requests made must be canceled.
@@ -459,7 +500,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 	\end{enumerate}
 
 	\item Application is Closed
-	\begin{enumerate}[{VP12}.1]
+	\begin{enumerate}[{VP14}.1]
 		\item User
 			\begin{enumerate}
 				\item The  \textbf{Android} \textbf{Application} will close and be off screen.
