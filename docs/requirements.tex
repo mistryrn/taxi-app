@@ -89,7 +89,7 @@ This document will describe what our product intends to accomplish, what its ass
 	\item \textbf{Cabpool} shall be an  \textbf{Android} \textbf{Application} produced for an unidentified taxi company to be used in conjunction with their \textbf{Dispatcher} system with the aim of increasing the volume of taxi users.  
 	\item The software shall provide a platform for taxi users to carpool and reduce individual fare cost without requiring the sharing of personal contact information.
 	\item The software shall provide the \textbf{User} with Offer Taxi Mode and Request Taxi Mode. Within each mode the \textbf{User} shall be able to accept or reject any search result based on distance, rating and fare price.
-	\item The software shall serve as a social networking service to connect users who want to travel to similar locations. As well, the \textbf{User} of the software shall be able to invite fellow users to their \textbf{Friends List} and share contact information with one another. Conversely, users will be able to add other users to a \textbf{Blacklist} to ensure they never share a cab with that \textbf{User} again. 
+	\item The software shall serve as a social networking service to connect users who want to travel to similar locations. As well, the \textbf{User} of the software shall be able to invite fellow users to their \textbf{\emph{Friends List}} and share contact information with one another. Conversely, users will be able to add other users to a \textbf{\emph{Blacklist}} to ensure they never share a cab with that \textbf{User} again. 
 	\item The software shall not provide personal information without express permission in accordance with the Ontario Freedom of Information and Privacy Act and the Personal Information Protection and Electronic Documents Act. 
 	\item The software will interface with \textbf{Google Maps} to enable users to view their route and potential route changes.
 	\end{enumerate}
@@ -101,11 +101,11 @@ This document will describe what our product intends to accomplish, what its ass
 \begin{enumerate}
 	\item  \textbf{Android} - the  \textbf{Android} mobile operating system.
 	\item \textbf{Application} - for the purposes of this SRS, \textbf{Application} and app refer to a mobile application.
-	\item \textbf{Blacklist} - a list of users who will no longer be able to share a cab.
+	\item \textbf{\emph{Blacklist}} - a list of users who will no longer be able to share a cab.
 	\item \textbf{Cabpool} - the name of our app.
 	\item \textbf{Confirmation Code} - a string of 4-8 characters to be delivered via text.
 	\item \textbf{Dispatcher} - the system co-ordinating and keeping track of where users are who are offering/requesting a cab.
-	\item \textbf{Friends List} - a list of users who will be able to see more information about this \textbf{User} and easily share cabs.
+	\item \textbf{\emph{Friends List}} - a list of users who will be able to see more information about this \textbf{User} and easily share cabs.
 	\item \textbf{GPS} - Global Positioning System, an accurate worldwide navigational and surveying facility based on the reception of signals from an array of orbiting satellites.
 	\item \textbf{Google Maps} - an online mapping solution which can show user's locations using GPS.
 	\item \textbf{Google Play} - the  \textbf{Android} App Store which this app will be launched on.
@@ -129,7 +129,7 @@ All references to privacy laws throughout the SRS are from the following documen
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-The remaining sections of this document provide a general description of Cabpool, including a description of its users. It also includes the product's innovative features, functional requirements, and non-functional requirements. A general description of the project is discussed in Section 2 of this document. Section 3 gives the functional requirements such as constraints and assumptions made while designing the application. It also explores the product from various viewpoints. Section 4 details the non-functional requirements of the application, discussing the external interface requirements and other usability and performance-related requirements.
+The remaining sections of this document provide a general description of \textbf{Cabpool}, including a description of its users. It also includes the product's innovative features, functional requirements, and non-functional requirements. A general description of the project is discussed in Section 2 of this document. Section 3 gives the functional requirements such as constraints and assumptions made while designing the application. It also explores the product from various viewpoints. Section 4 details the non-functional requirements of the application, discussing the external interface requirements and other usability and performance-related requirements.
 % End SubSection
 
 % End Section
@@ -157,7 +157,7 @@ Our \textbf{Application} is intended to be used as a sub-component of the taxi c
 	
 	\item The \textbf{Dispatcher} will store all taxi and \textbf{User} information to enable users to connect with one another, sharing taxis and reducing fares without releasing personal information to strangers. The \textbf{Application} will ensure that all messages will retain confidentiality and integrity.
 	
-	\item The \textbf{Application} will display the fare owed by each customer and allow rating of customers with whom the ride was shared. Additionally, customers will be able to add other riders to a \textbf{Friends List} or a blacklist.
+	\item The \textbf{Application} will display the fare owed by each customer and allow rating of customers with whom the ride was shared. Additionally, customers will be able to add other riders to a \textbf{\emph{Friends List}} or a \textbf{\emph{Blacklist}}.
 	
 	\item The \textbf{Application} will enable customers to view their route on Google Maps, as well as any potential route changes.
 \end{enumerate}
@@ -374,7 +374,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 				\item Allow users to accept or decline friend requests.
 				\item Show friend request pending if the request has not yet been accepted.
 				\item Remove friend request pending if the friend request is declined.
-				\item Add the friend to \textbf{Friends List} of both users once the request is accepted, and remove friend request pending.
+				\item Add the friend to \textbf{\emph{Friends List}} of both users once the request is accepted, and remove friend request pending.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
@@ -394,8 +394,8 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 	\begin{enumerate}[{VP9}.1]
 		\item User
 			\begin{enumerate}
-				\item Allow users to remove friends from friends list.
-				\item The removed friend will no longer be in the users friends list.
+				\item Allow users to remove friends from \textbf{\emph{Friends List}}.
+				\item The removed friend will no longer be in the users \textbf{\emph{Friends List}}.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
@@ -662,7 +662,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:release_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{RR}1. ]
-	\item The \textbf{Application} will be available for download and install through \textbf{Google Play} app store.
+	\item The \textbf{Application} will be available for download and install through \textbf{Google Play} \textbf{Application} store.
 \end{enumerate}
 % End SubSubSection
 
@@ -712,7 +712,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \subsubsection{Integrity Requirements}
 \label{ssub:integrity_requirements}
 \begin{enumerate}[{SIR}1. ]
-	\item The system shall encrypt all it's data before sending it between the app and the dispatcher. 
+	\item The system shall encrypt all it's data before sending it between the \textbf{Application} and the dispatcher. 
 \end{enumerate}
 % End SubSubSection
 
