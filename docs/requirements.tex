@@ -119,6 +119,11 @@ This document will describe what our product intends to accomplish, what its ass
 \subsection{References}
 \label{sub:references}
 % Begin SubSection
+The following applications were referenced for comparison purposes to put our product into perspective:
+\begin{enumerate}
+	\item Lyft, \url{https://www.lyft.com}
+	\item Uber, \url{https://www.uber.com}
+\end{enumerate}
 All references to privacy laws throughout the SRS are from the following document:
 \begin{enumerate}
 	\item Freedom of Information and Protection of Privacy Act, R.S.O. 1990, CHAPTER F.31, \url{http://www.e-laws.gov.on.ca/html/statutes/english/elaws_statutes_90f31_e.htm}
@@ -141,7 +146,7 @@ The remaining sections of this document provide a general description of \textbf
 \subsection{Product Perspective}
 \label{sub:product_perspective}
 % Begin SubSection
-Two notably similar applications already exist in the \textbf{Google Play} store, however, there are some key differences between those products and ours. One of the existing applications only attempts to make it easier for friends or strangers to carpool with their personal vehicles, not using a taxi service. The second product uses a taxi service, but customers who share a taxi must be picked up, and dropped off at the same destination. Our product uses a taxi service, thus eliminating risk of illegal activities that may occur when carpooling with a stranger, and does not limit carpoolers to having the exact same pick-up and destination locations.
+Two notably similar applications, Lyft and Uber, already exist in the \textbf{Google Play} store. There are some key differences between those products and ours. Lyft only attempts to make it easier for friends or strangers to carpool with their personal vehicles, not using a taxi service. Uber uses a taxi service, but customers who share a taxi must be picked up, and dropped off at the same destination. Our product uses a taxi service, thus eliminating risk of illegal activities that may occur when carpooling with a stranger, and does not limit carpoolers to having the exact same pick-up and destination locations.
 \\
 \bigskip
 Our \textbf{Application} is intended to be used as a sub-component of the taxi company dispatching system. The company dispatching system requires filling any taxi requests. Our \textbf{Application} will allow users to offer a taxi up for sharing. When this happens, the dispatching system will be notified of a taxi that may be able to fill another taxi request. Information such as the taxi's current location, and destination will be passed. Users are also able to request a shared taxi. When this request is filed, the dispatching system is again notified, so it may try to match a shared taxi offer with a shared taxi request. Matches will only be made if the users will save money choosing to share, as opposed to requesting a new taxi, and not sharing. If one match or more is made, the \textbf{User} who initiated the request may view which taxis they may take in order to save money. Information about each taxi ride will be shown to the user. The \textbf{User} may then submit a final request for the specific taxi chosen in the viewable list. The \textbf{User} that offered that taxi will be notified of a potential carpooler, and will have the choice to accept or decline the request.
