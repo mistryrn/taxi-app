@@ -1,0 +1,174 @@
+\documentclass[english]{article}
+
+% Imported Packages
+%------------------------------------------------------------------------------
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{extarrows}
+\usepackage{setspace}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{tabulary}
+\usepackage[pageanchor]{hyperref}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\graphicspath{ {images/} }
+%------------------------------------------------------------------------------
+
+% For Graphs
+%------------------------------------------------------------------------------
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{positioning,arrows,shapes}
+
+% Header and Footer
+%------------------------------------------------------------------------------
+\pagestyle{plain}  
+\renewcommand\headrulewidth{0.4pt}                                      
+\renewcommand\footrulewidth{0.4pt}                                    
+%------------------------------------------------------------------------------
+
+% Document
+%------------------------------------------------------------------------------
+\begin{document}
+
+% Title Page & Table of Contents
+%------------------------------------------------------------------------------
+\pagenumbering{gobble} 
+\vspace*{\fill} 
+\centering{
+\LARGE{SFWR ENG 3A04 Project}\\
+\smallskip
+\Large{Cabpool}\\
+\smallskip
+\Large{Deliverable 3 - Class Diagrams}\\
+
+\bigskip \bigskip \bigskip
+\Large{
+Group 10\\
+\medskip
+\begin{tabular}{l l}
+    Amanda Boudreau & 0344130\\
+    Jordan Floyd & 1225123\\
+    Mario Machado & 1211979\\
+    Rakesh Mistry & 1221428\\
+    Ali Reda & 1206754\\
+\end{tabular}\\
+}
+\bigskip \bigskip \bigskip
+\today
+}
+\vspace*{\fill} 
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\raggedright    
+
+\section{Introduction}
+\label{sec:introduction}
+% Begin Section
+
+This section should provide an brief overview of the entire document.
+
+\subsection{Purpose}
+\label{sub:purpose}
+% Begin SubSection
+\begin{enumerate}[a)]
+    \item Delineate the purpose of the document
+    \item Specify the intended audience for the document
+\end{enumerate}
+% End SubSection
+
+\subsection{System Description}
+\label{sub:system_description}
+% Begin SubSection
+
+Cabpool will be an Android Application created for a Hamilton taxi company to be used in conjunction with their Dispatcher system with the aim of attracting customers by implementing a system that allows users to share taxis. The software will serve as a social networking service to connect users who want to travel to similar locations. The software will provide a platform for users to share taxis and reduce individual fare cost without having to share personal contact information. The software will allow the User to enter a taxi and scan the taxi QR code to offer the taxi and will also allow a User to request a taxi. When offering or requesting a taxi the User can accept or reject a taxi share match based on distance, rating and fare price. \newline
+\newline
+Additionally, the User of the software shall be able to add users to their Friends List and share contact information with one another. Conversely, users will be able to add other users to a Blacklist to ensure they never share a cab with that User again. The User can also manage their own Favourite Locations List. If a User is travelling to a location on another user's Favourite Locations List, and wants to offer to share their taxi, the system can notify the user(s) outside the cab if they would like to join. The software will interface with Google Maps to enable users to view their route and potential route changes. The software shall not allow third party interception of personal information nor shall it allow release of personal information to unauthorized Users.
+% End SubSection
+
+\subsection{Overview}
+\label{sub:overview}
+% Begin SubSection
+\begin{enumerate}[a)]
+    \item Describe what the rest of the document contains 
+    \item Explain how the document is organised
+\end{enumerate}
+
+% End SubSection
+
+% End Section
+
+\section{State Charts for Controller Classes}
+\label{sec:state_charts_for_controller_classes}
+% Begin Section
+This section should provide a state chart for each controller class for your application.
+% End Section
+
+\section{Sequence Diagrams}
+\label{sec:sequence_diagrams}
+% Begin Section
+This section should provide a sequence diagram for each use case of your application.
+% End Section
+
+\section{Detailed Class Diagram}
+\label{sec:detailed_class_diagram}
+% Begin Section
+This section should provide a detailed class diagram for your application.
+% End Section
+
+\clearpage
+\newpage
+\appendix
+\section{Division of Labour}
+\label{sec:division_of_labour}
+% Begin Section
+Due to the nature of this document, we worked collaboratively to complete each section. The sections built upon one another and, as such, we met regularly to complete the document as a team. Each group member made an equal contribution to the project. By signing below, we hereby acknowledge that the work was in fact divided equally.\\
+\bigskip
+\begin{tabular}{l l}
+Amanda Boudreau & \line(1,0){50}\\
+Jordan Floyd & \line(1,0){50}\\
+Mario Machado & \line(1,0){50}\\
+Rakesh Mistry & \line(1,0){50}\\
+Ali Reda & \line(1,0){50}\\
+\end{tabular}
+
+% End Section
+
+\newpage
+\section*{IMPORTANT NOTES}
+\begin{itemize}
+    \item You do \underline{NOT} need to provide a text explanation of each diagram; the diagram should speak for itself
+    \item Please document any non-standard notations that you may have used
+    \begin{itemize}
+        \item \emph{Rule of Thumb}: if you feel there is any doubt surrounding the meaning of your notations, document them
+    \end{itemize}
+    \item Some diagrams may be difficult to fit into one page
+    \begin{itemize}
+        \item It is OK if the text is small but please ensure that it is readable when printed
+        \item If you need to break a diagram onto multiple pages, please adopt a system of doing so and throughly explain how it can be reconnected from one page to the next; if you are unsure about this, please ask me
+    \end{itemize}
+    \item Please submit the latest version of Deliverable 1 and Deliverable 2 with Deliverable 3
+    \begin{itemize}
+        \item They do not have to be a freshly printed versions; the latest marked versions are OK
+    \end{itemize}
+    \item If you do \underline{NOT} have a Division of Labour sheet, your deliverable will \underline{NOT} be marked
+\end{itemize}
+
+
+\end{document}
+%------------------------------------------------------------------------------
