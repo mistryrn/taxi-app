@@ -44,7 +44,10 @@
 \centering{
 \LARGE{SFWR ENG 3A04 Project}\\
 \smallskip
-\Large{Deliverable 1}\\
+\Large{Cabpool}\\
+\smallskip
+\Large{Deliverable 1 - SRS Document}\\
+
 \bigskip \bigskip \bigskip
 \Large{
 Group 10\\
@@ -79,20 +82,15 @@ Group 10\\
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection	
-This document will describe what our product intends to accomplish, what its assumptions are, and what it relies on. Anyone with a non-technical background will still be able to read and understand how the \textbf{Application} will work on a higher level after reading this requirements specification document.
+This document will describe what our product intends to accomplish, what its assumptions are, and what it relies on. This document was created for software engineers, developers and management. These users shall be able to read and understand how the \textbf{Application} will work on a higher level after reading this requirements specification document.
 % End SubSection
 
 \subsection{Scope}
 \label{sub:scope}
 % Begin SubSection
-\begin{enumerate}[a)]
-	\item \textbf{Cabpool} shall be an  \textbf{Android} \textbf{Application} produced for an unidentified taxi company to be used in conjunction with their \textbf{Dispatcher} system with the aim of increasing the volume of taxi users.  
-	\item The software shall provide a platform for taxi users to carpool and reduce individual fare cost without requiring the sharing of personal contact information.
-	\item The software shall provide the \textbf{User} with Offer Taxi Mode and Request Taxi Mode. Within each mode the \textbf{User} shall be able to accept or reject any search result based on distance, rating and fare price.
-	\item The software shall serve as a social networking service to connect users who want to travel to similar locations. As well, the \textbf{User} of the software shall be able to invite fellow users to their \textbf{\emph{Friends List}} and share contact information with one another. Conversely, users will be able to add other users to a \textbf{\emph{Blacklist}} to ensure they never share a cab with that \textbf{User} again. 
-	\item The software shall not provide personal information without express permission in accordance with the Ontario Freedom of Information and Privacy Act and the Personal Information Protection and Electronic Documents Act. 
-	\item The software will interface with \textbf{Google Maps} to enable users to view their route and potential route changes.
-	\end{enumerate}
+\textbf{Cabpool} shall be an \textbf{Android} \textbf{Application} produced for a Hamilton taxi company to be used in conjunction with their \textbf{Dispatcher} system with the aim of increasing the volume of taxi users. The software will serve as a social networking service to connect users who want to travel to similar locations. The software shall provide a platform for users to share taxis and reduce individual fare cost without having to share personal contact information. The software will allow the \textbf{User} to enter a taxi and scan the taxi \textbf{QR code} to offer the taxi and will also allow a \textbf{User} to request a taxi. When offering or requesting a taxi the \textbf{User} can accept or reject a taxi share match based on distance, rating and fare price. As well, the \textbf{User} of the software shall be able to invite fellow users to their \textbf{\emph{Friends List}} and share contact information with one another. Conversely, users will be able to add other users to a \textbf{\emph{Blacklist}} to ensure they never share a cab with that \textbf{User} again. The \textbf{User} can also manage their own \textbf{\emph{Favourite Locations List}}. If a \textbf{User} is travelling to a location on another user's \textbf{\emph{Favourite Locations List}}, the system can notify the user(s) outside the cab if they would like to join. The software will interface with \textbf{Google Maps} to enable users to view their route and potential route changes. The software shall not allow third party interception of personal information nor shall it allow release of personal information to unauthorized \textbf{Users}. 
+
+
 % End SubSection
 
 \subsection{Definitions, Acronyms, and Abbreviations}
@@ -101,17 +99,18 @@ This document will describe what our product intends to accomplish, what its ass
 \begin{enumerate}
 	\item  \textbf{Android} - the  \textbf{Android} mobile operating system.
 	\item \textbf{Application} - for the purposes of this SRS, \textbf{Application} and app refer to a mobile application.
-	\item \textbf{\emph{Blacklist}} - a list of users who will no longer be able to share a cab.
-	\item \textbf{Cabpool} - the name of our app.
-	\item \textbf{Confirmation Code} - a string of 4-8 characters to be delivered via text.
+	\item \textbf{\emph{Blacklist}} - a list of users who will not share a cab with the person who placed them on this list.
+	\item \textbf{Cabpool} - the name of the taxi sharing app.
 	\item \textbf{Dispatcher} - the system co-ordinating and keeping track of where users are who are offering/requesting a cab.
-	\item \textbf{\emph{Friends List}} - a list of users who will be able to see more information about this \textbf{User} and easily share cabs.
+	\item \textbf{\emph{Favourite Locations List}} - a \textbf{User}-managed list of locations.
+	\item \textbf{\emph{Friends List}} - a list of users who will be able to see if the \textbf{User} is using Cabpool and easily share cabs.
 	\item \textbf{GPS} - Global Positioning System, an accurate worldwide navigational and surveying facility based on the reception of signals from an array of orbiting satellites.
 	\item \textbf{Google Maps} - an online mapping solution which can show user's locations using GPS.
 	\item \textbf{Google Play} - the  \textbf{Android} App Store which this app will be launched on.
 	\item \textbf{Legal} - the viewpoint of the law.
-	\item \textbf{Security} - the viewpoint of all things \textbf{Security} and encryption related.
-	\item \textbf{Splash Screen} - a screen with the app's logo on it, used for loading.
+	\item \textbf{QR code} - a machine-readable optical label that contains information about the taxi to which it is associated.
+	\item \textbf{Security} - the viewpoint of all things related to confidentiality, integrity and auditability.
+	\item \textbf{Smartphone} - a mobile phone with advanced computing capability and the features of a personal digital assistant, a media player, a digital camera, and a \textbf{GPS} navigation unit.
 	\item \textbf{User} - the person(s) using the app.
 \end{enumerate}
 % End SubSection
@@ -134,7 +133,7 @@ All references to privacy laws throughout the SRS are from the following documen
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-The remaining sections of this document provide a general description of \textbf{Cabpool}, including a description of its users. It also includes the product's innovative features, functional requirements, and non-functional requirements. A general description of the project is discussed in Section 2 of this document. Section 3 gives the functional requirements such as constraints and assumptions made while designing the application. It also explores the product from various viewpoints. Section 4 details the non-functional requirements of the application, discussing the external interface requirements and other usability and performance-related requirements.
+A general description of the project is discussed in Section 2 of this document including perspective, functions, constraints, assumptions and user characteristics. Section 3 details the functional requirements of the system from user, dispatcher, security and legal viewpoints. Section 4 outlines the non-functional requirements of the application, discussing the external interface requirements and other usability and performance-related requirements.
 % End SubSection
 
 % End Section
@@ -149,29 +148,29 @@ The remaining sections of this document provide a general description of \textbf
 Two notably similar applications, Lyft and Uber, already exist in the \textbf{Google Play} store. There are some key differences between those products and ours. Lyft only attempts to make it easier for friends or strangers to carpool with their personal vehicles, not using a taxi service. Uber uses a taxi service, but customers who share a taxi must be picked up, and dropped off at the same destination. Our product uses a taxi service, thus eliminating risk of illegal activities that may occur when carpooling with a stranger, and does not limit carpoolers to having the exact same pick-up and destination locations.
 \\
 \bigskip
-Our \textbf{Application} is intended to be used as a sub-component of the taxi company dispatching system. The company dispatching system requires filling any taxi requests. Our \textbf{Application} will allow users to offer a taxi up for sharing. When this happens, the dispatching system will be notified of a taxi that may be able to fill another taxi request. Information such as the taxi's current location, and destination will be passed. Users are also able to request a shared taxi. When this request is filed, the dispatching system is again notified, so it may try to match a shared taxi offer with a shared taxi request. Matches will only be made if the users will save money choosing to share, as opposed to requesting a new taxi, and not sharing. If one match or more is made, the \textbf{User} who initiated the request may view which taxis they may take in order to save money. Information about each taxi ride will be shown to the user. The \textbf{User} may then submit a final request for the specific taxi chosen in the viewable list. The \textbf{User} that offered that taxi will be notified of a potential carpooler, and will have the choice to accept or decline the request.
+Our \textbf{Application} is intended to be used as a sub-component of the taxi company dispatching system. The company dispatching system requires filling any taxi requests. Our \textbf{Application} will allow users to offer a taxi up for sharing. When this happens, the dispatching system will be notified of a taxi that may be able to fill another taxi request. Information such as the taxi's current location, and destination will be passed. Users are also able to request a shared taxi. When this request is filed, the dispatching system is again notified, so it may try to match a shared taxi offer with a shared taxi request. Matches will only be made if the users will save money choosing to share, as opposed to requesting a new taxi, and not sharing. If one match or more is made, the \textbf{User} who initiated the request may view which taxis they may take in order to save money. Information about each taxi ride will be shown to the user. The \textbf{User} may then submit a final request for the specific taxi chosen in the viewable list. The \textbf{User} that offered that taxi will be notified of a potential taxi sharer, and will have the choice to accept or decline the request.
 % End SubSection
 
 \subsection{Product Functions}
 \label{sub:product_functions}
 % Begin SubSection
 \begin{enumerate}[a)]
-	\item The \textbf{Application} will enable users to create a profile and enter two modes, Request Taxi Carpool and Offer Taxi Carpool. In the Offer Taxi Carpool mode the \textbf{User} will scan a barcode within the taxi which will contain taxi identification information to be sent to the Dispatcher. In each mode the \textbf{User} will be able to enter their destination and sort their search results by distance, ratings and fare price. 
+	\item The \textbf{Application} will enable users to create a profile and enter two modes, Request Taxi Carpool and Offer Taxi Carpool. In the Offer Taxi Carpool mode the \textbf{User} will scan a \textbf{QR code} within the taxi which will contain taxi identification information to be sent to the Dispatcher. In each mode the \textbf{User} will be able to enter their destination and sort their search results by distance, ratings and fare price. 
 	
 	\item The \textbf{User} will be able to enter constraint criteria such as preferred sex and maximum number of passengers. When a match is selected a request is sent to the \textbf{Dispatcher} which will relay the request for confirmation from the potential match. 
 	
-	\item The \textbf{Dispatcher} will store all taxi and \textbf{User} information to enable users to connect with one another, sharing taxis and reducing fares without releasing personal information to strangers. The \textbf{Application} will ensure that all messages will retain confidentiality and integrity. The \textbf{Dispatcher} stores \textbf{User} \textit{favorite locations} and will alert \textbf{User} of opportunities to carpool to that location.
+	\item The \textbf{Dispatcher} will store all taxi and \textbf{User} information to enable users to connect with one another, sharing taxis and reducing fares without releasing personal information to strangers. The \textbf{Application} will ensure that all messages will retain confidentiality and integrity. The \textbf{Dispatcher} stores \textbf{User} \textbf{\emph{Favourite Locations}} and will alert \textbf{User} of opportunities to carpool to that location.
 	
 	\item The \textbf{Application} will display the fare owed by each customer and allow rating of customers with whom the ride was shared. Additionally, customers will be able to add other riders to a \textbf{\emph{Friends List}} or a \textbf{\emph{Blacklist}}.
 	
-	\item The \textbf{Application} will enable customers to view their route on Google Maps, as well as any potential route changes.
+	\item The \textbf{Application} will enable customers to view their route on \textbf{Google Maps}, as well as any potential route changes.
 \end{enumerate}
 % End SubSection
 
 \subsection{User Characteristics}
 \label{sub:user_characteristics}
 % Begin SubSection
-We expect two different type users using this application: 
+We expect two different types of users to use this application: 
 \begin{itemize}
     \item users \textit{requesting} a taxi
     \item users \textit{offering} a taxi
@@ -179,7 +178,7 @@ We expect two different type users using this application:
 The \textbf{User} must to be over the age of eighteen for \textbf{Legal} reasons. The \textbf{User} is expected to be English literate and be able to navigate through an application. The \textbf{Application} will have options to input personal information, destinations, schedules, etc. Therefore the \textbf{User} must be capable of understanding what the \textbf{Application} is doing.
 \\
 \bigskip
-The \textbf{User} will not be expected to have technical expertise or high education, as the \textbf{Application} will be built to be \textbf{User} friendly to the general public. Since the expected users will be carpooling many times, the \textbf{User} is encouraged to be social to make rides more pleasant for both type of users. 
+The \textbf{User} will not be expected to have technical expertise or high education, as the \textbf{Application} will be built to be \textbf{User} friendly to the general public. Since the expected users will be taxi sharing many times, the \textbf{User} is encouraged to be social to make rides more pleasant for all users. 
 % End SubSection
 
 \subsection{Constraints}
@@ -187,7 +186,6 @@ The \textbf{User} will not be expected to have technical expertise or high educa
 % Begin SubSection
 The successful completion of this project will be contingent upon our ability to work within the following contstraints:
 \begin{enumerate}
-	\item The \textbf{Application} must be developed for the  \textbf{Android} mobile operating system
 	\item The \textbf{Application} must be built and submitted before the final deadline of December 3rd, 2014
 \end{enumerate}
 % End SubSection
@@ -202,13 +200,14 @@ This Software Requirements Specification document makes the following assumption
 	\item The taxi company has a regular method of sending out taxis in addition to the sharing service. If the app is to be the only way to call a cab the SRS will need to be modified with this in mind.
 	\item Although the fare will be displayed on the app, the payment transactions are not completed within the app. 
 	\item The \textbf{Google Maps} API will be available, as it will be needed to fulfill many of the requirements.
+	\item The taxi company operates all hours of the day, every day of the week.
 \end{enumerate}
 % End SubSection
 
 \subsection{Apportioning of Requirements}
 \label{sub:apportioning_of_requirements}
 % Begin SubSection
-Requirements pertaining to capacity, size, and speed will not be considered for this version of the system but may need to be considered if the system is to work with large volumes of consumers in later versions. 
+Requirements pertaining to size, and speed will not be considered for this version of the system but may need to be considered if the system is to work with large volumes of consumers in later versions. At a later date the system could be modified to accommodate individuals with mobility access difficulties and/or visual impairments. In addition, the system can later consider auditing functionality for system management. 
 % End SubSection
 
 % End Section
@@ -218,310 +217,193 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 
 % Begin Section:
 \begin{enumerate}[{BE}1.]
-	\item Application is Opened
+	\item \textbf{User} wants to register with the system.
 	\begin{enumerate}[{VP1}.1]
 		\item User
 			\begin{enumerate}
-				\item \textbf{User} views \textbf{Splash Screen} followed by main menu upon loading.
-				\item \textbf{User} will automatically log in using stored data from previous session.
-			\end{enumerate}
+				\item The system shall provide a means for the \textbf{User} to express desire to register with the system.
+				\item The system shall request valid and unique authentication information from the \textbf{User}. 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item \textbf{Dispatcher} will be notified of \textbf{User} log in. 
+				\item The system shall verify if the \textbf{User} provided  authentication information is unique.
+				\item The system shall display an error message if non unique authentication information is entered.
+				\item The system shall store the unique authentication information of the new \textbf{User}. 
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-			\item \textbf{User} information will be sent securely.
+			\item The system shall ensure \textbf{User} information is not intercepted by third parties.
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-			\item VOID
+			\item The system shall protect confidential information of the \textbf{User}.
 			\end{enumerate}
 	\end{enumerate}
 
-	\item New Account Sign Up is Initiated	
+	\item \textbf{User} wants to login to system.
 	\begin{enumerate}[{VP2}.1]
 		\item User
 			\begin{enumerate}
-				\item \textbf{User} is prompted to create a unique username, set a password, select their gender, enter their date of birth, and enter their phone number.
-				\item If a unique username is chosen and the \textbf{User} is over 18, the \textbf{User} will be taken to a new screen asking for their \textbf{Confirmation Code} (which was sent via text to the phone number they entered).
-				\item Once the correct \textbf{Confirmation Code} is entered, the \textbf{User} is taken to the main screen of the app, containing options to offer or request a cab. 
+				\item The system shall provide a means for the \textbf{User} to express their desire to login. 
+				\item The system shall request login credentials from the \textbf{User}.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item Verify that a unique username has been chosen by the user, and that the \textbf{User} is over the age of 18.
-				\item Send a \textbf{Confirmation Code} via text to the user's specified phone number.
-				\item Verify that the \textbf{Confirmation Code} entered by the \textbf{User} matches the one sent via text.
+			    \item The system shall verify login credentials.
+			    \item The system shall notify the \textbf{Dispatcher} that the \textbf{User} has logged in. 
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-				\item All information encrypted and kept confidential within the app.
+				\item The system shall ensure \textbf{User} information is not intercepted by third parties.
+				\item The system shall not allow \textbf{User} to access unauthorized account. 
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item All information is secure and not shown to anyone but user, unless \textbf{User} gives permission.
+				\item The system shall protect login and location information of the \textbf{User} from unauthorized parties.
 			\end{enumerate}
 	\end{enumerate}
 
-	\item Login is Initiated
+	\item \textbf{User} wants to manage settings.	
 	\begin{enumerate}[{VP3}.1]
 		\item User
 			\begin{enumerate}
-				\item Sees form where username and password can be given as input.
-				\item Sees the main menu screen if login was successful and is asked to try again if the login was unsuccessful.
+				\item The system shall provide a means for the \textbf{User} to express their desire to manage settings.
+				\item The system shall allow the \textbf{User} to manage \textbf{\emph{Friends List}}.
+				\item The system shall allow the \textbf{User} to manage \textbf{\emph{Blacklist}}.
+				\item The system shall allow the \textbf{User} to manage \textbf{\emph{Favourite Locations}}.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item \textbf{Dispatcher} is notified that the \textbf{User} is online.
-				\item Receives users information and must verify that the \textbf{User} has an account and has input the correct password.
+				\item The system shall notify \textbf{Dispatcher} when the \textbf{User} makes changes to \textbf{\emph{Friends List}}. 
+				\item The system shall notify \textbf{Dispatcher} when the \textbf{User} makes changes to \textbf{\emph{Blacklist}}. 
+				\item The system shall notify \textbf{Dispatcher} when the \textbf{User} makes changes to \textbf{\emph{Favourite Locations}}. 
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-				\item \textbf{User} information must be encrypted so that third parties cannot intercept the users password, which would grant them access to personal information.
+			\item The system shall ensure \textbf{User} information is not intercepted by third parties.
+			\item The system shall prevent an unauthorized \textbf{User} from accessing the settings. 
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item All information is kept secure and not shown to anyone but \textbf{User}, unless \textbf{User} gives permission.
+				\item The system shall protect personal information of the \textbf{User} from unauthorized parties.
 			\end{enumerate}
 	\end{enumerate}
 
-	\item Modify Account Tab is Opened	
+	\item \textbf{User} wants to offer a taxi.	
 	\begin{enumerate}[{VP4}.1]
 		\item User
 			\begin{enumerate}
-				\item The \textbf{User} sees the “Modify” button.
-				\item The \textbf{User} selects what needs modifying, and views options of what he can modify.
-				\item The \textbf{User} clicks “Save” and his selection is saved. The Modify function is over, and the app goes back to the previous page.
+				\item The system shall provide a means for the \textbf{User} to scan the taxi \textbf{QR code}.
+				\item The system shall request offer information from the \textbf{User}.
+				\item The system shall notify the \textbf{User} when a match is found.
+				\item The system shall allow the \textbf{User} to accept or reject request matches. 
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item VOID
+				\item The system shall match an offering \textbf{User} with requesting \textbf{Users}.
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-				\item All information encrypted and kept confidential within the app.
+			\item The system shall ensure \textbf{User} information is not intercepted by third parties.
+			\item The system shall prevent unauthorized \textbf{User} from modification of offer taxi information. 
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item All information is kept secure and not shown to anyone but \textbf{User}, unless \textbf{User} gives permission.
+				\item The system shall protect offer information of the \textbf{User} from unauthorized parties.
 			\end{enumerate}
 	\end{enumerate}
 
-	\item Offer	Mode is Initiated	
+		\item \textbf{User} wants to request a taxi. 	
 	\begin{enumerate}[{VP5}.1]
-		\item User
+		\item \textbf{User}
 			\begin{enumerate}
-				\item \textbf{User} must scan a QR code inside the cab to initiate the offer process.
-				\item \textbf{User} is notified when a request is made, and must either accept or decline the request.
-				\item Once the \textbf{User} has arrived at their final destination they shall see the amount they owe the taxi driver and are given the chance to rate the other customer (if a request was made and accepted).
-				\item The \textbf{User} will have the chance to add the other customer to their \textbf{\emph{Friends List}} or add them to their \textbf{\emph{Blacklist}}.
+				\item The system shall provide a means for the \textbf{User} to request a taxi. 
+				\item The system shall require taxi request information from the \textbf{User}.
+				\item The system shall notify the \textbf{User} of relevant offers. 
+				\item The system shall allow the \textbf{User} to reject any offer. 
+				\item The system shall allow the \textbf{User} to accept only one taxi. 
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item Receives the user's information and sends them the information connected to the relevant offers.
+				\item The system shall match the \textbf{User} requesting a taxi with \textbf{Users} offering a taxi.
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-				\item \textbf{User} information must be encrypted so that third parties cannot intercept the users current or target destinations.
+				\item The system shall ensure \textbf{User} information is not intercepted by third parties.
+				\item The system shall prevent unauthorized \textbf{User} from modification of request taxi information. 
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item All information is kept secure and not shown to anyone but \textbf{User}, unless \textbf{User} gives permission.
+				\item The system shall protect request information of the \textbf{User} from unauthorized parties.
 			\end{enumerate}
 	\end{enumerate}
-
-	\item Request Mode is Initiated	
+	
+	\item Time to pay fare. 
 	\begin{enumerate}[{VP6}.1]
 		\item User
 			\begin{enumerate}
-				\item \textbf{User} sees form where request time, request destination, and target destination can be taken as input. \textbf{User} must see a list of available offers. 
-				\item Once an offer is selected the \textbf{User} shall receive more information and have the option to accept the offer. 
-				\item Once the \textbf{User} has arrived at their final destination they shall see the amount they owe the taxi driver and are given the chance to rate the other customer. 
-				\item The \textbf{User} will have the chance to add the other customer to their \textbf{\emph{Friends List}} or add them to their \textbf{\emph{Blacklist}}. 
+				\item The system shall notify \textbf{User} they have arrived at their destination and then display the corresponding fare.
+				\item The system shall allow the \textbf{User} to rate the \textbf{User} with whom they shared the taxi.
+				\item The system shall allow the \textbf{User} to add the \textbf{User} with whom they shared the taxi to their \textbf{\emph{Friends List}}.
+				\item The system shall allow the \textbf{User} to add the \textbf{User} with whom they shared the taxi to their \textbf{\emph{Blacklist}}.
+				\item The system shall allow the \textbf{User} to add the route travelled to their \textbf{\emph{Favourite Locations}}.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item Receives the users information and sends them the information connected to the relevant offers.
+				\item The system shall calculate the fare owed and distance travelled. 
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-				\item \textbf{User} information must be encrypted so that third parties cannot intercept the users current or target destinations.
+				\item The system shall ensure \textbf{User} information is not intercepted by third parties.
+				\item The system shall prevent unauthorized \textbf{User} from modification of route and rating information. 
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item All information is kept secure and not shown to anyone but \textbf{User}, unless \textbf{User} gives permission.
+				\item The system shall protect fare, location and rating information of the \textbf{User} from unauthorized parties.
 			\end{enumerate}
 	\end{enumerate}
 	
-	\item Cancel Taxi Request/Offer
+	\item User wants to logout of system. 
 	\begin{enumerate}[{VP7}.1]
 		\item User
 			\begin{enumerate}
-				\item The offer/request made is removed from viewable list of pending offer/requests.
+				\item The system shall provide a means for the \textbf{User} to express their desire to logout.
+				\item The system shall notify the \textbf{User} if logout is successful. 
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item The cancelled offer/request from this \textbf{User} must be removed from the system.
+				\item The system shall terminate offers and/or requests of the \textbf{User}.
+				\item The system shall notify the \textbf{Dispatcher} that the \textbf{User} is logged out of the system. 
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-				\item The cancelled offer/request signal must be sent to \textbf{Dispatcher} in a secure manner.
+				\item The system shall ensure communication between \textbf{User} and the system is not intercepted by third parties.
+				\item The system shall notify the \textbf{User} of logout only if logout is successful.
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item VOID
+				\item \textbf{User} information must not be accessible by any third party, with the exception of those on the \textbf{User's} \textbf{\emph{Friends List}} who shall know the \textbf{User} is logged out of the system. 
 			\end{enumerate}
 	\end{enumerate}
 	
-	\item Send Friend Request
+		\item User wants to deregister.
 	\begin{enumerate}[{VP8}.1]
 		\item User
 			\begin{enumerate}
-				\item Allow users to accept or decline friend requests.
-				\item Show friend request pending if the request has not yet been accepted.
-				\item Remove friend request pending if the friend request is declined.
-				\item Add the friend to \textbf{\emph{Friends List}} of both users once the request is accepted, and remove friend request pending.
+				\item The system shall provide a means for the \textbf{User} to express their desire to deregister from the system.
+				\item The system shall notify the \textbf{User} if de-registration is successful.
 			\end{enumerate}
 		\item Dispatcher
 			\begin{enumerate}
-				\item VOID
+				\item The system shall require the \textbf{User} to confirm the request to deregister from the system. 
+				\item The system shall notify the \textbf{User} when de-registration is successful. 
 			\end{enumerate}
 		\item Security
 			\begin{enumerate}
-				\item Allow profile information to be shared between friends confidentially.
+				\item The system shall ensure communication between \textbf{User} and the system is not intercepted by third parties.
 			\end{enumerate}
 		\item Legal
 			\begin{enumerate}
-				\item On the very first occurrence, notify the \textbf{User} that profile information will be shared between friends.
-			\end{enumerate}
-	\end{enumerate}
-	
-	\item Remove Friend
-	\begin{enumerate}[{VP9}.1]
-		\item User
-			\begin{enumerate}
-				\item Allow users to remove friends from \textbf{\emph{Friends List}}.
-				\item The removed friend will no longer be in the users \textbf{\emph{Friends List}}.
-			\end{enumerate}
-		\item Dispatcher
-			\begin{enumerate}
-				\item VOID
-			\end{enumerate}
-		\item Security
-			\begin{enumerate}
-				\item Profile information of both users will no longer be viewable.
-			\end{enumerate}
-		\item Legal
-			\begin{enumerate}
-				\item On the very first occurrence, notify the \textbf{User} that removed friend's profile will no longer be accessed.
-			\end{enumerate}
-	\end{enumerate}
-
-	\item Add User to \textbf{\emph{Blacklist}}
-	\begin{enumerate}[{VP10}.1]
-		\item User
-			\begin{enumerate}
-				\item User can enter the username of another user or select a user from the list of people they've recently shared a cab with whom they wish to add to their \textbf{\emph{Blacklist}}.
-			\end{enumerate}
-		\item Dispatcher
-			\begin{enumerate}
-				\item VOID
-			\end{enumerate}
-		\item Security
-			\begin{enumerate}
-				\item Blacklisted user will no longer be able to send/receieve offers/requests to/from the \textbf{User} who added them to their \textbf{\emph{Blacklist}}.
-			\end{enumerate}
-		\item Legal
-			\begin{enumerate}
-				\item On the very first occurrence, notify the \textbf{User} that the Blacklisted user will no longer be able to share a cab with them.
-			\end{enumerate}
-	\end{enumerate}
-
-	\item Remove User from \textbf{\emph{Blacklist}}
-	\begin{enumerate}[{VP11}.1]
-		\item User
-			\begin{enumerate}
-				\item User selects a user they wish to remore from their \textbf{\emph{Blacklist}}.
-				\item Selected user is no longer visible on their \textbf{\emph{Blacklist}}.
-			\end{enumerate}
-		\item Dispatcher
-			\begin{enumerate}
-				\item VOID
-			\end{enumerate}
-		\item Security
-			\begin{enumerate}
-				\item Un-Blacklisted user will now be able to send/receieve offers/requests to/from the \textbf{User} who added them to their \textbf{\emph{Blacklist}}.
-			\end{enumerate}
-		\item Legal
-			\begin{enumerate}
-				\item On the very first occurrence, notify the \textbf{User} that the Un-Blacklisted user will now be able to share a cab with them.
-			\end{enumerate}
-	\end{enumerate}
-	
-	\item Preferences Tab is Opened
-	\begin{enumerate}[{VP12}.1]
-		\item User
-		\begin{enumerate}
-			\item The \textbf{User} views the “preferences” button.
-			\item The \textbf{User} views his options and can input his favorite locations to go to.
-			\item The \textbf{User} can allow other users to see his frequent locations.
-		\end{enumerate}
-		\item Dispatcher
-		\begin{enumerate}
-			\item VOID
-		\end{enumerate}
-		\item Security
-		\begin{enumerate}
-			\item All information kept secure within the app.
-			\item Favorite locations only shown if \textbf{User} allows it.
-		\end{enumerate}
-		\item Legal
-		\begin{enumerate}
-			\item All information is encrypted and kept confidential and not shown to anyone but user, unless \textbf{User} gives permission.
-		\end{enumerate}
-	\end{enumerate}
-	
-	\item Logout is Initiated
-	\begin{enumerate}[{VP13}.1]
-		\item User
-			\begin{enumerate}
-				\item Any offers/requests made must be canceled.
-				\item  \textbf{Android} \textbf{Application} will return to main screen.
-			\end{enumerate}
-		\item Dispatcher
-			\begin{enumerate}
-				\item Any offers/requests from this \textbf{User} must be removed from the system.
-				\item Location information of the \textbf{User} is no longer accessible.
-			\end{enumerate}
-		\item Security
-			\begin{enumerate}
-				\item Logout signal must be sent securely to dispatcher.
-			\end{enumerate}
-		\item Legal
-			\begin{enumerate}
-				\item Information on the user's current location must not be accessible by any third parties including friends.
-			\end{enumerate}
-	\end{enumerate}
-
-	\item Application is Closed
-	\begin{enumerate}[{VP14}.1]
-		\item User
-			\begin{enumerate}
-				\item The  \textbf{Android} \textbf{Application} will close and be off screen.
-				\item The  \textbf{Android} \textbf{Application} will minimize mobile resources used.
-				\item Any offers/requests made will not be canceled.
-			\end{enumerate}
-		\item Dispatcher
-			\begin{enumerate}
-				\item VOID
-			\end{enumerate}
-		\item Security
-			\begin{enumerate}
-				\item VOID
-			\end{enumerate}
-		\item Legal
-			\begin{enumerate}
-				\item VOID
+				\item All \textbf{User} information shall be removed from the system.
 			\end{enumerate}
 	\end{enumerate}
 
@@ -541,8 +423,8 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 % Begin SubSubSection
 \begin{enumerate}[{AR}1. ]
 	\item The \textbf{Application} shall provide a satellite image of the users destination and location and all surroundings using \textbf{GPS} capabilities.
-	\item The \textbf{Application} must show a splash page when \textbf{User} first enters the application.
-	\item The \textbf{Application} will be bright and colorful rather than dark and plain. Use uniform colors.
+	\item The \textbf{Application} should show a \textbf{Splash Page} when \textbf{User} first enters the application.
+	\item The \textbf{Application} should have a default bright and colorful scheme, using uniform colors.  
 \end{enumerate}
 % End SubSubSection
 
@@ -550,9 +432,9 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:style_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SR}1. ]
-	\item The \textbf{Application} shall provide a uniform look and feel between all the pages and tabs.
-	\item The \textbf{Application} must show all buttons, tabs, pages clear to user. Avoid messiness.
-	\item The \textbf{Application} must feel smooth to user. Avoid long loading times. 
+	\item The \textbf{Application} should provide a uniform look and feel between all the pages and tabs.
+	\item The \textbf{Application} should clearly show all buttons, tabs and pages, it will not cluttered.
+	\item Using the \textbf{Application} should feel like a seamless experience to the user, long loading screen times should be minimized. 
 \end{enumerate}
 % End SubSubSection
 
@@ -567,7 +449,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 % Begin SubSubSection
 \begin{enumerate}[{EUR}1. ]
 	\item The \textbf{Application} must be usable with one hand, for users who are on the go.
-	\item The Offer and Request process must be simple, requiring no more than 3 steps to complete.
+	\item The Offer and Request Taxi process must be simple, requiring no more than 3 steps to complete.
 \end{enumerate}
 % End SubSubSection
 
@@ -575,7 +457,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:personalization_and_internationalization_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{PIR}1. ]
-	\item Users shall be able to personalize their experience under the Preferences tab, setting things like their preferred gender to cab with.
+	\item Users shall be able to personalize their experience in a Settimgs environment, allowing them to add other \textbf{Users} to, or remove from their \textbf{\emph{Friends List}} and \textbf{\emph{Blacklist}}.
 \end{enumerate}
 % End SubSubSection
 
@@ -583,7 +465,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:learning_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{LR}1. ]
-	\item The product shall have an intuitive layout, it will take the \textbf{User} no longer than 10 minutes to learn to use. 
+	\item The product should have an intuitive layout, it will take the \textbf{User} no longer than 10 minutes to learn to use. 
 \end{enumerate}
 % End SubSubSection
 
@@ -591,7 +473,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:understandability_and_politeness_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{UPR}1. ]
-	\item The product shall be clear to understand and shall not contain profane language. 
+	\item The product should be clear to understand and should not contain profane language. 
 \end{enumerate}
 % End SubSubSection
 
@@ -599,7 +481,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:accessibility_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{ACR}1. ]
-	\item VOID
+	\item The system shall have a readable font size.
 \end{enumerate}
 % End SubSubSection
 
@@ -613,7 +495,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:speed_and_latency_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SLR}1. ]
-	\item Load times between screens shall be no longer than 2 seconds, to provide the \textbf{User} with a seamless experience.
+	\item Load times between screens should be no longer than 2 seconds, to provide the \textbf{User} with a seamless experience.
 \end{enumerate}
 % End SubSubSection
 
@@ -629,7 +511,8 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:precision_or_accuracy_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{PAR}1. ]
-	\item VOID
+	\item The system must calculate fare in dollars and cents, to 2 decimal places.
+	\item The system must show correct locations.
 \end{enumerate}
 % End SubSubSection
 
@@ -637,7 +520,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:reliability_and_availability_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{RAR}1. ]
-	\item The system must be available at all times of the day which the taxi company operates.
+	\item The system shall be available at all times.
 \end{enumerate}
 % End SubSubSection
 
@@ -645,7 +528,10 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:robustness_or_fault_tolerance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{RFR}1. ]
-	\item VOID
+	\item The system shall be stable within specified app capacity.
+	\item The system must respond to all \textbf{User} inputs inside the app. The app should give useful results when the \textbf{User} encounters an error.
+	\item The system must save \textbf{Users} previous action in case of dropped connections or app crashes.
+	\item The system allows \textbf{User} with no Internet connection to view app but not in real time. 
 \end{enumerate}
 % End SubSubSection
 
@@ -683,8 +569,8 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:expected_physical_environment}
 % Begin SubSubSection
 \begin{enumerate}[{EPE}1. ]
-	\item The \textbf{Application} will have simple graphical interfaces to allow for ease of use when travelling outdoors.
-	\item The \textbf{Application} will run on  \textbf{Android} smartphones.
+	\item The \textbf{Application} will be used in and around taxis and while travelling outdoors.
+	\item The \textbf{Application} will run on  \textbf{Android} \textbf{smartphones}.
 \end{enumerate}
 % End SubSubSection
 
@@ -692,7 +578,9 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:requirements_for_interfacing_with_adjacent_systems}
 % Begin SubSubSection
 \begin{enumerate}[{RIAS}1. ]
-	\item The \textbf{Application} will interface with \textbf{Google Maps} and Facebook.
+	\item The \textbf{Application} will interface with \textbf{Google Maps}.
+	\item The \textbf{Application} will interface with the \textbf{smartphone's} GPS.
+	\item The \textbf{Application} will interface with the \textbf{smartphone's} camera for \textbf{QR code} scanning.
 \end{enumerate}
 % End SubSubSection
 
@@ -722,7 +610,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:maintenance_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{MR}1. ]
-	\item The system should be documented in such a way that maintaining and updating it is easy for users who did not build it initially.
+	\item The system should be documented in such a way that maintaining and updating it is easy for programmers who did not build it initially.
 \end{enumerate}
 % End SubSubSection
 
@@ -730,7 +618,8 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:supportability_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{MSR}1. ]
-	\item VOID
+	\item The \textbf{Application} will operate on KitKat and Lollipop OS. 
+	\item The \textbf{Application} shall only run on \textbf{smartphones}.
 \end{enumerate}
 % End SubSubSection
 
@@ -751,21 +640,21 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \label{ssub:access_requirements}
 % Begin SubSubSection
 \begin{enumerate}[{SAR}1. ]
-	\item VOID
+	\item The \textbf{Application} will be accessible to \textbf{Smartphone Users}. 
 \end{enumerate}
 % End SubSubSection
 
 \subsubsection{Integrity Requirements}
 \label{ssub:integrity_requirements}
 \begin{enumerate}[{SIR}1. ]
-	\item The system shall encrypt all it's data before sending it between the \textbf{Application} and the dispatcher. 
+	\item The system shall encrypt all it's data before sending it between the \textbf{Application} and the \textbf{Dispatcher}. 
 \end{enumerate}
 % End SubSubSection
 
 \subsubsection{Privacy Requirements}
 \label{ssub:privacy_requirements}
 \begin{enumerate}[{SPR}1. ]
-	\item The system shall protect the privacy of users, not allowing users to access others users personal.
+	\item The system shall protect the privacy of users, not allowing users to access others users personal information.
 \end{enumerate}
 % End SubSubSection
 
@@ -838,7 +727,7 @@ Requirements pertaining to capacity, size, and speed will not be considered for 
 \section{Division of Labour}
 \label{sec:division_of_labour}
 % Begin Section
-In order to complete this document, all work was divided equally. Each group member did the same amount of work as the other, no more, no less. By signing below, we hereby acknowledge that the work was in fact divided equally.\\
+Due to the nature of this document, we worked collaboratively to complete each section. The sections built upon one another and, as such, we met regularly to complete the document as a team. Each group member made an equal contribution to the project. By signing below, we hereby acknowledge that the work was in fact divided equally. \\
 \bigskip
 \begin{tabular}{l l}
 Amanda Boudreau & \line(1,0){50}\\
