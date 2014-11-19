@@ -1,0 +1,6 @@
+INDEX VERSION 1.126+C:\Users\Gateway\Documents\Taxi App\taxi-app\app\.metadata\.plugins\org.eclipse.jdt.core
+1284074322.index
+1806760742.index
+3105862391.index
+411538082.index
+1429093410.index

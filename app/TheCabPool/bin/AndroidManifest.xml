@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.groupten.thecabpool"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="21" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.NoTitle" >
+        
+        <!-- Main Menu Activity -->
+        <activity
+            android:name="views.MainMenu"
+            android:label="@string/title" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Register Screen Activity -->
+        <activity
+            android:name="views.RegisterScreen"
+            android:label="@string/registerHeader" >
+            <intent-filter>
+                <action android:name="android.intent.action.REGISTER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Login Screen Activity -->
+        <activity
+            android:name="views.LoginScreen"
+            android:label="@string/loginHeader" >
+            <intent-filter>
+                <action android:name="android.intent.action.LOGIN" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Offer Screen Activity -->
+        <activity
+            android:name="views.OfferScreen"
+            android:label="@string/offerHeader" >
+            <intent-filter>
+                <action android:name="android.intent.action.OFFER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Request Screen Activity -->
+        <activity
+            android:name="views.RequestScreen"
+            android:label="@string/requestHeader" >
+            <intent-filter>
+                <action android:name="android.intent.action.REQUEST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Register Screen Activity -->
+        <activity
+            android:name="views.SettingsScreen"
+            android:label="@string/settingsHeader" >
+            <intent-filter>
+                <action android:name="android.intent.action.SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+    </application>
+
+</manifest>
