@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lblRequestListHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Available Offers"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="220dp" >
+    </ListView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnRequestListViewDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View Details" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lblRequestListOfferDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.77"
+        android:text="Choose an offer to view" />
+
+    <Button
+        android:id="@+id/btnRequestListAcceptOffer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Accept Offer" />
+
+</LinearLayout>

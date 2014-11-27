@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lblSettingsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/settingsHeader"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/btnFavouriteLocations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settingsBtn1" />
+
+    <Button
+        android:id="@+id/btnFriendslist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settingsBtn2" />
+
+    <Button
+        android:id="@+id/btnBlacklist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settingsBtn3" />
+
+    <Button
+        android:id="@+id/btnChangePassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/settingsBtn4" />
+
+    <Button
+        android:id="@+id/btnSettingsScreenDeleteAccount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Account" />
+
+</LinearLayout>

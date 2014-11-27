@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/lblFriendslistHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/friendslistHeader"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/lstFriendsList"
+        android:layout_width="match_parent"
+        android:layout_height="110dp" >
+    </ListView>
+
+    <EditText
+        android:id="@+id/txtUserFriend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="59dp"
+     android:orientation="horizontal" >
+
+     <Button
+         android:id="@+id/btnAddFriend"
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.29"
+         android:text="@string/AddFriend" />
+
+     <Button
+         android:id="@+id/btnRemoveFriend"
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.24"
+         android:text="@string/RemoveFriend" />
+
+ </LinearLayout>
+ 
+ <TextView
+     android:id="@+id/lblRequestlistHeader"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:gravity="center"
+     android:text="@string/requestlistHeader"
+     android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ListView
+        android:id="@+id/lstRequestList"
+        android:layout_width="match_parent"
+        android:layout_height="93dp" >
+    </ListView>
+
+    <EditText
+        android:id="@+id/txtUserRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10" >
+
+        <requestFocus />
+    </EditText>
+
+ <LinearLayout
+     android:layout_width="match_parent"
+     android:layout_height="59dp"
+     android:orientation="horizontal" >
+
+     <Button
+         android:id="@+id/btnAcceptRequest"
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.29"
+         android:text="@string/AcceptRequest" />
+
+     <Button
+         android:id="@+id/btnDeclineRequest"
+         style="?android:attr/buttonStyleSmall"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="0.24"
+         android:text="@string/DeclineRequest" />
+
+ </LinearLayout>
+
+ <TextView
+     android:id="@+id/lblFriendsListMessage"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content" />
+
+</LinearLayout>

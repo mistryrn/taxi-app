@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TheCabPool</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- Main Menu Strings -->
+    <string name="title">The Cab Pool</string>
+    <string name="register">Register</string>
+    <string name="login">Login</string>
+    <string name="offer">Offer Taxi</string>
+    <string name="request">Request Taxi</string>
+    <string name="settings">Settings</string>
+    <string name="exit">Exit</string>
+    
+    
+    <!-- Register Screen Strings -->
+    <string name="registerHeader">Register</string>
+    
+     <!-- Login Screen Strings -->
+    <string name="loginHeader">Login</string>
+    
+     <!-- Offer Taxi Screen Strings -->
+    <string name="offerHeader">Offer Taxi</string>
+    
+     <!-- Request Taxi Screen Strings -->
+    <string name="requestHeader">Request Taxi</string>
+    
+     <!-- Settings Screen Strings -->
+    <string name="settingsHeader">Settings</string>
+    <string name="settingsBtn1">Favourite Locations</string>
+    <string name="settingsBtn2">Friends List</string>
+    <string name="settingsBtn3">Blacklist</string>
+    <string name="settingsBtn4">Change Password</string>
+    <string name="settingsBtn5">Main Menu</string>
+    
+    <!-- Favourite Locations Screen Strings -->
+    <string name="favouriteHeader">Favourite Locations</string>
+    
+    <!-- Blacklist Screen Strings -->
+    <string name="blacklistHeader">Blacklist</string>
+    
+    <!-- Friendslist Screen Strings -->
+    <string name="friendslistHeader">Friends List</string>
+     <string name="requestlistHeader">Friend Requests</string>
+     <string name="AddFriend">Add Friend</string>
+     <string name="RemoveFriend">Remove Friend</string>
+     <string name="AcceptRequest">Accept Request</string>
+     <string name="DeclineRequest">Decline Request</string>
+    
+    <!-- Change Password Screen Strings -->
+    <string name="passwordHeader">Change Password</string>
+    
+    <!-- Scan Screen Strings -->
+    <string name="scan">Scan Code</string>
+    <string name="submitCode">Submit Code</string>
+    
+    
+    
+
+</resources>
