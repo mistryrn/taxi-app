@@ -1,6 +1,7 @@
 package AsyncTasks;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,10 +18,12 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
 
 import controllers.SecurityController;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class SecurityTask extends AsyncTask<String, Void, String> {
     private int responseCode;
@@ -90,8 +93,12 @@ public class SecurityTask extends AsyncTask<String, Void, String> {
 	        HttpEntity responseEntity = response.getEntity();
 	        BufferedReader reader = new BufferedReader(new InputStreamReader(responseEntity.getContent(),"UTF-8"));
 	        responseCode = response.getStatusLine().getStatusCode(); 
+	        StringBuffer sb = new StringBuffer();
+	        String line = null;
+
+	        
 	        if(responseCode==200){
-				message="Login Successful";
+	        	message = "Login Successful";
 	        }
 	        else{
 	        	message="Error: Login Unsuccessful";
