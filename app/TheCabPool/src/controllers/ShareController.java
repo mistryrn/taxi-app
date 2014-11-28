@@ -38,8 +38,8 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	private static Context shareContext;
 	private Intent i;
 	final static int cameraData = 0;
-	private double[] startLocation = new double[2];
-	private double[] finalLocation = new double[2];
+	private static double[] startLocation = new double[2];
+	private static double[] finalLocation = new double[2];
 
 	public ShareController(Context context) {
 		ShareController.shareContext=context;
@@ -125,6 +125,16 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		};
 		timer.start();
 	}
+	
+	public static double[] getStart(){
+		return startLocation;
+	}
+	
+	public static double[] getFinal(){
+		return finalLocation;
+	}
+	
+	
 	private void submitRequestClicked() {
 		int[] time = RequestScreen.getTime();
 		String timeString = time[0] + ":" + time[1];
@@ -139,24 +149,20 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	}
 	
 	private void startLocationClicked() {
-		double[] pos = RequestScreen.getLocation();
+		double[] pos = RequestScreen.getMarkedLocation();
 		String location = "Lat = " + pos[0] + " Long = " + pos[1];
-		Toast toast = Toast.makeText(shareContext, location , Toast.LENGTH_SHORT);
-		toast.show();
 		startLocation = pos;
 		RequestScreen.setStartLocation(pos);
 	}
 	
 	private void arrivalLocationClicked() {
-		double[] pos = RequestScreen.getLocation();
+		double[] pos = RequestScreen.getMarkedLocation();
 		String location = "Lat = " + pos[0] + " Long = " + pos[1];
-		Toast toast = Toast.makeText(shareContext, location , Toast.LENGTH_SHORT);
-		toast.show();
 		finalLocation = pos;
 		RequestScreen.setArrivalLocation(pos);
 	}
 	
-	private void updateOffer(){
+	private static void updateOffer(){
 		double[] userLocation = OfferScreen.getCurrentLocation();
 		//format data
 		String username = LoginScreen.getLoginData()[0];
@@ -174,6 +180,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		if(response.equals("Offer Successful")){
 			Toast toast = Toast.makeText(shareContext, "Offer Successfully Placed" , Toast.LENGTH_SHORT);
 			toast.show();
+			updateOffer();
 		}
 		else if(response.equals("Update Successful")){
 			Toast toast = Toast.makeText(shareContext, "Update Successful" , Toast.LENGTH_SHORT);

@@ -85,7 +85,7 @@ public class MainController extends MainMenu implements View.OnClickListener {
 	
 	private void requestClicked() {
 		String username = LoginScreen.getLoginData()[0];
-		if(username != null){
+		if(true){
 		Intent intent = new Intent(mainContext, RequestScreen.class);
     	mainContext.startActivity(intent);
 		}

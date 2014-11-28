@@ -93,7 +93,7 @@ public class SecurityController extends SettingsScreen implements View.OnClickLi
 		else if(response.equals("Login Successful")){
 			LoginScreen.setLoginData(LoginScreen.getUsername(), LoginScreen.getPassword());
 			((Activity) securityContext).finish();
-			response = response.concat(" - Welcome back! " + LoginScreen.getLoginData()[0]);
+			response = response.concat(" - Welcome back " + LoginScreen.getLoginData()[0]);
 		}
 		else if(response.equals("Registration Successful")){
 			((Activity) securityContext).finish();
