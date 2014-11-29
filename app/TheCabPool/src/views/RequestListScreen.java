@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import library.SphericalUtil;
 
@@ -20,7 +22,9 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -31,8 +35,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.groupten.thecabpool.R;
+import com.tyczj.mapnavigator.Navigator;
 
 import controllers.SecurityController;
 import controllers.ShareController;
@@ -45,14 +51,14 @@ public class RequestListScreen extends FragmentActivity{
 	private ListView lstDetails;
 	private ArrayAdapter<String> listAdapter ;
 	private ArrayAdapter<String> detailAdapter ;
-	private GoogleMap map;
+	private static ArrayList<Navigator[]> tripNavigators;
+	private static GoogleMap map;
 	  
 	  /** Called when the activity is first created. */
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
 	    super.onCreate(savedInstanceState);
 	    setContentView(R.layout.activity_register_list_screen);
-	    
 	    // Find the ListView resource. 
 	    mainListView = (ListView) findViewById( R.id.list);
 	    lstDetails = (ListView) findViewById( R.id.lstDetails);
@@ -66,24 +72,46 @@ public class RequestListScreen extends FragmentActivity{
 	    listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, planetList);
 	    detailAdapter = new ArrayAdapter<String>(this, R.layout.simplerow2, planetList2);
 	    
+	    
+	    
+	    
 	    // Add more planets. If you passed a String[] instead of a List<String> 
 	    // into the ArrayAdapter constructor, you must not add more items. 
 	    // Otherwise an exception will occur.
-	    StringBuffer offer = new StringBuffer();
-	    try{
-	    for(int i = 1; i<15; i++){
-	    	if(offersList[i]!=null){
-	    	offer.append("Offer #"+i+": ");
-	    	offer.append(" user->" + offersList[i].getString("username"));
-	    	offer.append(" cost->" + directCost(i));
-	    	
-	    listAdapter.add(offer.toString());
-	    	}
-	    i++;
-	    }
-	    }catch(Exception e){
-	    	e.printStackTrace();
-	    }
+	    
+	    
+	    
+	    new Timer().schedule(new TimerTask() {
+
+	        @Override
+	        public void run() {
+	            runOnUiThread(new Runnable() {
+	            	StringBuffer offer = new StringBuffer();
+	                public void run() {
+	                	
+	                	try{
+	                		listAdapter.clear();
+	                	    for(int i = 1; i<15; i++){
+	                	    	
+	                	    	if(offersList[i]!=null){
+	                	    		offer = new StringBuffer();
+	                	    	offer.append("Offer #"+i+": ");
+	                	    	offer.append(" User: " + offersList[i].getString("username"));
+	                	    	offer.append(", Cost: " + cost(i));
+	                	    	offer.append(", Duration: " + duration(i));
+	                	    listAdapter.add(offer.toString());
+	                	    	}
+	                	    }
+	                		
+	                	    }catch(Exception e){
+	                	    	e.printStackTrace();
+	                	    }
+	                	    
+	                }
+	            });
+	        }
+	    }, 100, 5000);
+	   
 	    
 	    detailAdapter.add("Select an offer to view more details.");
 	    
@@ -99,14 +127,17 @@ public class RequestListScreen extends FragmentActivity{
                 detailAdapter.clear();
                 detailAdapter.add("Offer #"+i+": ");
                 try{
-                detailAdapter.add(" user->" + offersList[i].getString("username"));
-                detailAdapter.add(" startTime->" + offersList[i].getString("startTime"));
-                detailAdapter.add(" startLocation->" + offersList[i].getString("startLocation"));
-                detailAdapter.add(" currentLocation->" + offersList[i].getString("currentLocation"));
-                detailAdapter.add(" arrivalLocation->" + offersList[i].getString("arrivalDestination"));
-                detailAdapter.add(" preferredAgeStart->" + offersList[i].getString("preferredAgeStart"));
-                detailAdapter.add(" preferredAgeEnd->" + offersList[i].getString("preferredAgeEnd"));
-                detailAdapter.add(" preferredSex->" + offersList[i].getString("preferredSex"));
+                detailAdapter.add(" Offering user:" + offersList[i].getString("username"));
+                detailAdapter.add(" Your total cost->" + cost(i));
+                detailAdapter.add(" Your total trip duration->" + duration(i));
+                detailAdapter.add(" offerStartTime->" + offersList[i].getString("startTime"));
+                detailAdapter.add(" offerStartLocation->" + offersList[i].getString("startLocation"));
+                detailAdapter.add(" offerCurrentLocation->" + offersList[i].getString("currentLocation"));
+                detailAdapter.add(" offerArrivalLocation->" + offersList[i].getString("arrivalDestination"));
+                detailAdapter.add(" offerPreferredAgeStart->" + offersList[i].getString("preferredAgeStart"));
+                detailAdapter.add(" offerPreferredAgeEnd->" + offersList[i].getString("preferredAgeEnd"));
+                detailAdapter.add(" offerPreferredSex->" + offersList[i].getString("preferredSex"));
+                
                 }catch(Exception e){
                 	e.printStackTrace();
                 }
@@ -114,44 +145,51 @@ public class RequestListScreen extends FragmentActivity{
                 
             }
         });
+	    
+	    
+	    
 	  }
 	  
-	  public static void setOffers(JSONObject[] offers){
+	  public static void setOffers(JSONObject[] offers, GoogleMap map2, ArrayList<Navigator[]> tripNavigators2){
 		  offersList = offers;
+		  map = map2;
+		  tripNavigators=tripNavigators2;
+		 
 	  }
 	  
-	  public String directCost(int selectedOffer) throws JSONException{
+	 public static String duration(int selectedOffer){
+		 String duration = null;
+		 Navigator[] trips = tripNavigators.get(selectedOffer-1);
+		  Navigator pickupTrip = trips[0];
+		  Navigator middleTrip = trips[1];
+		  Navigator dropoffTrip = trips[2];
+		  double time = pickupTrip.getDuration().get(0) + middleTrip.getDuration().get(0) + dropoffTrip.getDuration().get(0);
+		  double minutes = time/60;
+		  duration = ""+Math.round(minutes)+" minutes";
+		  
+		  return duration;
+	 }
+	  
+	  public static String cost(int selectedOffer) throws JSONException{
 		  String cost = null;
-		  double[] reqStart = ShareController.getStart();
-		  double reqStartLat = reqStart[0];
-		  double reqStartLong = reqStart[1];
-		  LatLng rStart = new LatLng(reqStartLat, reqStartLong);
+		  Navigator[] trips = tripNavigators.get(selectedOffer-1);
+		  Navigator pickupTrip = trips[0];
+		  Navigator middleTrip = trips[1];
+		  Navigator dropoffTrip = trips[2];
+		  Log.d("pickupTrip", ""+pickupTrip.getDistance());
+		  double pickupDistance = (Double) pickupTrip.getDistance().get(0);
+		  double middleDistance = (Double) middleTrip.getDistance().get(0);
+		  double dropoffDistance = (Double) dropoffTrip.getDistance().get(0);
 		  
-		  double[] reqEnd = ShareController.getFinal();
-		  double reqEndLat = reqEnd[0];
-		  double reqEndLong = reqEnd[1];
-		  LatLng rEnd = new LatLng(reqEndLat, reqEndLong);
 		  
-		  String[] offerCur =  offersList[selectedOffer].getString("currentLocation").split(" ");
-		  double offerCurLat = Double.parseDouble(offerCur[0]);
-		  double offerCurLong = Double.parseDouble(offerCur[1]);
-		  LatLng oCurrent = new LatLng(offerCurLat, offerCurLong);
-		  
-		  String[] offerEnd =  offersList[selectedOffer].getString("arrivalDestination").split(" ");
-		  double offerEndLat = Double.parseDouble(offerEnd[0]);
-		  double offerEndLong = Double.parseDouble(offerEnd[1]);
-		  LatLng oEnd = new LatLng(offerEndLat, offerEndLong);
-		  
-		  double pickupDistance = SphericalUtil.computeDistanceBetween(rStart, oCurrent); //in meters
-		  double dropDistance = SphericalUtil.computeDistanceBetween(oEnd, rEnd); //in meters
-		  
-		  double charge = pickupDistance*0.0015 + dropDistance*0.0015 ; //0.0015  dollars per meter
+		  //0.001  dollars per meter
+		  //except in the middle, where the taxi is shared the requester pays a third of the cost
+		  double charge = pickupDistance*0.001 + middleDistance*0.001/(3) + dropoffDistance*0.001; 
 		  
 		  DecimalFormat df = new DecimalFormat("#.00"); 
 		  
-		 cost = "$"+df.format(charge);
-		
-		  
+		  cost = "$"+df.format(charge);
+
 		  return cost;
 	  }
 	  

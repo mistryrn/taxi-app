@@ -10,6 +10,8 @@ import org.apache.http.message.BasicNameValuePair;
 import library.PlacesAutoCompleteAdapter;
 import AsyncTasks.ShareTask;
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -33,7 +35,10 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.groupten.thecabpool.R;
+import com.tyczj.mapnavigator.Navigator;
 
 import controllers.ShareController;
 
@@ -55,6 +60,8 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 	private int minute;
 	private static ArrayAdapter listAdapter;
 	private static String[] currentLocation = new String[2];
+	private static Context context;
+	private static Navigator nav;
 
 	
 	
@@ -63,7 +70,7 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_request_screen);
 
-		
+		context = this;
 	    
 
 		map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
@@ -91,7 +98,7 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		tpStartTime.setCurrentHour(hour);
 		tpStartTime.setCurrentMinute(minute);
 		
-		ShareController controller = new ShareController(this);
+		ShareController controller = new ShareController(this, map);
 		
 		//views
 		lblStartLocation = (TextView) findViewById(R.id.lblRequestScreenStartLocation);
@@ -153,6 +160,7 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
 		String location = "Start Location is: " + userMarker.getTitle();
 		lblStartLocation.setText(location);
+		if(endMarker != null) drawPath(point, endMarker.getPosition());
 	}
 	
 	public static void setArrivalLocation(double[] pos){
@@ -162,8 +170,21 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
 		String location = "Arrival Location is: " + userMarker.getTitle();
 		lblArrivalLocation.setText(location);
+		if(startMarker != null) drawPath(startMarker.getPosition(), point);
 	}
 	
+	public static void drawPath(LatLng a, LatLng b){
+		nav = new Navigator(map,a,b, "RequestContext");
+		nav.findDirections(true);
+		
+	}
+
+	public static Navigator getNav(){
+		return nav;
+	}
+
+
+
 	public static int[] getTime(){
 		int[] time = new int[2];
 		time[0] = tpStartTime.getCurrentHour();
@@ -182,8 +203,9 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		setMarker(point, "Custom Location");
 	}
 	
-	public static void setSuggestions(){
-		
+	public static void displayMessage(String msg){
+		Toast toast = Toast.makeText(context, msg , Toast.LENGTH_LONG);
+		toast.show();
 	}
 	
 	public static String[] requestLocation(){
