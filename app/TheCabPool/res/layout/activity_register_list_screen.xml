@@ -17,30 +17,19 @@
         android:layout_width="match_parent"
         android:layout_height="220dp" >
     </ListView>
+    
+     <Button
+         android:id="@+id/btnRequestListAcceptOffer"
+         android:layout_width="match_parent"
+         android:layout_height="56dp"
+         android:text="Accept Offer" />
 
-    <LinearLayout
+    <ListView
+        android:id="@+id/lstDetails"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent" >
+    </ListView>
 
-        <Button
-            android:id="@+id/btnRequestListViewDetails"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="View Details" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/lblRequestListOfferDetails"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.77"
-        android:text="Choose an offer to view" />
-
-    <Button
-        android:id="@+id/btnRequestListAcceptOffer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Accept Offer" />
+   
 
 </LinearLayout>

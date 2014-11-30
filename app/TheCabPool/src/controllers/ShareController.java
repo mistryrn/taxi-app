@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.groupten.thecabpool.R;
@@ -126,8 +128,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	private void submitRequestClicked() {
 		int[] time = RequestScreen.getTime();
 		String timeString = time[0] + ":" + time[1];
-		Toast toast = Toast.makeText(shareContext, timeString , Toast.LENGTH_SHORT);
-		toast.show();
+		
 		
 		//make request
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
@@ -169,7 +170,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		update.execute();
 	}
 	
-	public static void httpResponse(String response) {
+	public static void httpResponse(String response) throws JSONException {
 		if(response.equals("Offer Successful")){
 			Toast toast = Toast.makeText(shareContext, "Offer Successfully Placed" , Toast.LENGTH_SHORT);
 			toast.show();
@@ -178,54 +179,22 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 			Toast toast = Toast.makeText(shareContext, "Update Successful" , Toast.LENGTH_SHORT);
 			toast.show();
 		}
-		else if(response.charAt(0) == '!'){
-			//response is the String contain the list of offers that were requested
-			Toast toast = Toast.makeText(shareContext, response , Toast.LENGTH_SHORT);
-			toast.show();
-			response = response.replace("!", " ");
-			String[] responseList = response.split(" ");
-			String[][] offersList = new String[responseList.length][responseList.length];
-
-			int i = 0;
-			int j = 0;
-			int offerNumber = 0;
-			while(j<responseList.length){
-				if(responseList[j].equals("+")) {
-					j=responseList.length;
-					Log.d("LINE", "Response Complete");
-					break;
-				}
-				else if(responseList[j].equals("#")) {
-					offerNumber++;
-					i=0;
-					Log.d("LINE", "Next Offer");
-				}
-				
-				offersList[offerNumber][i] = responseList[j];
-				Log.d("offersList["+offerNumber+"]["+i+"]", offersList[offerNumber][i]);
-				
-				i++;
-				j++;
+		else if(response.charAt(0) == '{'){//JSON response			 
+			JSONObject reader = new JSONObject(response);
+			JSONObject[] offersList = new JSONObject[15];
+			for(int i=1; i<15; i++){
+				if(reader.has(""+i))
+					offersList[i] = reader.getJSONObject(""+i); //offer number
 			}
+			
+			
 			
 
 			RequestListScreen.setOffers(offersList);
 			
-			Thread timer = new Thread(){
-				public void run(){
-					try{
-						sleep(5000);
-						
-					}catch(Exception e){
-						e.printStackTrace();
-					}finally{
-						Intent intent = new Intent(shareContext, RequestListScreen.class);
-				    	shareContext.startActivity(intent);
-					}
-				}
-			};
-				timer.start();
-			
+			Intent intent = new Intent(shareContext, RequestListScreen.class);
+	    	shareContext.startActivity(intent);
+				
 			
 			
 		}

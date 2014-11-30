@@ -14,11 +14,13 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONException;
 
 import controllers.SecurityController;
 import controllers.ShareController;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 public class ShareTask extends AsyncTask<String, Void, String> {
 		private int responseCode;
@@ -85,7 +87,12 @@ public class ShareTask extends AsyncTask<String, Void, String> {
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
-			ShareController.httpResponse(message);	
+			try {
+				ShareController.httpResponse(message);
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
 		}
 		
 		public void postOfferData() {
@@ -132,20 +139,16 @@ public class ShareTask extends AsyncTask<String, Void, String> {
 		        HttpEntity responseEntity = response.getEntity();
 		        BufferedReader reader = new BufferedReader(new InputStreamReader(responseEntity.getContent(),"UTF-8"));
 		        StringBuffer sb = new StringBuffer("");
-		        String l = "";
-		        String nl = System.getProperty("line.separator");
-		        while((l = reader.readLine()) != null){
-		        	sb.append(l + nl);
+		        String line = "";
+		        while ((line = reader.readLine()) != null) {
+		        	if(line.length()!=0 && line.charAt(0)=='<') break;
+		            sb.append(line + "\n");
 		        }
-		        reader.close();
-		        
-		    
-		        
-		        
+		
 		        responseCode = response.getStatusLine().getStatusCode();
 		        
 		        if(responseCode==200){
-		        	message = "!" + sb.toString();
+		        	message = sb.toString();
 		        }
 		        else{
 		        	message="Error: Offers not found";
