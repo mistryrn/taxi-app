@@ -6,11 +6,15 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.groupten.thecabpool.R;
+import com.tyczj.mapnavigator.Navigator;
 
 import views.LoginScreen;
 import views.MainMenu;
@@ -38,9 +42,15 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	private static Context shareContext;
 	private Intent i;
 	final static int cameraData = 0;
-	private double[] startLocation = new double[2];
-	private double[] finalLocation = new double[2];
-
+	private static double[] startLocation = new double[2];
+	private static double[] finalLocation = new double[2];
+	private static ArrayList<Navigator[]> tripNavigators;
+	static GoogleMap map;
+	public ShareController(Context context, GoogleMap map) {
+		ShareController.shareContext=context;
+		this.map = map;
+	}
+	
 	public ShareController(Context context) {
 		ShareController.shareContext=context;
 	}
@@ -125,6 +135,17 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		};
 		timer.start();
 	}
+	
+	public static double[] getStart(){
+		return startLocation;
+	}
+	
+	public static double[] getFinal(){
+		
+		return finalLocation;
+	}
+	
+	
 	private void submitRequestClicked() {
 		int[] time = RequestScreen.getTime();
 		String timeString = time[0] + ":" + time[1];
@@ -139,24 +160,20 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	}
 	
 	private void startLocationClicked() {
-		double[] pos = RequestScreen.getLocation();
+		double[] pos = RequestScreen.getMarkedLocation();
 		String location = "Lat = " + pos[0] + " Long = " + pos[1];
-		Toast toast = Toast.makeText(shareContext, location , Toast.LENGTH_SHORT);
-		toast.show();
 		startLocation = pos;
 		RequestScreen.setStartLocation(pos);
 	}
 	
 	private void arrivalLocationClicked() {
-		double[] pos = RequestScreen.getLocation();
+		double[] pos = RequestScreen.getMarkedLocation();
 		String location = "Lat = " + pos[0] + " Long = " + pos[1];
-		Toast toast = Toast.makeText(shareContext, location , Toast.LENGTH_SHORT);
-		toast.show();
 		finalLocation = pos;
 		RequestScreen.setArrivalLocation(pos);
 	}
 	
-	private void updateOffer(){
+	private static void updateOffer(){
 		double[] userLocation = OfferScreen.getCurrentLocation();
 		//format data
 		String username = LoginScreen.getLoginData()[0];
@@ -174,23 +191,30 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		if(response.equals("Offer Successful")){
 			Toast toast = Toast.makeText(shareContext, "Offer Successfully Placed" , Toast.LENGTH_SHORT);
 			toast.show();
+			updateOffer();
 		}
 		else if(response.equals("Update Successful")){
 			Toast toast = Toast.makeText(shareContext, "Update Successful" , Toast.LENGTH_SHORT);
 			toast.show();
 		}
-		else if(response.charAt(0) == '{'){//JSON response			 
-			JSONObject reader = new JSONObject(response);
+		else if(response.charAt(0) == '{'){//JSON response		
+			//Toast toast = Toast.makeText(shareContext, response , Toast.LENGTH_LONG);
+			//toast.show();
+			tripNavigators = new ArrayList<Navigator[]>();
+			JSONObject input = new JSONObject(response);
 			JSONObject[] offersList = new JSONObject[15];
 			for(int i=1; i<15; i++){
-				if(reader.has(""+i))
-					offersList[i] = reader.getJSONObject(""+i); //offer number
+				if(input.has(""+i)){
+					offersList[i] = input.getJSONObject(""+i); //offer number
+					calcDistance(offersList[i]);
+					Log.d("offersList["+i+"]", ""+offersList[i]);
+				}
 			}
 			
 			
-			
+			Log.d("Size of tripNavigators", ""+tripNavigators.size());
 
-			RequestListScreen.setOffers(offersList);
+			RequestListScreen.setOffers(offersList, map, tripNavigators);
 			
 			Intent intent = new Intent(shareContext, RequestListScreen.class);
 	    	shareContext.startActivity(intent);
@@ -200,6 +224,44 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		}
 	}
 
+	public static void calcDistance(JSONObject offer) throws JSONException{
+		  double[] reqStart = ShareController.getStart();
+		  double reqStartLat = reqStart[0];
+		  double reqStartLong = reqStart[1];
+		  LatLng rStart = new LatLng(reqStartLat, reqStartLong);
+		  
+		  double[] reqEnd = ShareController.getFinal();
+		  double reqEndLat = reqEnd[0];
+		  double reqEndLong = reqEnd[1];
+		  LatLng rEnd = new LatLng(reqEndLat, reqEndLong);
+		  
+		  String[] offerCur =  offer.getString("currentLocation").split(" ");
+		  double offerCurLat = Double.parseDouble(offerCur[0]);
+		  double offerCurLong = Double.parseDouble(offerCur[1]);
+		  LatLng oCurrent = new LatLng(offerCurLat, offerCurLong);
+		  
+		  String[] offerEnd =  offer.getString("arrivalDestination").split(" ");
+		  double offerEndLat = Double.parseDouble(offerEnd[0]);
+		  double offerEndLong = Double.parseDouble(offerEnd[1]);
+		  LatLng oEnd = new LatLng(offerEndLat, offerEndLong);
+		  
+		  Navigator pickupTrip = new Navigator(map, oCurrent, rStart, "ShareContext");
+		  Navigator middleTrip = new Navigator(map, rStart, oEnd, "ShareContext");
+		  Navigator dropoffTrip = new Navigator(map, oEnd, rEnd, "ShareContext");
+		  
+		  pickupTrip.findDirections(true);
+		  middleTrip.findDirections(true);
+		  dropoffTrip.findDirections(true);
+		  
+		  Navigator[] trips = new Navigator[3];
+		  trips[0] = pickupTrip;
+		  trips[1] = middleTrip;
+		  trips[2] = dropoffTrip;
+		  tripNavigators.add(trips);
+		  
+		
+		
+	  }
 
 	
 	
