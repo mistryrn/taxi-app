@@ -11,6 +11,7 @@ import views.settings.FriendsListScreen;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
+import android.widget.Toast;
 
 public class SettingsController extends SettingsScreen implements View.OnClickListener{
 	private static Context settingsContext;
@@ -58,6 +59,11 @@ public class SettingsController extends SettingsScreen implements View.OnClickLi
 	private void changePasswordClicked() {
 		Intent intent = new Intent(settingsContext, ChangePasswordScreen.class);
     	settingsContext.startActivity(intent);
+	}
+	public static void httpResponse(String response) {
+		Toast toast = Toast.makeText(settingsContext, response, Toast.LENGTH_LONG);
+		toast.show();
+		
 	}
 	
 
