@@ -18,13 +18,15 @@ import com.tyczj.mapnavigator.Navigator;
 
 import views.LoginScreen;
 import views.MainMenu;
+import views.OfferListScreen;
 import views.OfferScreen;
 import views.RegisterScreen;
 import views.RequestListScreen;
 import views.RequestScreen;
 import views.ScanCodeScreen;
 import views.SettingsScreen;
-import AsyncTasks.ShareTask;
+import views.settings.FriendsListScreen;
+import AsyncTasks.DispatcherTask;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -46,6 +48,9 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	private static double[] finalLocation = new double[2];
 	private static ArrayList<Navigator[]> tripNavigators;
 	static GoogleMap map;
+	private static Thread updateTimer;
+	private static boolean timerFlag;
+	
 	public ShareController(Context context, GoogleMap map) {
 		ShareController.shareContext=context;
 		this.map = map;
@@ -87,12 +92,11 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	private void offerArrivalLocationClicked() {
 		double[] pos = OfferScreen.getLocation();
 		String location = "Lat = " + pos[0] + " Long = " + pos[1];
-		Toast toast = Toast.makeText(shareContext, location , Toast.LENGTH_SHORT);
-		toast.show();
 		finalLocation = pos;
 		OfferScreen.setArrivalLocation(pos);
 	}
 	private void submitOfferClicked() {
+		if(OfferScreen.submitGetText().equals("Submit Offer")){
 		double[] scanLocation = ScanCodeScreen.getLocation();
 		double[] arrivalLocation = OfferScreen.getLocation();
 		final Calendar c = Calendar.getInstance();
@@ -117,13 +121,14 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		nameValuePairs.add(new BasicNameValuePair("preferredAgeStart",  ageStart));
 		nameValuePairs.add(new BasicNameValuePair("preferredAgeEnd", ageEnd));
 		nameValuePairs.add(new BasicNameValuePair("preferredSex", gender));
-		ShareTask offer = new ShareTask("Offer", nameValuePairs);
+		DispatcherTask offer = new DispatcherTask("Share", nameValuePairs);
 		offer.execute();
 		
+		timerFlag = true;
 		//for updating location
-		Thread timer = new Thread(){
+		updateTimer = new Thread(){
 			public void run(){
-				while(true){
+				while(timerFlag){
 				try{
 					sleep(10000); // every ten seconds
 					updateOffer();
@@ -133,7 +138,16 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 			}
 			}
 		};
-		timer.start();
+		updateTimer.start();
+		}
+		else{
+			String username = LoginScreen.getLoginData()[0];
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("requestType", "removeOffer"));
+			nameValuePairs.add(new BasicNameValuePair("username", username));
+			DispatcherTask removeOffer = new DispatcherTask("Share", nameValuePairs);
+			removeOffer.execute();
+		}
 	}
 	
 	public static double[] getStart(){
@@ -149,13 +163,12 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	private void submitRequestClicked() {
 		int[] time = RequestScreen.getTime();
 		String timeString = time[0] + ":" + time[1];
-		
-		
+
 		//make request
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 		nameValuePairs.add(new BasicNameValuePair("requestType", "request"));
         nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
-        ShareTask request = new ShareTask("Request", nameValuePairs);
+        DispatcherTask request = new DispatcherTask("Share", nameValuePairs);
 		request.execute();
 	}
 	
@@ -183,47 +196,10 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		nameValuePairs.add(new BasicNameValuePair("requestType", "updateOffer"));
 		nameValuePairs.add(new BasicNameValuePair("username", username));
 		nameValuePairs.add(new BasicNameValuePair("currentLocation", currentLocation));
-		ShareTask update = new ShareTask("Update", nameValuePairs);
+		DispatcherTask update = new DispatcherTask("Share", nameValuePairs);
 		update.execute();
 	}
 	
-	public static void httpResponse(String response) throws JSONException {
-		if(response.equals("Offer Successful")){
-			Toast toast = Toast.makeText(shareContext, "Offer Successfully Placed" , Toast.LENGTH_SHORT);
-			toast.show();
-			updateOffer();
-		}
-		else if(response.equals("Update Successful")){
-			Toast toast = Toast.makeText(shareContext, "Update Successful" , Toast.LENGTH_SHORT);
-			toast.show();
-		}
-		else if(response.charAt(0) == '{'){//JSON response		
-			//Toast toast = Toast.makeText(shareContext, response , Toast.LENGTH_LONG);
-			//toast.show();
-			tripNavigators = new ArrayList<Navigator[]>();
-			JSONObject input = new JSONObject(response);
-			JSONObject[] offersList = new JSONObject[15];
-			for(int i=1; i<15; i++){
-				if(input.has(""+i)){
-					offersList[i] = input.getJSONObject(""+i); //offer number
-					calcDistance(offersList[i]);
-					Log.d("offersList["+i+"]", ""+offersList[i]);
-				}
-			}
-			
-			
-			Log.d("Size of tripNavigators", ""+tripNavigators.size());
-
-			RequestListScreen.setOffers(offersList, map, tripNavigators);
-			
-			Intent intent = new Intent(shareContext, RequestListScreen.class);
-	    	shareContext.startActivity(intent);
-				
-			
-			
-		}
-	}
-
 	public static void calcDistance(JSONObject offer) throws JSONException{
 		  double[] reqStart = ShareController.getStart();
 		  double reqStartLat = reqStart[0];
@@ -258,10 +234,74 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		  trips[1] = middleTrip;
 		  trips[2] = dropoffTrip;
 		  tripNavigators.add(trips);
-		  
-		
-		
 	  }
+	
+	public static void httpResponse(String response) throws JSONException {
+			JSONObject wholeObject = new JSONObject(response);
+			String type = wholeObject.getString("type");
+			String success = wholeObject.getString("success");
+			if(type.equals("retrieveOffers")) retrieveOffersResponse(wholeObject);
+			if(type.equals("updateOffer")) updateOfferResponse(wholeObject);
+			if(type.equals("placeOffer")) placeOfferResponse(wholeObject);	
+			if(type.equals("removeOffer")) removeOfferResponse(wholeObject);	
+	}
+
+	private static void removeOfferResponse(JSONObject wholeObject) throws JSONException {
+		if(wholeObject.getString("success").equals("1")){
+			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+			OfferScreen.submitSetText("Submit Offer");
+			timerFlag = false;
+			ScanCodeScreen.setCodeScanned(false);
+			((Activity) shareContext).finish();
+		}
+		else{
+			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
+
+	private static void placeOfferResponse(JSONObject wholeObject) throws JSONException {
+		if(wholeObject.getString("success").equals("1")){
+			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+			OfferScreen.submitSetText("Remove Offer");
+			Intent intent = new Intent(shareContext, OfferListScreen.class);
+	    	shareContext.startActivity(intent);
+		}
+		else{
+			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
+
+	private static void updateOfferResponse(JSONObject wholeObject) throws JSONException {
+		if(wholeObject.getString("success").equals("1")){
+			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
+		else{
+			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
+
+	private static void retrieveOffersResponse(JSONObject wholeObject) throws JSONException{
+		Log.d("offersList", "here");
+		tripNavigators = new ArrayList<Navigator[]>();
+		JSONObject input = wholeObject.getJSONObject("message");
+		JSONObject[] offersList = new JSONObject[15];
+		for(int i=1; i<15; i++){
+			if(input.has(""+i)){
+				offersList[i] = input.getJSONObject(""+i); //offer number
+				calcDistance(offersList[i]);
+			}
+		}
+		Log.d("offersList", offersList.toString());
+		RequestListScreen.setOffers(offersList, map, tripNavigators);
+		Intent intent = new Intent(shareContext, RequestListScreen.class);
+    	shareContext.startActivity(intent);
+	}
 
 	
 	

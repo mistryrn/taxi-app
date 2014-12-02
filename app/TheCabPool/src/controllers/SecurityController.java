@@ -7,9 +7,11 @@ import library.IntentIntegrator;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.groupten.thecabpool.R;
-import AsyncTasks.SecurityTask;
+import AsyncTasks.DispatcherTask;
 import views.LoginScreen;
 import views.MainMenu;
 import views.OfferScreen;
@@ -23,6 +25,7 @@ import views.settings.FriendsListScreen;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -61,7 +64,7 @@ public class SecurityController extends SettingsScreen implements View.OnClickLi
 		nameValuePairs.add(new BasicNameValuePair("requestType", "scan"));
 		nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
 		nameValuePairs.add(new BasicNameValuePair("code", code));
-		SecurityTask login = new SecurityTask("ScanCode", nameValuePairs);
+		DispatcherTask login = new DispatcherTask("Security", nameValuePairs);
 		login.execute();
 	}
 	
@@ -70,7 +73,7 @@ public class SecurityController extends SettingsScreen implements View.OnClickLi
 		nameValuePairs.add(new BasicNameValuePair("requestType", "login"));
         nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getUsername()));
         nameValuePairs.add(new BasicNameValuePair("pass", LoginScreen.getPassword()));
-		SecurityTask login = new SecurityTask("Login", nameValuePairs);
+		DispatcherTask login = new DispatcherTask("Security", nameValuePairs);
 		login.execute();
 	}
 	
@@ -82,33 +85,8 @@ public class SecurityController extends SettingsScreen implements View.OnClickLi
         nameValuePairs.add(new BasicNameValuePair("date", RegisterScreen.getDateOfBirth()));
         nameValuePairs.add(new BasicNameValuePair("sex", RegisterScreen.getSex()));
         nameValuePairs.add(new BasicNameValuePair("number", RegisterScreen.getPhoneNumber())); 
-		SecurityTask register = new SecurityTask("Register", nameValuePairs);
+		DispatcherTask register = new DispatcherTask("Security", nameValuePairs);
 		register.execute();
-	}
-	
-	public static void httpResponse(String response){
-		if(response.equals("Scan Successful")){
-			scanSuccess(response);
-		}
-		else if(response.equals("Login Successful")){
-			LoginScreen.setLoginData(LoginScreen.getUsername(), LoginScreen.getPassword());
-			((Activity) securityContext).finish();
-			response = response.concat(" - Welcome back " + LoginScreen.getLoginData()[0]);
-		}
-		else if(response.equals("Registration Successful")){
-			((Activity) securityContext).finish();
-			response = response.concat(" - You may now login ");
-		}
-		else if(response.equals("Error: Login Unsuccessful")){
-			loginAttempts++;
-			if(loginAttempts>3){
-				response = response.concat(" - to create a new account you must register ");
-			}
-			
-		}
-		
-		Toast toast = Toast.makeText(securityContext, response , Toast.LENGTH_LONG);
-		toast.show();
 	}
 	
 	private static void scanSuccess(String response){
@@ -128,6 +106,58 @@ public class SecurityController extends SettingsScreen implements View.OnClickLi
 		};
 		timer.start();
 	}
+	
+	public static void httpResponse(String response) throws JSONException{
+		JSONObject wholeObject = new JSONObject(response);
+		String type = wholeObject.getString("type");
+		String success = wholeObject.getString("success");
+		Log.d("Type", type);
+		if(type.equals("loginUser")) loginUserResponse(wholeObject);
+		if(type.equals("registerUser")) registerUserResponse(wholeObject);
+		if(type.equals("scanCode")) scanCodeResponse(wholeObject);
+	}
+	
+	private static void scanCodeResponse(JSONObject wholeObject) throws JSONException {
+		if(wholeObject.getString("success").equals("1")){
+			Toast toast = Toast.makeText(securityContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+			((Activity) securityContext).finish();
+			Intent intent = new Intent(securityContext, OfferScreen.class);
+	    	securityContext.startActivity(intent);
+	    	ScanCodeScreen.setCodeScanned(true);
+		}
+		else{
+			Toast toast = Toast.makeText(securityContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
+	
+	private static void registerUserResponse(JSONObject wholeObject) throws JSONException {
+		if(wholeObject.getString("success").equals("1")){
+			Toast toast = Toast.makeText(securityContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+			((Activity) securityContext).finish();
+		}
+		else{
+			Toast toast = Toast.makeText(securityContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
+	
+	private static void loginUserResponse(JSONObject wholeObject) throws JSONException {
+		if(wholeObject.getString("success").equals("1")){
+			Toast toast = Toast.makeText(securityContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+			LoginScreen.setLoginData(LoginScreen.getUsername(), LoginScreen.getPassword());
+			((Activity) securityContext).finish();
+		}
+		else{
+			Toast toast = Toast.makeText(securityContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
+	
+	
 	
 
 }

@@ -74,8 +74,14 @@ public class MainController extends MainMenu implements View.OnClickListener {
 	private void offerClicked() {
 		String username = LoginScreen.getLoginData()[0];
 		if(username != null){
-		Intent intent = new Intent(mainContext, ScanCodeScreen.class);
-    	mainContext.startActivity(intent);
+			if(!ScanCodeScreen.codeScanned()){
+				Intent intent = new Intent(mainContext, ScanCodeScreen.class);
+		    	mainContext.startActivity(intent);
+			}
+			else{
+				Intent intent = new Intent(mainContext, OfferScreen.class);
+		    	mainContext.startActivity(intent);
+			}
 		}
 		else{
 			Toast toast = Toast.makeText(mainContext, "You must be logged in to place an offer." , Toast.LENGTH_LONG);
@@ -85,7 +91,7 @@ public class MainController extends MainMenu implements View.OnClickListener {
 	
 	private void requestClicked() {
 		String username = LoginScreen.getLoginData()[0];
-		if(true){
+		if(username != null){
 		Intent intent = new Intent(mainContext, RequestScreen.class);
     	mainContext.startActivity(intent);
 		}

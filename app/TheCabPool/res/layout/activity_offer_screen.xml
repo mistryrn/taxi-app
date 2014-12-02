@@ -28,19 +28,31 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
+		<AutoCompleteTextView
+            android:id="@+id/txtAutoCompleteOffer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:text="" 
+            android:hint="Search local places...">
+
+        </AutoCompleteTextView>
+
         <TextView
             android:id="@+id/lblOfferScreenArrivalLocation"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.52"
+            android:layout_weight="1"
             android:gravity="right"
             android:text="Arrival Location" />
 
         <Button
             android:id="@+id/btnOfferScreenArrivalLocation"
             style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:layout_weight="1"
             android:text="Set Arrival Location" />
     </LinearLayout>
 

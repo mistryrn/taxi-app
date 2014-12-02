@@ -8,7 +8,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import library.PlacesAutoCompleteAdapter;
-import AsyncTasks.ShareTask;
+import AsyncTasks.DispatcherTask;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -114,13 +114,13 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		btnSubmit.setOnClickListener(controller);
 		
 		txtAutoComplete = (AutoCompleteTextView) findViewById(R.id.txtAutoComplete);
-		txtAutoComplete.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.list_item));
+		txtAutoComplete.setAdapter(new PlacesAutoCompleteAdapter(currentLocation, this, R.layout.list_item));
 		txtAutoComplete.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
             	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
             	nameValuePairs.add(new BasicNameValuePair("location", (String) adapterView.getItemAtPosition(position)));
-            	ShareTask locate = new ShareTask("AutoComplete", nameValuePairs);
+            	DispatcherTask locate = new DispatcherTask("AutoCompleteRequest", nameValuePairs);
         		locate.execute();
             	}
 
@@ -176,7 +176,6 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 	public static void drawPath(LatLng a, LatLng b){
 		nav = new Navigator(map,a,b, "RequestContext");
 		nav.findDirections(true);
-		
 	}
 
 	public static Navigator getNav(){

@@ -3,7 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+    
+     <LinearLayout
+    android:focusable="true" android:focusableInTouchMode="true"
+    android:layout_width="0px" android:layout_height="0px"/>
+    
     <TextView
         android:id="@+id/lblFriendslistHeader"
         android:layout_width="match_parent"
@@ -15,7 +19,8 @@
     <ListView
         android:id="@+id/lstFriendsList"
         android:layout_width="match_parent"
-        android:layout_height="110dp" >
+        android:layout_height="110dp"
+        android:layout_weight="1">
     </ListView>
 
     <EditText
@@ -24,13 +29,14 @@
         android:layout_height="wrap_content"
         android:ems="10" >
 
-        <requestFocus />
+
     </EditText>
 
  <LinearLayout
      android:layout_width="match_parent"
      android:layout_height="59dp"
-     android:orientation="horizontal" >
+     android:orientation="horizontal" 
+     >
 
      <Button
          android:id="@+id/btnAddFriend"
@@ -61,7 +67,8 @@
     <ListView
         android:id="@+id/lstRequestList"
         android:layout_width="match_parent"
-        android:layout_height="93dp" >
+        android:layout_height="93dp" 
+        android:layout_weight="1">
     </ListView>
 
     <EditText
@@ -70,7 +77,7 @@
         android:layout_height="wrap_content"
         android:ems="10" >
 
-        <requestFocus />
+ 
     </EditText>
 
  <LinearLayout

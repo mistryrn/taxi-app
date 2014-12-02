@@ -1,16 +1,31 @@
 package views;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import library.PlacesAutoCompleteAdapter;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
+import AsyncTasks.DispatcherTask;
 import android.app.Activity;
+import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -19,26 +34,32 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.groupten.thecabpool.R;
+import com.tyczj.mapnavigator.Navigator;
 
 import controllers.ShareController;
 
 public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClickListener{
 
-	private GoogleMap map;
+	private static GoogleMap map;
 	static TextView lblArrivalLocation;
 	static EditText txtYoung;
 	static EditText txtOld;
 	static RadioGroup rgGender;
 	static RadioButton rbEither, rbMale, rbFemale;
 	Button btnArrivalLocation;
-	Button btnSubmit;
+	static Button btnSubmit;
+	AutoCompleteTextView txtAutoComplete;
 	static Marker userMarker;
+	static Marker endMarker;
 	static double[] currentLocation = new double[2];
+	private static Context context;
+	private static Navigator nav;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_offer_screen);
+		context = this;
 		
 		map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 		map.setMyLocationEnabled(true);
@@ -84,8 +105,39 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 			}
 			};
 			timer.start();
+		
+		String[] stringLocation = new String[2];
+		stringLocation[0] = ""+currentLocation[0];
+		stringLocation[1] = ""+currentLocation[1];
+		txtAutoComplete = (AutoCompleteTextView) findViewById(R.id.txtAutoCompleteOffer);
+		txtAutoComplete.setAdapter(new PlacesAutoCompleteAdapter(stringLocation, this, R.layout.list_item_offer));
+		txtAutoComplete.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+              	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+            	nameValuePairs.add(new BasicNameValuePair("location", (String) adapterView.getItemAtPosition(position)));
+            	DispatcherTask locate = new DispatcherTask("AutoCompleteOffer", nameValuePairs);
+        		locate.execute();
+            	}
+			}
+            );	
 	}
 	
+	
+	
+	@Override
+	protected void onDestroy() {
+		String username = LoginScreen.getLoginData()[0];
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+		nameValuePairs.add(new BasicNameValuePair("requestType", "removeOffer"));
+		nameValuePairs.add(new BasicNameValuePair("username", username));
+		DispatcherTask removeOffer = new DispatcherTask("Share", nameValuePairs);
+		removeOffer.execute();
+		super.onDestroy();
+	}
+
+
+
 	public static String getYoungAge(){
 		return txtYoung.getText().toString();
 	}
@@ -111,19 +163,46 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 	}
 
 	public static void setArrivalLocation(double[] pos){
-		String location = "Arrival Location is: Lat/Long - " + pos[0] + "/" + pos[1];
+		LatLng point = new LatLng(pos[0],pos[1]);
+		if(endMarker!=null) endMarker.remove();
+		endMarker = map.addMarker(new MarkerOptions().position(point).title(userMarker.getTitle()));
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
+		String location = "Arrival Location is: " + userMarker.getTitle();
 		lblArrivalLocation.setText(location);
+		LatLng curPoint = new LatLng(currentLocation[0],currentLocation[1]);
+		drawPath(curPoint, point);
 	}
 	
+	public static void drawPath(LatLng a, LatLng b){
+		nav = new Navigator(map,a,b, "OfferContext");
+		nav.findDirections(true);
+	}
+	
+	public static void setMarker(LatLng point, String location){
+		userMarker.remove();
+		userMarker = map.addMarker(new MarkerOptions().position(point).title(location));
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
+	}
+
 	@Override
 	public void onMapClick(LatLng point) {
-		userMarker.remove();
-		userMarker = map.addMarker(new MarkerOptions().position(point).title("Location"));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));
+		setMarker(point, "Custom Location");
+	}
+	
+	public static void displayMessage(String msg){
+		Toast toast = Toast.makeText(context, msg , Toast.LENGTH_LONG);
+		toast.show();
 	}
 
 	public static double[] getCurrentLocation() {
 		return currentLocation;
 	}
+	
+	public static void submitSetText(String text){
+		btnSubmit.setText(text);
+	}
 
+	public static String submitGetText(){
+		return btnSubmit.getText().toString();
+	}
 }
