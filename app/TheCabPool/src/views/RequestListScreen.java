@@ -63,23 +63,12 @@ public class RequestListScreen extends FragmentActivity{
 	    mainListView = (ListView) findViewById( R.id.list);
 	    lstDetails = (ListView) findViewById( R.id.lstDetails);
 
-	    // Create and populate a List of planet names.
 	     
-	    ArrayList<String> planetList = new ArrayList<String>();
-	    ArrayList<String> planetList2 = new ArrayList<String>();
+
 	    
-	    // Create ArrayAdapter using the planet list.
-	    listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, planetList);
-	    detailAdapter = new ArrayAdapter<String>(this, R.layout.simplerow2, planetList2);
-	    
-	    
-	    
-	    
-	    // Add more planets. If you passed a String[] instead of a List<String> 
-	    // into the ArrayAdapter constructor, you must not add more items. 
-	    // Otherwise an exception will occur.
-	    
-	    
+
+	    listAdapter = new ArrayAdapter<String>(this, R.layout.simplerow, new ArrayList<String>());
+	    detailAdapter = new ArrayAdapter<String>(this, R.layout.simplerow2, new ArrayList<String>());
 	    
 	    new Timer().schedule(new TimerTask() {
 
@@ -164,7 +153,7 @@ public class RequestListScreen extends FragmentActivity{
 		  Navigator middleTrip = trips[1];
 		  Navigator dropoffTrip = trips[2];
 		  double time = pickupTrip.getDuration().get(0) + middleTrip.getDuration().get(0) + dropoffTrip.getDuration().get(0);
-		  double minutes = time/60;
+		  double minutes = (time/60)/2; //average time
 		  duration = ""+Math.round(minutes)+" minutes";
 		  
 		  return duration;
@@ -180,11 +169,11 @@ public class RequestListScreen extends FragmentActivity{
 		  double pickupDistance = (Double) pickupTrip.getDistance().get(0);
 		  double middleDistance = (Double) middleTrip.getDistance().get(0);
 		  double dropoffDistance = (Double) dropoffTrip.getDistance().get(0);
+		  double subcharge = 0.0005;
 		  
-		  
-		  //0.001  dollars per meter
-		  //except in the middle, where the taxi is shared the requester pays a third of the cost
-		  double charge = pickupDistance*0.001 + middleDistance*0.001/(3) + dropoffDistance*0.001; 
+		  //subcharge per dollars per meter
+		  //in the middle, where the taxi is shared the requester pays a third of the cost
+		  double charge = pickupDistance*subcharge + middleDistance*subcharge/(3) + dropoffDistance*subcharge; 
 		  
 		  DecimalFormat df = new DecimalFormat("#.00"); 
 		  

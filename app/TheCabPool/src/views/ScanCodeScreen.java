@@ -28,6 +28,7 @@ public class ScanCodeScreen extends FragmentActivity implements View.OnClickList
 	static TextView lblCode;
 	static String code;
 	static double[] scanLocation = new double[2];
+	static boolean codeScanned;
 	
 	
 	@Override
@@ -82,10 +83,16 @@ public class ScanCodeScreen extends FragmentActivity implements View.OnClickList
 		integrator.initiateScan();
 	}
 
-
-
 	public static void setCode(String msg) {
 		lblCode.setText(msg);		
+	}
+	
+	public static boolean codeScanned(){
+		return codeScanned;
+	}
+	
+	public static void setCodeScanned(boolean b){
+		codeScanned = b;
 	}
 
 }

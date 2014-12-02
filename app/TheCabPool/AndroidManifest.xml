@@ -79,6 +79,16 @@
             </intent-filter>
         </activity>
         
+         <!-- Offer List Screen Activity -->
+        <activity
+            android:name="views.OfferListScreen"
+            android:label="@string/offerHeader" >
+            <intent-filter>
+                <action android:name="android.intent.action.OFFERLIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
         <!-- Scan Screen Activity -->
         <activity
             android:name="views.ScanCodeScreen"

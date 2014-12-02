@@ -12,6 +12,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import views.OfferScreen;
 import views.RequestScreen;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -30,10 +31,10 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
     private static String currentLat;
 	private static String currentLong;
 	
-    public PlacesAutoCompleteAdapter(Context context, int textViewResourceId) {
+    public PlacesAutoCompleteAdapter(String[] currentLocation, Context context, int textViewResourceId) {
         super(context, textViewResourceId);
-        currentLat = currentLat();
-        currentLong = currentLong();
+        currentLat = currentLocation[0];
+        currentLong = currentLocation[1];
     }
 
     @Override
@@ -135,14 +136,6 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements F
 	    }
 
 	    return resultList;
-	}
-
-	private String currentLong() {
-		return RequestScreen.requestLocation()[1];
-	}
-
-	private String currentLat() {
-		return RequestScreen.requestLocation()[0];
 	}
 
 	
