@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+        <LinearLayout
+    android:focusable="true" android:focusableInTouchMode="true"
+    android:layout_width="0px" android:layout_height="0px"/>
+
+    <TextView
+        android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+        android:gravity="center"
+        android:text="Thank you for using our services!"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/lblFareOwed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="" />
+
+    </LinearLayout>
+    
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="Rate Other User" />
+
+        <EditText
+            android:id="@+id/txtRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="out of 10"
+            android:inputType="number" >
+
+        </EditText>
+
+    </LinearLayout>
+    
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="118dp"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnDisplayFareScreenSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Submit Rating" />
+
+    </LinearLayout>
+    
+   
+
+</LinearLayout>

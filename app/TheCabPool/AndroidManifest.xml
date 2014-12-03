@@ -69,6 +69,26 @@
             </intent-filter>
         </activity>
         
+         <!-- Your Trip Activity -->
+        <activity
+            android:name="views.YourTripScreen"
+            android:label="Your Trip" >
+            <intent-filter>
+                <action android:name="android.intent.action.TRIP" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!-- Display Fare Screen Activity -->
+        <activity
+            android:name="views.DisplayFareScreen"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.FARE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
         <!-- Offer Screen Activity -->
         <activity
             android:name="views.OfferScreen"
