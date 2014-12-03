@@ -10,9 +10,12 @@ import java.util.TimerTask;
 
 import library.SphericalUtil;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import AsyncTasks.DispatcherTask;
 import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
@@ -46,13 +49,17 @@ import controllers.ShareController;
 public class RequestListScreen extends FragmentActivity{
 	
 	static JSONObject[] offersList = new JSONObject[15];
-	private int selectedOffer;
-	private ListView mainListView ;
+	private ListView mainListView;
 	private ListView lstDetails;
-	private ArrayAdapter<String> listAdapter ;
-	private ArrayAdapter<String> detailAdapter ;
+	private ArrayAdapter<String> listAdapter;
+	private ArrayAdapter<String> detailAdapter;
 	private static ArrayList<Navigator[]> tripNavigators;
 	private static GoogleMap map;
+	private static String[] offer = new String[3];
+	private Button btnAccept;
+	private static LatLng acceptedOfferPos;
+	private static String cost;
+	private static String otherUser;
 	  
 	  /** Called when the activity is first created. */
 	  @Override
@@ -62,8 +69,10 @@ public class RequestListScreen extends FragmentActivity{
 	    // Find the ListView resource. 
 	    mainListView = (ListView) findViewById( R.id.list);
 	    lstDetails = (ListView) findViewById( R.id.lstDetails);
-
-	     
+	    btnAccept = (Button) findViewById(R.id.btnRequestListAcceptOffer);
+	    ShareController controller = new ShareController(this);
+	    btnAccept.setOnClickListener(controller);
+	    
 
 	    
 
@@ -79,27 +88,34 @@ public class RequestListScreen extends FragmentActivity{
 	                public void run() {
 	                	
 	                	try{
+	                		filterList();
 	                		listAdapter.clear();
+	                	
 	                	    for(int i = 1; i<15; i++){
 	                	    	
-	                	    	if(offersList[i]!=null){
+	                	    	if(offersList[i]!=null){		
+	                	    		
 	                	    		offer = new StringBuffer();
-	                	    	offer.append("Offer #"+i+": ");
-	                	    	offer.append(" User: " + offersList[i].getString("username"));
-	                	    	offer.append(", Cost: " + cost(i));
-	                	    	offer.append(", Duration: " + duration(i));
-	                	    listAdapter.add(offer.toString());
+		                	    	offer.append("Offer #"+i+": ");
+		                	    	offer.append(" User: " + offersList[i].getString("username"));
+		                	    	offer.append(", Cost: " + cost(i));
+		                	    	offer.append(", Duration: " + duration(i));
+		                	    	listAdapter.add(offer.toString());
+	                	    		
 	                	    	}
 	                	    }
 	                		
 	                	    }catch(Exception e){
 	                	    	e.printStackTrace();
 	                	    }
+	                	
+	                	updateLocation();
 	                	    
 	                }
+					
 	            });
 	        }
-	    }, 100, 5000);
+	    }, 3000, 3000);
 	   
 	    
 	    detailAdapter.add("Select an offer to view more details.");
@@ -112,17 +128,28 @@ public class RequestListScreen extends FragmentActivity{
             public void onItemClick(AdapterView<?> parent, View view, int position,
                     long id) {
             	int i = position+1;
-            	selectedOffer = i;
+            	int selectedOffer = i;
                 detailAdapter.clear();
                 detailAdapter.add("Offer #"+i+": ");
                 try{
-                detailAdapter.add(" Offering user:" + offersList[i].getString("username"));
+                offer[0] = offersList[i].getString("username");
+                otherUser = offersList[i].getString("username");
+                detailAdapter.add(" Offering user: " + offersList[i].getString("username"));
+                offer[1] = cost(i);
                 detailAdapter.add(" Your total cost->" + cost(i));
+                cost = cost(i);
+                offer[2] = duration(i);
                 detailAdapter.add(" Your total trip duration->" + duration(i));
+                detailAdapter.add(" User's Rating->" + offersList[i].getString("rating")+"/10");
                 detailAdapter.add(" offerStartTime->" + offersList[i].getString("startTime"));
-                detailAdapter.add(" offerStartLocation->" + offersList[i].getString("startLocation"));
-                detailAdapter.add(" offerCurrentLocation->" + offersList[i].getString("currentLocation"));
-                detailAdapter.add(" offerArrivalLocation->" + offersList[i].getString("arrivalDestination"));
+                //detailAdapter.add(" offerStartLocation->" + offersList[i].getString("startLocation"));
+                //detailAdapter.add(" offerCurrentLocation->" + offersList[i].getString("currentLocation"));
+                String[] pos = offersList[i].getString("currentLocation").split(" ");
+                String lat = pos[0];
+                String lon = pos[1];
+                LatLng p = new LatLng(Double.parseDouble(pos[0]), Double.parseDouble(pos[1]));
+                acceptedOfferPos = p;
+                //detailAdapter.add(" offerArrivalLocation->" + offersList[i].getString("arrivalDestination"));
                 detailAdapter.add(" offerPreferredAgeStart->" + offersList[i].getString("preferredAgeStart"));
                 detailAdapter.add(" offerPreferredAgeEnd->" + offersList[i].getString("preferredAgeEnd"));
                 detailAdapter.add(" offerPreferredSex->" + offersList[i].getString("preferredSex"));
@@ -135,32 +162,32 @@ public class RequestListScreen extends FragmentActivity{
             }
         });
 	    
-	    
-	    
 	  }
 	  
 	  public static void setOffers(JSONObject[] offers, GoogleMap map2, ArrayList<Navigator[]> tripNavigators2){
 		  offersList = offers;
 		  map = map2;
 		  tripNavigators=tripNavigators2;
-		 
 	  }
 	  
 	 public static String duration(int selectedOffer){
 		 String duration = null;
+		 if(tripNavigators!=null){
 		 Navigator[] trips = tripNavigators.get(selectedOffer-1);
 		  Navigator pickupTrip = trips[0];
 		  Navigator middleTrip = trips[1];
 		  Navigator dropoffTrip = trips[2];
 		  double time = pickupTrip.getDuration().get(0) + middleTrip.getDuration().get(0) + dropoffTrip.getDuration().get(0);
-		  double minutes = (time/60)/2; //average time
+		  double minutes = (time/60)/6; 
 		  duration = ""+Math.round(minutes)+" minutes";
-		  
+		  }
+		 
 		  return duration;
 	 }
 	  
-	  public static String cost(int selectedOffer) throws JSONException{
+	  public static String cost(int selectedOffer) throws JSONException{	  
 		  String cost = null;
+		  if(tripNavigators!=null){
 		  Navigator[] trips = tripNavigators.get(selectedOffer-1);
 		  Navigator pickupTrip = trips[0];
 		  Navigator middleTrip = trips[1];
@@ -169,7 +196,7 @@ public class RequestListScreen extends FragmentActivity{
 		  double pickupDistance = (Double) pickupTrip.getDistance().get(0);
 		  double middleDistance = (Double) middleTrip.getDistance().get(0);
 		  double dropoffDistance = (Double) dropoffTrip.getDistance().get(0);
-		  double subcharge = 0.0005;
+		  double subcharge = 0.0001;
 		  
 		  //subcharge per dollars per meter
 		  //in the middle, where the taxi is shared the requester pays a third of the cost
@@ -178,9 +205,74 @@ public class RequestListScreen extends FragmentActivity{
 		  DecimalFormat df = new DecimalFormat("#.00"); 
 		  
 		  cost = "$"+df.format(charge);
+		  }
 
 		  return cost;
 	  }
 	  
+	  public static void filterList(){
+		  try{
+			JSONObject[] newOffersList = new JSONObject[15];
+			ArrayList<Navigator[]> newNavigators = new ArrayList<Navigator[]>();
+			int counter = 1;
+			for(int i = 1; i<15; i++){
+				Log.d("OffersList["+i+"]", ""+offersList[i]);
+				if(offersList[i]!=null){
+					int requesterAge = Integer.parseInt(LoginScreen.getLoginData()[3]);
+					int ageLow = Integer.parseInt(offersList[i].getString("preferredAgeStart"));
+			  		int ageHigh = Integer.parseInt(offersList[i].getString("preferredAgeEnd")); 
+			  		boolean isGender = offersList[i].getString("preferredSex").equals(LoginScreen.getLoginData()[2]);
+			  		boolean isEither = offersList[i].getString("preferredSex").equals("Either");
+			  		boolean isValid = (isGender || isEither) && requesterAge<=ageHigh && requesterAge>=ageLow;
+			  		Log.d("isValid " + i, ""+isValid);
+			  		if(isValid){
+			  			newOffersList[counter] = offersList[i];
+			  			newNavigators.add(tripNavigators.get(i));
+			  			counter++;
+			  			}
+					}
+				Log.d("newOffersList["+(counter-1)+"]", ""+newOffersList[counter-1]);
+				}
+			offersList = newOffersList;
+			tripNavigators = newNavigators;
+			
+		  }
+		  catch(Exception e){
+			  e.printStackTrace();
+		  }
+	  }
+	  
+	  public static String[] getOfferUser(){
+		  return offer;
+	  }
+	  
+	  public void updateLocation(){
+		double[] currentLocation = new double[2];
+		LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
+		Criteria criteria = new Criteria();
+		String provider = service.getBestProvider(criteria, false);
+		Location location = service.getLastKnownLocation(provider);
+		LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+		currentLocation[0] = userLocation.latitude;
+		currentLocation[1] = userLocation.longitude;
+      	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+  		nameValuePairs.add(new BasicNameValuePair("requestType", "setLocation"));
+  		nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
+  		nameValuePairs.add(new BasicNameValuePair("location", currentLocation[0] + " " + currentLocation[1]));
+  		DispatcherTask setLocation = new DispatcherTask("Share", nameValuePairs);
+  		setLocation.execute();
+	  }
+	  
+	  public static LatLng getPos(){
+		  return acceptedOfferPos;
+	  }
+	  
+	  public static String getCost(){
+		  return cost;
+	  }
+	  
+	  public static String getOtherUser(){
+		  return otherUser;
+	  }
 	  
 }

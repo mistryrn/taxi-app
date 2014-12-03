@@ -10,7 +10,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-     android:layout_weight="0.2"  >
+     android:layout_weight="1"  >
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
@@ -22,16 +22,17 @@
         android:id="@+id/lstOfferListScreenRequestsList"
         android:layout_width="match_parent"
         android:layout_height="386dp" 
-        android:hint="Request will appear here">
+        android:hint="Request will appear here"
+        android:choiceMode="singleChoice">
 
     </ListView>
     </LinearLayout>
 
-    <LinearLayout 
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:layout_weight="1" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
     <Button
         android:id="@+id/btnOfferListScreenAccept"
         android:layout_width="match_parent"
@@ -47,5 +48,11 @@
         android:text="Decline" />
     
 </LinearLayout>
+
+    <TextView
+        android:id="@+id/lblOfferListSelectedChoice"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:text="" />
 
 </LinearLayout>

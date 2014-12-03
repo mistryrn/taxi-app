@@ -69,7 +69,7 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 		final Location location = service.getLastKnownLocation(provider);
 		final LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
 		userMarker = map.addMarker(new MarkerOptions().position(userLocation).title("Your Location"));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 12));
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 14));
 		map.setOnMapClickListener(this);
 		
 		lblArrivalLocation = (TextView) findViewById(R.id.lblOfferScreenArrivalLocation);
@@ -123,8 +123,6 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
             );	
 	}
 	
-	
-	
 	@Override
 	protected void onDestroy() {
 		String username = LoginScreen.getLoginData()[0];
@@ -132,7 +130,7 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 		nameValuePairs.add(new BasicNameValuePair("requestType", "removeOffer"));
 		nameValuePairs.add(new BasicNameValuePair("username", username));
 		DispatcherTask removeOffer = new DispatcherTask("Share", nameValuePairs);
-		removeOffer.execute();
+		//removeOffer.execute();
 		super.onDestroy();
 	}
 
@@ -144,6 +142,10 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 	
 	public static String getOldAge(){
 		return txtOld.getText().toString();
+	}
+	
+	public static LatLng getEndPosition(){
+		return endMarker.getPosition();
 	}
 	
 	public static String getGender(){
@@ -166,7 +168,7 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 		LatLng point = new LatLng(pos[0],pos[1]);
 		if(endMarker!=null) endMarker.remove();
 		endMarker = map.addMarker(new MarkerOptions().position(point).title(userMarker.getTitle()));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 14));	
 		String location = "Arrival Location is: " + userMarker.getTitle();
 		lblArrivalLocation.setText(location);
 		LatLng curPoint = new LatLng(currentLocation[0],currentLocation[1]);
@@ -181,7 +183,7 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 	public static void setMarker(LatLng point, String location){
 		userMarker.remove();
 		userMarker = map.addMarker(new MarkerOptions().position(point).title(location));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 14));	
 	}
 
 	@Override

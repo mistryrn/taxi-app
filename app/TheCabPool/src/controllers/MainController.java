@@ -12,6 +12,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import views.LoginScreen;
 import views.MainMenu;
+import views.OfferListScreen;
 import views.OfferScreen;
 import views.RegisterScreen;
 import views.RequestListScreen;

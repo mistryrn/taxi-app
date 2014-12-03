@@ -83,7 +83,7 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		Location location = service.getLastKnownLocation(provider);
 		LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
 		userMarker = map.addMarker(new MarkerOptions().position(userLocation).title("Your Location"));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 12));
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 14));
 		map.setOnMapClickListener(this);
 		
 		currentLocation[0] = ""+userLocation.latitude;
@@ -157,7 +157,7 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		LatLng point = new LatLng(pos[0],pos[1]);
 		if(startMarker!=null) startMarker.remove();
 		startMarker = map.addMarker(new MarkerOptions().position(point).title(userMarker.getTitle()));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 14));	
 		String location = "Start Location is: " + userMarker.getTitle();
 		lblStartLocation.setText(location);
 		if(endMarker != null) drawPath(point, endMarker.getPosition());
@@ -167,7 +167,7 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		LatLng point = new LatLng(pos[0],pos[1]);
 		if(endMarker!=null) endMarker.remove();
 		endMarker = map.addMarker(new MarkerOptions().position(point).title(userMarker.getTitle()));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 14));	
 		String location = "Arrival Location is: " + userMarker.getTitle();
 		lblArrivalLocation.setText(location);
 		if(startMarker != null) drawPath(startMarker.getPosition(), point);
@@ -194,7 +194,7 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 	public static void setMarker(LatLng point, String location){
 		userMarker.remove();
 		userMarker = map.addMarker(new MarkerOptions().position(point).title(location));
-		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 12));	
+		map.moveCamera(CameraUpdateFactory.newLatLngZoom(point, 14));	
 	}
 
 	@Override
@@ -212,5 +212,11 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		Log.d("Current Long", currentLocation[1]);
 		return currentLocation;
 	}
+
+	public static LatLng getEndPosition() {
+		return  endMarker.getPosition();
+	}
+
+	
 
 }

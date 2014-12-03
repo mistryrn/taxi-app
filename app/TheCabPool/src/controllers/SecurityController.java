@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import library.IntentIntegrator;
@@ -146,9 +147,25 @@ public class SecurityController extends SettingsScreen implements View.OnClickLi
 	
 	private static void loginUserResponse(JSONObject wholeObject) throws JSONException {
 		if(wholeObject.getString("success").equals("1")){
-			Toast toast = Toast.makeText(securityContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
-			toast.show();
 			LoginScreen.setLoginData(LoginScreen.getUsername(), LoginScreen.getPassword());
+			Toast toast = Toast.makeText(securityContext, "Login Successful, welcome back " + LoginScreen.getLoginData()[0] , Toast.LENGTH_SHORT);
+			toast.show();
+			
+			JSONObject profileData = wholeObject.getJSONObject("message");
+			String gender = profileData.getString("gender");
+			String dateOfBirth = profileData.getString("dateOfBirth");
+			String[] dateOfBirthArray = dateOfBirth.split("/");
+			int[] dateOfBirthIntArray = new int[3];
+			dateOfBirthIntArray[0] = Integer.parseInt(dateOfBirthArray[0]);
+			dateOfBirthIntArray[1] = Integer.parseInt(dateOfBirthArray[1]);
+			dateOfBirthIntArray[2] = Integer.parseInt(dateOfBirthArray[2]);
+			int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+			int birthYear = dateOfBirthIntArray[2];
+			
+			int age = currentYear - birthYear;
+			
+			LoginScreen.setUserData(gender, ""+age);
+			
 			((Activity) securityContext).finish();
 		}
 		else{

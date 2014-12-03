@@ -2,6 +2,7 @@ package views;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ public class LoginScreen extends Activity{
 	private static EditText txtPassword;
 	private static Button btnSubmit;
 	private static TextView lblMessage;
-	private static String username, password;
+	private static String username, password, gender, age;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +52,16 @@ public class LoginScreen extends Activity{
 		password = pass;
 	}
 	
+	public static void setUserData(String newGender, String newAge){
+		if(newGender.equals("m")) gender = "Male";
+		if(newGender.equals("f")) gender = "Female";
+		age = newAge;
+		Log.d("gender", newGender);
+		Log.d("age", newAge);
+	}
+	
 	public static String[] getLoginData(){
-		String data[] = {username, password};
+		String data[] = {username, password, gender, age};
 		return data;
 	}
 	
