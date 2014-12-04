@@ -57,11 +57,14 @@ public class YourTripScreen extends FragmentActivity implements GoogleMap.OnMapC
 		
 	
 					
-					LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-					Criteria criteria = new Criteria();
-					String provider = service.getBestProvider(criteria, false);
-					Location location = service.getLastKnownLocation(provider);
-					LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+		 LocationManager locationManager = (LocationManager)getSystemService
+		            (Context.LOCATION_SERVICE); 
+		    Location getLastLocation = locationManager.getLastKnownLocation
+		            (LocationManager.PASSIVE_PROVIDER);
+		    double currentLongitude = getLastLocation.getLongitude();
+		    double currentLatitude = getLastLocation.getLatitude();
+
+		    LatLng userLocation= new LatLng(currentLatitude, currentLongitude); 
 			
 					Marker currentPosition = map.addMarker(new MarkerOptions().position(userLocation).title("You"));
 					Marker otherUserPosition = map.addMarker(new MarkerOptions().position(otherPos).title("Other User"));
@@ -76,7 +79,7 @@ public class YourTripScreen extends FragmentActivity implements GoogleMap.OnMapC
 				public void run(){
 					
 					try{
-						sleep(20000);
+						sleep(10000);
 					
 						Intent intent = new Intent(YourTripScreen.this, DisplayFareScreen.class);
 						if(tripFlag)YourTripScreen.this.startActivity(intent);
@@ -120,13 +123,6 @@ public class YourTripScreen extends FragmentActivity implements GoogleMap.OnMapC
 	}
 	
 	public static void drawPath(Marker currentM, Marker otherM, Marker finalM){
-		if(nav != null){
-		ArrayList<Polyline> polylines = nav.getPathLines();
-		for(Polyline line : polylines)
-		{
-		    line.remove();
-		}
-		}
 		drawPath(currentM.getPosition(),otherM.getPosition());
 		drawPath(currentM.getPosition(), finalM.getPosition());
 	}

@@ -131,7 +131,10 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 		    // Create a new HttpClient and Post Header
 		    HttpClient httpclient = new DefaultHttpClient();
 		    HttpPost httppost = new HttpPost("http://arche.comeze.com/cabpool/dispatcher.php");
-		    
+		   // HttpPost httppost = new HttpPost("http://thecabpool.comoj.com/dispatcher.php"); 
+		    //backup server
+		    //HttpPost httppost = new HttpPost("http://thecabpool.comli.com/dispatcher.php"); 
+		    //backup server2
 		    try {
 		        // Add your data
 		        Log.d("nameValuePairs1", ""+nameValuePairs.get(0));

@@ -330,7 +330,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	}
 
 	private static void checkRequestResponse(JSONObject wholeObject) throws JSONException {
-		if(wholeObject.getString("success").equals("1")){
+		if(wholeObject.getString("success").equals("1") && checkFlag==true){
 			checkFlag = false; //request accepted, no need to check
 			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
 			toast.show();
@@ -393,7 +393,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 				public void run(){
 					while(checkFlag){
 					try{
-						sleep(10000);
+						sleep(1000);
 
 						List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 						nameValuePairs.add(new BasicNameValuePair("requestType", "checkRequest"));

@@ -3,6 +3,7 @@ package views;
 import library.IntentIntegrator;
 import library.IntentResult;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Criteria;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.model.LatLng;
 import com.groupten.thecabpool.R;
 
@@ -36,6 +38,7 @@ public class ScanCodeScreen extends FragmentActivity implements View.OnClickList
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_scan_screen);
 		
+		
 		btnScanCode = (Button) findViewById(R.id.btnScanCode); 
 		btnSubmitCode = (Button) findViewById(R.id.btnSubmitCode);
 		lblCode = (TextView) findViewById(R.id.lblScannedCode);
@@ -44,14 +47,18 @@ public class ScanCodeScreen extends FragmentActivity implements View.OnClickList
 
 		btnScanCode.setOnClickListener(this);
 		btnSubmitCode.setOnClickListener(controller);
+		  LocationManager locationManager = (LocationManager)getSystemService
+		            (Context.LOCATION_SERVICE); 
+		    Location getLastLocation = locationManager.getLastKnownLocation
+		            (LocationManager.PASSIVE_PROVIDER);
+		    double currentLongitude = getLastLocation.getLongitude();
+		    double currentLatitude = getLastLocation.getLatitude();
+
+		    LatLng userLocation= new LatLng(currentLatitude, currentLongitude); 
 		
-		LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-		Criteria criteria = new Criteria();
-		String provider = service.getBestProvider(criteria, false);
-		Location location = service.getLastKnownLocation(provider);
-		LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
 		scanLocation[0] = userLocation.latitude;
 		scanLocation[1] = userLocation.longitude;
+		
 	}
 	
 	public static double[] getLocation(){
