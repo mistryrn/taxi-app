@@ -33,6 +33,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.groupten.thecabpool.R;
 import com.tyczj.mapnavigator.Navigator;
 
@@ -131,6 +132,11 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 		nameValuePairs.add(new BasicNameValuePair("username", username));
 		DispatcherTask removeOffer = new DispatcherTask("Share", nameValuePairs);
 		removeOffer.execute();
+		List<NameValuePair> nameValuePairs2 = new ArrayList<NameValuePair>(2);
+		nameValuePairs2.add(new BasicNameValuePair("requestType", "clearInTaxi"));
+		nameValuePairs2.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
+		DispatcherTask check = new DispatcherTask("Share", nameValuePairs2);
+		check.execute();
 		super.onDestroy();
 	}
 
@@ -176,6 +182,13 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 	}
 	
 	public static void drawPath(LatLng a, LatLng b){
+		if(nav != null){
+			ArrayList<Polyline> polylines = nav.getPathLines();
+			for(Polyline line : polylines)
+			{
+			    line.remove();
+			}
+			}
 		nav = new Navigator(map,a,b, "OfferContext");
 		nav.findDirections(true);
 	}

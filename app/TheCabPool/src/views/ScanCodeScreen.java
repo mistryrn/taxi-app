@@ -65,8 +65,12 @@ public class ScanCodeScreen extends FragmentActivity implements View.OnClickList
 		super.onActivityResult(requestCode, resultCode, intent);
 		  IntentResult scanResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, intent);
 		  if (scanResult != null) {
-		    code = scanResult.getContents().toString();
-		    lblCode.setText("Code scanned, press 'Submit Code' to verify");
+			String contents = scanResult.getContents();
+		    if(contents != null){
+			    code = scanResult.getContents().toString();
+			    lblCode.setText("Code scanned, press 'Submit Code' to verify");
+		    }
+		    else finish();
 		  }
 		  else{
 			  code = "Error";

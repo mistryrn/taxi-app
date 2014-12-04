@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import library.SphericalUtil;
+
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -133,6 +133,22 @@ public class OfferListScreen extends FragmentActivity{
         });
 	
 	  }
+	  
+	  @Override
+		protected void onDestroy() {
+			String username = LoginScreen.getLoginData()[0];
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("requestType", "removeOffer"));
+			nameValuePairs.add(new BasicNameValuePair("username", username));
+			DispatcherTask removeOffer = new DispatcherTask("Share", nameValuePairs);
+			removeOffer.execute();
+			List<NameValuePair> nameValuePairs2 = new ArrayList<NameValuePair>(2);
+			nameValuePairs2.add(new BasicNameValuePair("requestType", "clearInTaxi"));
+			nameValuePairs2.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
+			DispatcherTask check = new DispatcherTask("Share", nameValuePairs2);
+			check.execute();
+			super.onDestroy();
+		}
 
 	public static void setRequests(JSONObject[] newRequestList) {
 		requestList = newRequestList;

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import library.SphericalUtil;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -110,12 +109,17 @@ public class RequestListScreen extends FragmentActivity{
 	                	    }
 	                	
 	                	updateLocation();
+	                	
 	                	    
 	                }
 					
+					
 	            });
 	        }
-	    }, 3000, 3000);
+	    }, 500, 200);
+	    
+	    
+	    
 	   
 	    
 	    detailAdapter.add("Select an offer to view more details.");
@@ -124,9 +128,11 @@ public class RequestListScreen extends FragmentActivity{
 	    mainListView.setAdapter( listAdapter );     
 	    lstDetails.setAdapter(detailAdapter);
 	    mainListView.setOnItemClickListener(new OnItemClickListener() {
+	    	
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                     long id) {
+            	//refreshList();
             	int i = position+1;
             	int selectedOffer = i;
                 detailAdapter.clear();
@@ -163,6 +169,14 @@ public class RequestListScreen extends FragmentActivity{
         });
 	    
 	  }
+	  
+	  private void refreshList() {
+			List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+			nameValuePairs.add(new BasicNameValuePair("requestType", "request"));
+	        nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
+	        DispatcherTask request = new DispatcherTask("Share", nameValuePairs);
+			request.execute();	
+		}
 	  
 	  public static void setOffers(JSONObject[] offers, GoogleMap map2, ArrayList<Navigator[]> tripNavigators2){
 		  offersList = offers;

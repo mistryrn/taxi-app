@@ -246,6 +246,9 @@ public class ShareController extends RequestScreen implements View.OnClickListen
         nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
         DispatcherTask request = new DispatcherTask("Share", nameValuePairs);
 		request.execute();
+		
+		Intent intent = new Intent(shareContext, RequestListScreen.class);
+    	shareContext.startActivity(intent);
 	}
 	
 	private void startLocationClicked() {
@@ -483,8 +486,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		Log.d("offersList", offersList.toString());
 		RequestListScreen.setOffers(offersList, map, tripNavigators);
 		}
-		Intent intent = new Intent(shareContext, RequestListScreen.class);
-    	shareContext.startActivity(intent);
+		
 	}
 
 	

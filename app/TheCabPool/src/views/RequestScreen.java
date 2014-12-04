@@ -174,6 +174,13 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 	}
 	
 	public static void drawPath(LatLng a, LatLng b){
+		if(nav != null){
+			ArrayList<Polyline> polylines = nav.getPathLines();
+			for(Polyline line : polylines)
+			{
+			    line.remove();
+			}
+			}
 		nav = new Navigator(map,a,b, "RequestContext");
 		nav.findDirections(true);
 	}

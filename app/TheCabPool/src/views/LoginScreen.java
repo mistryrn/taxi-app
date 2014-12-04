@@ -24,8 +24,6 @@ public class LoginScreen extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login_screen);
-		username = "";
-		password = "";
 		
 		txtUsername = (EditText) findViewById(R.id.txtLoginUsername);
 		txtPassword = (EditText) findViewById(R.id.txtLoginPassword);
