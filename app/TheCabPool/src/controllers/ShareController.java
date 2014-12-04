@@ -141,7 +141,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	}
 
 	private void acceptOfferClicked() {
-		if(RequestListScreen.getOtherUser()==otherUser){
+		if(RequestListScreen.getOtherUser()!=otherUser){
 		otherUser = RequestListScreen.getOtherUser();
 		DisplayFareScreen.setCost(RequestListScreen.getCost());
 		acceptedOfferPos = RequestListScreen.getPos();

@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
@@ -14,6 +17,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
@@ -24,6 +28,7 @@ import com.groupten.thecabpool.R;
 
 import controllers.MainController;
 
+import AsyncTasks.DispatcherTask;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -70,13 +75,30 @@ public class MainMenu extends Activity {
         btnRequest.setOnClickListener(btnController);
         btnSettings.setOnClickListener(btnController);
         
+        
+
        
     }
       
     
 
     
-    public static void setMessage(String msg){
+    @Override
+	protected void onDestroy() {
+        if(LoginScreen.getLoginData()!=null){
+        	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+    		nameValuePairs.add(new BasicNameValuePair("requestType", "clearInTaxi"));
+    		nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
+    		DispatcherTask check = new DispatcherTask("Share", nameValuePairs);
+    		check.execute();
+        }
+		super.onDestroy();
+	}
+
+
+
+
+	public static void setMessage(String msg){
     	lblMessage.setText(msg);
     }
     
