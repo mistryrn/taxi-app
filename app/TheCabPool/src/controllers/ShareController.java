@@ -178,6 +178,10 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		String ageStart = OfferScreen.getYoungAge();
 		String ageEnd = OfferScreen.getOldAge();
 		String gender = OfferScreen.getGender();
+		
+		if(ageStart=="") ageStart="18";
+		if(ageEnd=="") ageEnd="120";
+		
 		//send data
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 		nameValuePairs.add(new BasicNameValuePair("requestType", "offer"));
@@ -433,7 +437,6 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 			
 			Intent intent = new Intent(shareContext, OfferListScreen.class);
 	    	shareContext.startActivity(intent);
-	    	((Activity) shareContext).finish();
 		}
 		else{
 			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);

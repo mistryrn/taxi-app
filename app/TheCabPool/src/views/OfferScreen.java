@@ -130,7 +130,7 @@ public class OfferScreen extends FragmentActivity implements GoogleMap.OnMapClic
 		nameValuePairs.add(new BasicNameValuePair("requestType", "removeOffer"));
 		nameValuePairs.add(new BasicNameValuePair("username", username));
 		DispatcherTask removeOffer = new DispatcherTask("Share", nameValuePairs);
-		//removeOffer.execute();
+		removeOffer.execute();
 		super.onDestroy();
 	}
 
