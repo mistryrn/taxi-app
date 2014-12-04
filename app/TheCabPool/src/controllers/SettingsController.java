@@ -19,6 +19,7 @@ import views.settings.ChangePasswordScreen;
 import views.settings.FavouriteLocationsScreen;
 import views.settings.FriendsListScreen;
 import AsyncTasks.DispatcherTask;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -58,11 +59,38 @@ public class SettingsController extends SettingsScreen implements View.OnClickLi
 			changePasswordClicked();
 			break;	
 			
+		case R.id.btnSettingsScreenDeleteAccount:
+			deleteAccountClicked();
+			break;
+			
+		case R.id.btnSubmitPassword:
+			submitChangePasswordClicked();
+			break;
+			
 			
 		default:
 			
 			break;	
 		}
+	}
+	
+	private void submitChangePasswordClicked() {
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+		nameValuePairs.add(new BasicNameValuePair("requestType", "changePassword"));
+		nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
+		nameValuePairs.add(new BasicNameValuePair("passOld", ChangePasswordScreen.getPasswordOld()));
+		nameValuePairs.add(new BasicNameValuePair("passNew", ChangePasswordScreen.getPasswordNew()));
+		nameValuePairs.add(new BasicNameValuePair("passConfirm", ChangePasswordScreen.getPasswordConfirm()));
+		DispatcherTask changePassword = new DispatcherTask("Settings", nameValuePairs);
+		changePassword.execute();
+	}
+	private void deleteAccountClicked() {
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+		nameValuePairs.add(new BasicNameValuePair("requestType", "deleteUser"));
+		nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
+		nameValuePairs.add(new BasicNameValuePair("pass", LoginScreen.getLoginData()[1]));
+		DispatcherTask friendslist = new DispatcherTask("Settings", nameValuePairs);
+		friendslist.execute();
 	}
 	private void removeFriendClicked() {
 		
@@ -108,9 +136,33 @@ public class SettingsController extends SettingsScreen implements View.OnClickLi
 		
 		if(type.equals("retrieveFriendslist")) retrieveFriendslistResponse(wholeObject);
 		if(type.equals("retrieveFriendRequests")) retrieveFriendRequestsResponse(wholeObject);
+		if(type.equals("deleteUser")) deleteUserResponse(wholeObject);
+		if(type.equals("changePassword")) changePasswordResponse(wholeObject);
 		
 		
 		
+	}
+	private static void changePasswordResponse(JSONObject wholeObject) throws JSONException {
+		if(wholeObject.getString("success").equals("1")){
+			Toast toast = Toast.makeText(settingsContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+			((Activity) settingsContext).finish();
+		}
+		else{
+			Toast toast = Toast.makeText(settingsContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
+	}
+	private static void deleteUserResponse(JSONObject wholeObject) throws JSONException {
+		if(wholeObject.getString("success").equals("1")){
+			Toast toast = Toast.makeText(settingsContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+			((Activity) settingsContext).finish();
+		}
+		else{
+			Toast toast = Toast.makeText(settingsContext, wholeObject.getString("message") , Toast.LENGTH_SHORT);
+			toast.show();
+		}
 	}
 	private static void retrieveFriendRequestsResponse(JSONObject wholeObject) throws JSONException {
 		JSONArray message = wholeObject.getJSONArray("message");

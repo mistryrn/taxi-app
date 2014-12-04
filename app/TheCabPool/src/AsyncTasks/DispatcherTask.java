@@ -52,7 +52,7 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			message="";
-			encrypt();
+			if(!fromClass.equals("AutoCompleteRequest") && !fromClass.equals("AutoCompleteOffer"))encrypt();
 		}
 	    
 		private void encrypt() {
@@ -79,7 +79,7 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 				nameValuePairsEncrypted.add(encryptedPair);
 			}
 			nameValuePairs = nameValuePairsEncrypted;
-		
+			
 		}
 
 		@Override
@@ -103,7 +103,6 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
-			decrypt();
 			
 			try {
 				if(fromClass.equals("AutoCompleteRequest") || fromClass.equals("AutoCompleteOffer")){
@@ -114,6 +113,7 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 					if(fromClass.equals("AutoCompleteOffer")) OfferScreen.setMarker(new LatLng(pos[0], pos[1]), stringData[0].replace("location=", "").replace(",", " "));
 				}
 				else{
+					decrypt();
 					if(fromClass.equals("Security")) SecurityController.httpResponse(message);
 					else if(fromClass.equals("Share")) ShareController.httpResponse(message);
 					else if(fromClass.equals("Settings")) SettingsController.httpResponse(message);
@@ -132,7 +132,7 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 		    
 		    try {
 		        // Add your data
-		        
+		        Log.d("nameValuePairs1", ""+nameValuePairs.get(0));
 		        httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 		        // Execute HTTP Post Request
 		        HttpResponse response = httpclient.execute(httppost);
@@ -143,8 +143,9 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 		        while ((line = reader.readLine()) != null) {
 		        	if(line.length()!=0 && line.charAt(0)=='<') break;
 		            sb.append(line + "\n");
+		            Log.d("line", line);
 		        }
-
+		        Log.d("message","Here");
 		        message = sb.toString();
 	            
 		        

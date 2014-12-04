@@ -14,6 +14,7 @@ public class SettingsScreen extends Activity{
 	Button btnFriendslist;
 	Button btnBlacklist;
 	Button btnChangePassword;
+	Button btnDeleteAccount;
 	
 	
 	
@@ -29,6 +30,7 @@ public class SettingsScreen extends Activity{
 		btnFriendslist = (Button) findViewById(R.id.btnFriendslist);
 		btnBlacklist = (Button) findViewById(R.id.btnBlacklist);
 		btnChangePassword = (Button) findViewById(R.id.btnChangePassword);
+		btnDeleteAccount = (Button) findViewById(R.id.btnSettingsScreenDeleteAccount);
 		
 		//initialize controller
 		SettingsController controller = new SettingsController(this);
@@ -38,6 +40,7 @@ public class SettingsScreen extends Activity{
 		btnFriendslist.setOnClickListener(controller);
 		btnBlacklist.setOnClickListener(controller);
 		btnChangePassword.setOnClickListener(controller);
+		btnDeleteAccount.setOnClickListener(controller);
 	}
 	
 }

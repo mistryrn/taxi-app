@@ -12,9 +12,9 @@ import controllers.SettingsController;
 
 public class ChangePasswordScreen extends Activity{
 
-	EditText txtPasswordOld;
-	EditText txtPasswordNew;
-	EditText txtPasswordConfirm;
+	static EditText txtPasswordOld;
+	static EditText txtPasswordNew;
+	static EditText txtPasswordConfirm;
 	
 	Button btnSubmit;
 	
@@ -42,15 +42,15 @@ public class ChangePasswordScreen extends Activity{
 		lblMessage.setText(msg);
 	}
 	
-	public String getPasswordOld(){
+	public static String getPasswordOld(){
 		return txtPasswordOld.getText().toString();
 	}
 
-	public String getPasswordNew(){
+	public static String getPasswordNew(){
 		return txtPasswordNew.getText().toString();
 	}
 	
-	public String getPasswordConfirm(){
+	public static String getPasswordConfirm(){
 		return txtPasswordConfirm.getText().toString();
 	}
 }

@@ -74,6 +74,7 @@
             android:layout_width="149dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:text="18"
             android:inputType="number" >
 
        
@@ -98,6 +99,7 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:text="120"
             android:inputType="number" />
 
     </LinearLayout>
