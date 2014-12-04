@@ -196,11 +196,11 @@ public class RequestListScreen extends FragmentActivity{
 		  double pickupDistance = (Double) pickupTrip.getDistance().get(0);
 		  double middleDistance = (Double) middleTrip.getDistance().get(0);
 		  double dropoffDistance = (Double) dropoffTrip.getDistance().get(0);
-		  double subcharge = 0.0001;
+		  double subcharge = 0.0002;
 		  
 		  //subcharge per dollars per meter
 		  //in the middle, where the taxi is shared the requester pays a third of the cost
-		  double charge = pickupDistance*subcharge + middleDistance*subcharge/(3) + dropoffDistance*subcharge; 
+		  double charge = 3 + pickupDistance*subcharge + middleDistance*subcharge/(3) + dropoffDistance*subcharge; 
 		  
 		  DecimalFormat df = new DecimalFormat("#.00"); 
 		  

@@ -141,6 +141,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 	}
 
 	private void acceptOfferClicked() {
+		if(RequestListScreen.getOtherUser()==otherUser){
 		otherUser = RequestListScreen.getOtherUser();
 		DisplayFareScreen.setCost(RequestListScreen.getCost());
 		acceptedOfferPos = RequestListScreen.getPos();
@@ -153,6 +154,7 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		nameValuePairs.add(new BasicNameValuePair("duration", RequestListScreen.getOfferUser()[2]));
 		DispatcherTask acceptOffer = new DispatcherTask("Share", nameValuePairs);
 		acceptOffer.execute();
+		}
 	}
 
 	private void offerArrivalLocationClicked() {
@@ -179,9 +181,11 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		String ageEnd = OfferScreen.getOldAge();
 		String gender = OfferScreen.getGender();
 		
-		if(ageStart=="") ageStart="18";
-		if(ageEnd=="") ageEnd="120";
+		if(ageStart==null) ageStart="18";
+		if(ageEnd==null) ageEnd="120";
 		
+		Log.d("AgeStart", ageStart);
+		Log.d("AgeEnd", ageEnd);
 		//send data
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
 		nameValuePairs.add(new BasicNameValuePair("requestType", "offer"));
@@ -344,8 +348,8 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 			Intent intent = new Intent(shareContext, YourTripScreen.class);
 	    	shareContext.startActivity(intent);
 			((Activity) shareContext).finish();
-			Toast toast = Toast.makeText(shareContext, wholeObject.getString("message"), Toast.LENGTH_SHORT);
-			toast.show();
+			//Toast toast = Toast.makeText(shareContext, wholeObject.getString("message"), Toast.LENGTH_SHORT);
+			//toast.show();
 			String[] l = wholeObject.getString("message").split(" ");
 			Log.d("String[0]", l[0]);
 			Log.d("String[1]", l[1]);
@@ -481,7 +485,6 @@ public class ShareController extends RequestScreen implements View.OnClickListen
 		}
 		Intent intent = new Intent(shareContext, RequestListScreen.class);
     	shareContext.startActivity(intent);
-    	((Activity) shareContext).finish();
 	}
 
 	
