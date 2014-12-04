@@ -10,19 +10,24 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import library.MCrypt;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import views.LoginScreen;
 import views.OfferScreen;
 import views.RequestScreen;
 
@@ -51,7 +56,30 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 		}
 	    
 		private void encrypt() {
+
+			List<NameValuePair> nameValuePairsEncrypted = new ArrayList<NameValuePair>(2);
 			//insert encryption code here (must encrypt all nameValuePairs)
+			for(int i = 0; i<nameValuePairs.size(); i++){
+				String nameValue = nameValuePairs.get(i).toString();
+				String[] nameValueArray = nameValue.split("=");
+				String value = nameValueArray[1];
+				StringBuilder newValue = new StringBuilder();
+				MCrypt mcrypt = new MCrypt();
+				String encrypted = "";
+				/* Encrypt */
+				try {
+					encrypted = MCrypt.bytesToHex( mcrypt.encrypt(value) );
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				value = encrypted;
+				Log.d("nameValuePairs", value);
+				BasicNameValuePair encryptedPair = new BasicNameValuePair(nameValueArray[0], value);
+				nameValuePairsEncrypted.add(encryptedPair);
+			}
+			nameValuePairs = nameValuePairsEncrypted;
+		
 		}
 
 		@Override
@@ -60,10 +88,22 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 			else postData();
 			return null;
 		}
+		
+		private void decrypt(){
+			MCrypt mcrypt = new MCrypt();
+			/* Decrypt */
+			try {
+				message = new String( mcrypt.decrypt( message ) );
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 		@Override
 		protected void onPostExecute(String result) {
 			super.onPostExecute(result);
+			decrypt();
 			
 			try {
 				if(fromClass.equals("AutoCompleteRequest") || fromClass.equals("AutoCompleteOffer")){
