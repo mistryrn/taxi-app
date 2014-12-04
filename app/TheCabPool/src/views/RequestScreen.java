@@ -77,14 +77,18 @@ public class RequestScreen extends FragmentActivity implements GoogleMap.OnMapCl
 		map.setMyLocationEnabled(true);
 		
 		
-		LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-		Criteria criteria = new Criteria();
-		String provider = service.getBestProvider(criteria, false);
-		Location location = service.getLastKnownLocation(provider);
-		LatLng userLocation = new LatLng(location.getLatitude(),location.getLongitude());
+		  LocationManager locationManager = (LocationManager)getSystemService
+		            (Context.LOCATION_SERVICE); 
+		    Location getLastLocation = locationManager.getLastKnownLocation
+		            (LocationManager.PASSIVE_PROVIDER);
+		    double currentLongitude = getLastLocation.getLongitude();
+		    double currentLatitude = getLastLocation.getLatitude();
+
+		    LatLng userLocation= new LatLng(currentLatitude, currentLongitude); 
 		userMarker = map.addMarker(new MarkerOptions().position(userLocation).title("Your Location"));
 		map.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 14));
 		map.setOnMapClickListener(this);
+		
 		
 		currentLocation[0] = ""+userLocation.latitude;
 		currentLocation[1] = ""+userLocation.longitude;
