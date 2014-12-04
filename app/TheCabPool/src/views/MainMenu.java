@@ -82,18 +82,7 @@ public class MainMenu extends Activity {
       
     
 
-    
-    @Override
-	protected void onDestroy() {
-        if(LoginScreen.getLoginData()!=null){
-        	List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-    		nameValuePairs.add(new BasicNameValuePair("requestType", "clearInTaxi"));
-    		nameValuePairs.add(new BasicNameValuePair("username", LoginScreen.getLoginData()[0]));
-    		DispatcherTask check = new DispatcherTask("Share", nameValuePairs);
-    		check.execute();
-        }
-		super.onDestroy();
-	}
+
 
 
 

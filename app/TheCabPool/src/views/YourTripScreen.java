@@ -76,7 +76,7 @@ public class YourTripScreen extends FragmentActivity implements GoogleMap.OnMapC
 				public void run(){
 					
 					try{
-						sleep(10000);
+						sleep(20000);
 					
 						Intent intent = new Intent(YourTripScreen.this, DisplayFareScreen.class);
 						if(tripFlag)YourTripScreen.this.startActivity(intent);

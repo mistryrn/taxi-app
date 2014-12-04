@@ -52,7 +52,7 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 		protected void onPreExecute() {
 			super.onPreExecute();
 			message="";
-			if(!fromClass.equals("AutoCompleteRequest") && !fromClass.equals("AutoCompleteOffer"))encrypt();
+			if(!fromClass.equals("AutoCompleteRequest") && !fromClass.equals("AutoCompleteOffer")) encrypt();
 		}
 	    
 		private void encrypt() {
@@ -62,7 +62,9 @@ public class DispatcherTask extends AsyncTask<String, Void, String> {
 			for(int i = 0; i<nameValuePairs.size(); i++){
 				String nameValue = nameValuePairs.get(i).toString();
 				String[] nameValueArray = nameValue.split("=");
-				String value = nameValueArray[1];
+				String value;
+				if(nameValueArray.length>1) value = nameValueArray[1];
+				else value = "";
 				StringBuilder newValue = new StringBuilder();
 				MCrypt mcrypt = new MCrypt();
 				String encrypted = "";
