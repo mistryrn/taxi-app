@@ -1,0 +1,405 @@
+\documentclass[english]{article}
+
+% Imported Packages
+%------------------------------------------------------------------------------
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{extarrows}
+\usepackage{setspace}
+\usepackage{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{tabulary}
+\usepackage[pageanchor]{hyperref}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\graphicspath{ {images/} }
+%------------------------------------------------------------------------------
+
+% For Graphs
+%------------------------------------------------------------------------------
+\usepackage{tikz}
+\usepackage{verbatim}
+\usetikzlibrary{positioning,arrows,shapes}
+
+% Header and Footer
+%------------------------------------------------------------------------------
+\pagestyle{plain}  
+\renewcommand\headrulewidth{0.4pt}                                      
+\renewcommand\footrulewidth{0.4pt}                                    
+%------------------------------------------------------------------------------
+
+% Document
+%------------------------------------------------------------------------------
+\begin{document}
+
+% Title Page & Table of Contents
+%------------------------------------------------------------------------------
+\pagenumbering{gobble} 
+\vspace*{\fill} 
+\centering{
+\LARGE{SFWR ENG 3A04 Project}\\
+\smallskip
+\Large{Cabpool}\\
+\smallskip
+\Large{Application Assessment}\\
+
+\bigskip \bigskip \bigskip
+\Large{
+Group 10\\
+\medskip
+\begin{tabular}{l l}
+    Amanda Boudreau & 0344130\\
+    Jordan Floyd & 1225123\\
+    Mario Machado & 1211979\\
+    Rakesh Mistry & 1221428\\
+    Ali Reda & 1206754\\
+\end{tabular}\\
+}
+\bigskip \bigskip \bigskip
+\today
+}
+\vspace*{\fill} 
+
+\newpage
+
+\tableofcontents
+
+\newpage
+
+\pagenumbering{arabic}
+\setcounter{page}{1}
+\raggedright    
+
+\section{Introduction}
+\label{sec:introduction}
+% Begin Section
+
+This document provides the reader with an assessment of the the Cabpool app. Section 1 provides the user with a guide to the use of the application. Section 2 provides an overview of the outcomes of the testing which is followed by an in depth description of the functionality testing the application underwent. Section 3 concludes with an assessment of the application and recommendations for future work. 
+
+% End Section
+
+\section{User Guide}
+\label{sec:user_guide}
+% Begin Section
+This section will be a user guide for the application Cabpool.
+
+\subsection{How Do I Register}
+
+To register on the application Cabpool, enter the application. And you will have the option to "Register". Click the register button. This will prompt a new page where you must enter needed credentials. You will be asked to enter your wanted user name, a password, your date of birth, your sex, and you phone number. Assuming all the inputs are valid, the user must now submit. After the submission, the user is now registered, and can use his information to login in to the system. 
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{register_screen}
+
+\subsection{How Do I Login}
+
+After registration, the user will now be able to login. To do so, simple click the login button on the main menu. This will take the user to the login screen. The user now will input the username and password he registered with. The user must then click submit. Assuming inputs are correct, the user is now logged in.
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{login_screen}
+
+\subsection{How Do I Enter the Settings Screen}
+
+To enter the settings screen simply go to the main menu and select the "settings" button. This will take you to the settings screen. 
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{main_menu}
+
+
+\subsection{How Do I Add A Favourite Location}
+
+If a user wishes to add a favorite location He will first need to be logged in. After this, the user must select the setting button on the main menu. There he will have the option "Favourite Locations". The user must click that. On that page the user will be prompted to enter a location. Assuming the location exists, the user will enter the location and submit his input. 
+
+\subsection{How Do I Add A Friend To Friends List}
+
+If a user wishes to add a friend to his friends list, he will first need to be logged in. After this, the user must select the setting button on the main menu. There he will have the option "Friends List". The user must click that. On that page the user will be prompted to enter a username. Assuming the username exists, the user will enter the username, and the user will be sent a friends Request. If a user wants to remove a friend, he enters the username and selects "Remove Friends" Button.
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{friends_list}
+
+\subsection{How Do I Accept A Friend Request}
+
+To accept a friend request, enter the Friends List screen on the settings screen. There you will have the option to add or remove a user to a friends list, or to accept existing incoming requests. The user has the choice to decline or accept the user that is requesting to be his friend. 
+
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{friends_list}
+
+\subsection{How Do I Add or Remove A User onto Blacklist}
+
+If a user wishes to add or remove a user to the blacklist, he will first need to be logged in. After this, the user must select the setting button on the main menu. There he will have the option "Blacklist". The user must click that. On that page the user will be prompted to enter a username. Assuming the username exists, the user will enter the username, and the user Will be blacklisted after submission. If the user wants to remove a user from his blacklist, He can select a blacklist user and remove from blacklist. 
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{blacklist}
+
+\subsection{How Do I Change My Password}
+
+If a user wishes to change his password, He must select the Settings Screen, followed by the change password screen. There he will be prompted to enter his current password, and then his new password. The user must submit the changes for them to take effect.
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{change_password}
+
+\subsection{How Do I Delete My Account}
+
+If i user wishes to be removed by the system and delete their account, he can do so in the settings screen. On the screen, the user can select the "Delete Account" button. If selected, this will tell the user that his account has ben deleted
+
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{select_settings}
+
+\subsection{How Do I Offer a Taxi}
+
+If a user wishes to offer a taxi, he must select the offer taxi button. There the user will be capable of of offering his current route/location using the QR Code. The user can then submit is offer.
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{Offer_taxi}
+
+\subsection{How Do I Request A Taxi}
+
+To request a taxi, the user must click the request taxi option in the main menu. The user must load the available offers, and choose one to request. On the other end, the user offering will recieve a confirmation. 
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{Request}
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{request_sent}
+
+\subsection{How Do I Accept an incoming request}
+
+If a user offered a taxi, and later on another user accepted that offer. The first user will get a message in the application asking him if he would like to accept or deny the incoming request
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{Incoming_Request}
+
+\subsection{How Do I Scan A QR Code}
+
+Assuming the user wants to offer a taxi, and he is on the offer taxi screen. He will need to input a QR Code to show up in the requests on the point of view of the other users. To Do so, the user will have a "Scan Code" Button. The user must click that, and scan a valid QR Code. The user then selects "Submit Code". And after that, his offer will be sent out.
+
+\medskip 
+
+If user does not have the QR Code scanner, the application will prompt the user to download it. User will be redirected to the Play Store where he must download the QR CODE Application
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{scanqrcode}
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{scanqrcodesuccess}
+
+\subsection{How Do I Cancel Offer}
+
+If a user wishes to cancel an offer he made he, we will assume he already has an offer. When a user has an existing offer he will have the option to "Cancel Offer" on the Offers page. User must submit his changes. 
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{offer_removed}
+
+\subsection{How Do I Accept An Offer}
+
+To accept an offer someone has made, you must view the search results in the request taxi screen. There you will see "available offers". From the list, you have an option to choose which one you would like. To confirm accpeting the offer, user must select "Accept Offer" Button. From the other users end, he will see a request success. 
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{accept_offer}
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{request_accepted}
+
+\subsection{How Do I Rate The Service}
+
+After you accept and offer, or your request is accept, and you use the service. You will have an option to "Rate" the service through the "rate" button after the confirmation page. 
+
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{fare_and_rating}
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{user_rated}
+
+
+
+% End Section
+
+
+\section{Testing}
+\label{sec:testing}
+% Begin Section
+Performance of the application is smooth and seamless on an android phone, there are no actions that take a noticeably long time to register, the application launches quickly and interfaces well with Google Maps. We decided that black-box testing was sufficient for asserting the correct behaviour with respect to the requirements. Due to the nature of our application, testing the code itself (white-box testing) was not deemed necessary. All user interaction with the application is done through a UI and is very restricted. As seen in the following figure, with the exception of innovative features, all requirements were met. The application catches exception cases and displays appropriate error messages, hence we have determined our implementation to be successful. Our application is effective and bug free, having met all base requirements we are confident with additional time innovative features could easily be added to fulfill additional nonfunctional requirements.
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{requirements}
+
+\subsection{Register}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{incorrect_phone_number}
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{invalid_date_of_birth}
+\newline 
+Upon selecting Register the user is directed to a registration screen. The user must enter the information according to the requested format. As is seen in the above figures, if the user enters information according to the wrong format the appropriate error message is displayed.
+
+%End SubSection
+
+\subsection{Login Screen}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{invalid_login}
+\newline
+If login is selected, the user is successfully redirected to a login screen at which they must enter their username and password. As seen in the figure above, if an invalid username is entered a corresponding login failure error message is displayed. 
+%End SubSection
+
+
+\subsection{Offer Taxi}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{login_to_offer}
+\newline
+When the user selects the offer taxi option, the system confirms that the user is logged in, if they are not an error message directs the user to login. A logged in user will be able to select the offer taxi option and proceed to the offer taxi process which includes scanning the QR code. 
+%End SubSection
+
+\subsection{Scan QR Code}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{scanqrcodefailure}
+\newline
+Within the option to offer a taxi the user must first scan the taxi QR code, to start this process they must select Scan Code. The app will then require them to complete the scanning process. When an invalid code is scanned then an error message is displayed indicating the code is invalid. Following a successful scan the scan code screen indicates the code was scanned and the user must submit it to verify offer. The server will update to indicate the user has entered the taxi associated with the scanned QR code. 
+%End SubSection
+
+\subsection{Cancel Offer}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{offer_removed}
+\newline
+The user is able to cancel an offer by returning to the Offer Taxi screen and selecting Remove Offer. Upon clicking Remove Offer the offer is removed from the database. As seen in the above figure, the user is prompted with a message indicated the offer has been removed. 
+%End SubSection
+
+\subsection{View Incoming Request}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{viewincomingrequests}
+\newline
+As seen in the above diagram, the Incoming Requests screen is empty while the system matches requests with offers. Upon matching users in the database, the app successfully populates the list with matches. 
+%End SubSection
+
+\subsection{Accept User}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{accept_user}
+The user offering the taxi is able to select and accept a user requesting a taxi. 
+%End SubSection
+
+\subsection{Decline User}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{decline1}
+At this point, the user is not able to explicitly decline a user but they are not required to accept their request. Additional requests will populate the incoming requests screen. 
+%End SubSection
+
+\subsection{Request Taxi}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{login_to_request}
+\newline
+A logged in user is able to select the option to request a taxi. The above diagram is displayed in the event a user selects the Request Taxi option while not logged in. 
+%End SubSection
+
+\subsection{Cancel Request}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{cancel_request}
+At this point, the user is unable to cancel a request, all requests are stored in the database until the request has been completed. The requesting user, however, is able to make additional requests and only accept appropriate offers. 
+%End SubSection
+
+\subsection{View Search Results}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{offers}
+\newline
+The server successfully communicates with the dispatcher to display search results that match the criteria. Search results displayed include username, user rating, trip fare and duration. 
+%End SubSection
+
+\subsection{Accept Offer}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{accept_offer}
+\newline
+As seen in the above figure, the dispatcher successfully populates the Available Offers screen with offers that match the user search criteria. The user is able to select an offer they would like to accept. This message is sent securely to the dispatcher who allows the offering user to choose whether to accept the requesting user. 
+%End SubSection
+
+\subsection{Reject Offer}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{reject1}
+The dispatcher successfully populates the Available Offers screen with offers that match the user search criteria. At this time, the user is not able to explicitly reject an offer, however, in not accepting an offer they have effectively rejected the offer. The lack of offer acceptance is communicated to the dispatcher and the offering user is not able to accept the request of a nonresponsive taxi requester. 
+%End SubSection
+
+\subsection{Select Settings}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{select_settings}
+\newline
+The user is able to select the settings menu. Which displays the appropriate options. 
+%End SubSection
+
+\subsection{Select Favourite Locations}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{select_favorite_locations}
+The user is able to select Favourite Locations. Within the Favourite Locations option there is currently no functionality. 
+%End SubSection
+
+\subsection{Modify Favourite Locations}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{modifyfavouritelocations}
+At this time there is no modifiability within Favourite Locations. 
+%End SubSection
+
+\subsection{Select Blacklist}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{blacklist}
+\newline 
+The user is able to select Blacklist . Within the Blacklist option there is currently no functionality. 
+%End SubSection
+
+\subsection{Modify Blacklist}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{blacklists}
+\newline 
+At this time, the user is unable to modify the Blacklist.
+%End SubSection
+
+\subsection{Select Friends List}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{friends_list}
+\newline 
+The application successfully displays the options available within Friends List. 
+%End SubSection
+
+\subsection{Modify Friends List}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{friends}
+There is no functionality within the Friends List at this time. 
+%End SubSection
+
+\subsection{View Friend Request}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{friends}
+The user has no functionality within the Friends List.  
+%End SubSection
+
+\subsection{Modify Friend Request}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{modify_friend_request}
+At this time, the user is unable to modify Friend Requests. 
+%End SubSection
+
+\subsection{Change Password}
+%Begin SubSection 
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{password_changed}
+\newline 
+As seen in the above figure, the user is able to change their password. 
+%End SubSection
+
+\subsection{Deregister}
+%Begin SubSection
+\includegraphics[width=.5\textwidth,height=.5\textheight,keepaspectratio]{select_settings}
+\newline
+The user is able to delete their account, this removes all user information from the database.
+%End SubSection
+% End Section
+
+\section{Future Work}
+\label{sec:future_work}
+% Begin Section
+The application runs smoothly on an android phone and interfaces well with Google Maps. Communication with the server is quick and secure. Barcode scanning is quick and effective. Desired user features work well and the application runs as expected. With the exception of innovative features, all requirements were met. Exception cases display appropriate error messages and the user is prompted on how to correct their behavior to achieve desired results. Our application is successful and we are confident it is free of bugs. 
+
+\smallskip
+At present, the innovative features proposed, including Friends List, Blacklist, and Favourite Locations are not functional. While the options appear in the app selection of these does not provide the desired functionality and this an area requiring future work.
+
+\smallskip
+Future Work for this project involves scaling the application to handle a larger user base. Currently the server will not accommodate greater than 30 users, in the future, this limit will be unacceptable and must be increased to reflect the vast number of users anticipated to use this application. 
+
+% End Section
+
+\clearpage
+\newpage
+\appendix
+\section{Division of Labour}
+\label{sec:division_of_labour}
+% Begin Section
+We worked collaboratively to complete this project. Each group member made an equal contribution to the project. By signing below, we hereby acknowledge that the work was in fact divided equally.\\
+\bigskip
+\begin{tabular}{l l}
+Amanda Boudreau & \line(1,0){50}\\
+Jordan Floyd & \line(1,0){50}\\
+Mario Machado & \line(1,0){50}\\
+Rakesh Mistry & \line(1,0){50}\\
+Ali Reda & \line(1,0){50}\\
+\end{tabular}
+
+% End Section
+
+\end{document}
+%------------------------------------------------------------------------------

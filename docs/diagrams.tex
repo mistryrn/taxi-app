@@ -81,15 +81,10 @@ Group 10\\
 \label{sec:introduction}
 % Begin Section
 
-This section should provide an brief overview of the entire document.
-
 \subsection{Purpose}
 \label{sub:purpose}
 % Begin SubSection
-\begin{enumerate}[a)]
-    \item Delineate the purpose of the document
-    \item Specify the intended audience for the document
-\end{enumerate}
+The purpose of this document is to identify and analyse the major components of the system. This document will show the overview of the system using state charts, sequence diagrams, and a detailed class diagram.  The reader will understand the system behaviour and follow how the app runs. The document will familiarize a user with the architecture of the system and responsibilities of the states. This document was created for software engineers, developers and management. These users shall be able to read and understand how the Application will work on a higher level after reading this document.
 % End SubSection
 
 \subsection{System Description}
@@ -104,11 +99,7 @@ Additionally, the User of the software shall be able to add users to their Frien
 \subsection{Overview}
 \label{sub:overview}
 % Begin SubSection
-\begin{enumerate}[a)]
-    \item Describe what the rest of the document contains 
-    \item Explain how the document is organised
-\end{enumerate}
-
+Section 2 of this document contains state charts for controller classes. Section 3 contains a sequence diagrams for each class. Section 4 provides a detailed class diagram for the app.
 % End SubSection
 
 % End Section
@@ -116,19 +107,168 @@ Additionally, the User of the software shall be able to add users to their Frien
 \section{State Charts for Controller Classes}
 \label{sec:state_charts_for_controller_classes}
 % Begin Section
-This section should provide a state chart for each controller class for your application.
+
+\subsection{Share Controller}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{share_controller}
+%End SubSection
+
+\subsection{Security Controller}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{securitycontroller}
+%End SubSection
+
+\subsection{Main Controller}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{main_controller}
+%End SubSection
+
+\subsection{Settings Controller}
+%Begin SubSection
+\includegraphics[width=0.9\textwidth,height=0.9\textheight,keepaspectratio]{SettingsStateLandscape}
+%End SubSection
+
+\subsection{Data Controller}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{datacontroller2}
+%End SubSection
+
 % End Section
 
 \section{Sequence Diagrams}
 \label{sec:sequence_diagrams}
 % Begin Section
-This section should provide a sequence diagram for each use case of your application.
+
+\subsection{Login Screen}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{login_screen}
+%End SubSection
+
+\subsection{Register}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{register}
+%End SubSection
+
+\subsection{Deregister}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{deregister}
+%End SubSection
+
+\subsection{Scan QR Code}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{scanqrcode}
+%End SubSection
+
+\subsection{Offer Taxi}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{offersequence.jpg}
+%End SubSection
+
+\subsection{Cancel Offer}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cancel_offer}
+%End SubSection
+
+\subsection{View Incoming Request}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{viewincomingrequest}
+%End SubSection
+
+\subsection{Accept User}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{accept_user}
+%End SubSection
+
+\subsection{Decline User}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{decline1}
+%End SubSection
+
+\subsection{Request Taxi}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{requestsequence}
+%End SubSection
+
+\subsection{Cancel Request}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cancel_request}
+%End SubSection
+
+\subsection{View Search Results}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{viewsearchresults}
+%End SubSection
+
+\subsection{Accept Offer}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{accept_offer}
+%End SubSection
+
+\subsection{Reject Offer}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{reject1}
+%End SubSection
+
+\subsection{Select Settings}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{select_settings}
+%End SubSection
+
+\subsection{Select Favourite Locations}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{select_favorite_locations}
+%End SubSection
+
+\subsection{Modify Favourite Locations}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{modifyfavouritelocations}
+%End SubSection
+
+\subsection{Select Blacklist}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{select_blacklist}
+%End SubSection
+
+\subsection{Modify Blacklist}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{blacklist}
+%End SubSection
+
+\subsection{Select Friends List}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{select_friends_list}
+%End SubSection
+
+\subsection{Modify Friends List}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{modify_friends_list}
+%End SubSection
+
+\subsection{View Friend Request}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{viewfriendrequest}
+%End SubSection
+
+\subsection{Modify Friend Request}
+%Begin SubSection
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{modify_friend_request}
+%End SubSection
+
+\subsection{Change Password}
+%Begin SubSection 
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{password}
+%End SubSection
+
 % End Section
 
 \section{Detailed Class Diagram}
 \label{sec:detailed_class_diagram}
 % Begin Section
-This section should provide a detailed class diagram for your application.
+\includegraphics[width=0.95\textwidth,height=0.95\textheight,keepaspectratio]{detailedclassdiagram}
+\clearpage
+\includegraphics[width=0.95\textwidth,height=0.95\textheight,keepaspectratio]{detailedclassdiagram-1}
+\clearpage
+\includegraphics[width=0.95\textwidth,height=0.95\textheight,keepaspectratio]{detailedclassdiagram-2}
 % End Section
 
 \clearpage
@@ -148,27 +288,6 @@ Ali Reda & \line(1,0){50}\\
 \end{tabular}
 
 % End Section
-
-\newpage
-\section*{IMPORTANT NOTES}
-\begin{itemize}
-    \item You do \underline{NOT} need to provide a text explanation of each diagram; the diagram should speak for itself
-    \item Please document any non-standard notations that you may have used
-    \begin{itemize}
-        \item \emph{Rule of Thumb}: if you feel there is any doubt surrounding the meaning of your notations, document them
-    \end{itemize}
-    \item Some diagrams may be difficult to fit into one page
-    \begin{itemize}
-        \item It is OK if the text is small but please ensure that it is readable when printed
-        \item If you need to break a diagram onto multiple pages, please adopt a system of doing so and throughly explain how it can be reconnected from one page to the next; if you are unsure about this, please ask me
-    \end{itemize}
-    \item Please submit the latest version of Deliverable 1 and Deliverable 2 with Deliverable 3
-    \begin{itemize}
-        \item They do not have to be a freshly printed versions; the latest marked versions are OK
-    \end{itemize}
-    \item If you do \underline{NOT} have a Division of Labour sheet, your deliverable will \underline{NOT} be marked
-\end{itemize}
-
 
 \end{document}
 %------------------------------------------------------------------------------

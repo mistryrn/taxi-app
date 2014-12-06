@@ -135,7 +135,7 @@ A user selects the option to offer taxi. They are taken to the Scan QR Code Scre
 % Begin SubSection
 A user cancels an offer they have made in the offer taxi screen. A user is only able to cancel an offer if they made the offer. The system removes the offer from the offers database. The system will then display to the user the main menu. 
 % End SubSection
-\subsection{Incoming Request}
+\subsection{View Incoming Request}
 % Begin SubSection
 A user is notified of an incoming request from the Dispatcher in the offer taxi screen once another user has accepted their offer. While the app is running, the system will notify the user of all incoming requests. The app can be minimized and/or the user does not need to be on the offer taxi screen to receive notification of the request to share the taxi. 
 % End SubSection
@@ -175,56 +175,34 @@ A user selects a setting that they would like to modify in the settings screen.
 % Begin SubSection
 A user views their favourite locations in the favourite locations screen.
 % End SubSection
-\subsection{Add Favourite Location}
+\subsection{Modify Favourite Locations}
 % Begin SubSection
-A user includes a favourite location to add to their list of favourite locations on the favourite locations screen. The system requests the Dispatcher add the location to the user's favourite locations list in the user records database. 
-% End SubSection
-\subsection{Remove Favourite Location}
-% Begin SubSection
-A user selects a favourite location to remove from their list of favourite locations in the favourite locations screen. The system requests the Dispatcher remove the location from the user's favourite locations list in the user records database. 
+A user includes a favourite location to add to their list of favourite locations on the favourite locations screen, or selects a favourite location to remove from their list. The system requests the Dispatcher add or remove the location from the user's favourite locations list in the user records database.
 % End SubSection
 \subsection{Select Blacklist}
 % Begin SubSection
 A user views their Blacklist in the Blacklist screen.
 % End SubSection
-\subsection{Add to Blacklist}
+\subsection{Modify Blacklist}
 % Begin SubSection
-A user selects a different user they do not want to taxi share with to add to their Blacklist on the Blacklist screen. The system requests the Dispatcher add the Blacklisted user to the user's Blacklist in the user records database. 
-% End SubSection
-\subsection{Remove from Blacklist}
-% Begin SubSection
-A user selects a user on their Blacklist to remove from the Blacklist on the Blacklist screen. The system requests the Dispatcher remove the Blacklisted user from the user's Blacklist in the user records database. 
+A user selects a different user they do not want to taxi share with to add to their Blacklist on the Blacklist screen. The system requests the Dispatcher add the Blacklisted user to the user's Blacklist in the user records database. A user selects a user on their Blacklist to remove from the Blacklist on the Blacklist screen. The system requests the Dispatcher remove the Blacklisted user from the user's Blacklist in the user records database. 
 % End SubSection
 \subsection{Select Friends List}
 % Begin SubSection
 A user selects the Friends List button. The system will request the Dispatcher retrieve friend information from the user records database. User will view their friend status information in the Friend List on the Friend List screen. 
 % End SubSection
-\subsection{Add Friend}
+\subsection{Modify Friends List}
 % Begin SubSection
-A user selects a potential friend to add to their Friends List in the Friends List screen. The system verifies with the Dispatcher that the username entered is in the user records database. The system will request the Dispatcher sends the potential friend a notification asking them to accept the friend request. If the potential friend is not registered the user trying to add an unregistered user will be notified through an error message on the Friends List screen that no such user exists. 
-% End SubSection
-\subsection{Remove Friend}
-% Begin SubSection
-A user selects a friend to remove from their Friends List in the Friends List screen. The system requests the Dispatcher remove the friend from the user's Friends List in the user records database.  
+A user selects a potential friend to add or remove from their Friends List in the Friends List screen. To add a friend, the system verifies with the Dispatcher that the username entered is in the user records database. The system will request the Dispatcher sends the potential friend a notification asking them to accept the friend request. If the potential friend is not registered the user trying to add an unregistered user will be notified through an error message on the Friends List screen that no such user exists. To remove a friend, the user selects a friend to remove from their Friends List in the Friends List screen. The system requests the Dispatcher remove the friend from the user's Friends List in the user records database.  
 % End SubSection
 \subsection{View Friend Requests}
 % Begin SubSection
 A user views friend requests in the Friends List screen. The system requests the Dispatcher retrieve friend requests to which the user has not responded from the user records database.
 % End SubSection
-\subsection{Accept Friend Request}
+\subsection{Modify Friend Request}
 % Begin SubSection
-A user accepts a friend request in the Friends List screen. The system adds the accepted user to the accepting users Friends List in the user records database. 
+A user accepts or declines a friend request in the Friends List screen. The system adds the accepted user to the user's Friends List in the user records datastore in the case of an accepted request, and removes the request from the user's list of friend requests in the user records datastore in the case of a declined request.
 % End SubSection
-\subsection{Decline Friend Request}
-% Begin SubSection
-A user declines a friend request in the Friends List screen. The system removes the request from the users list of friend requests in the user records database.
-% End SubSection
-\subsection{Change Password}
-% Begin SubSection
-A user enters their current password, a new password, and a confirmation of the new password on the change password screen. The system will verify with the Dispatcher that the current password is valid and that the new password and confirmation of the new password match. If the information is valid it will be entered through the Dispatcher into the user records database; otherwise it will display an error on the password screen notifying the user of the error. 
-% End SubSection
-
-
 
 % End Section
 
